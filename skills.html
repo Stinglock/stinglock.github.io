@@ -291,6 +291,7 @@
     <div class="stat"><span class="k">Currently training</span><span class="stat-num">Rapid Firing IV</span><span class="sub">53.7% &middot; 10h 10m left &middot; ends 31 Aug 21:20</span></div>
     <div class="stat"><span class="k">Skills trained</span><span class="stat-num ready">135</span><span class="sub">incl. all of the old plan's blocks 1&ndash;10</span></div>
     <div class="stat"><span class="k">Assumed done, actually aren't</span><span class="stat-num warn">3 skills</span><span class="sub">not trained, not queued &mdash; see below</span></div>
+    <div class="stat"><span class="k">Hurricane skill gaps</span><span class="stat-num warn">4 skills</span><span class="sub">checked against a Hurricane pilot's benchmark &mdash; see below</span></div>
   </div>
 
   <section>
@@ -389,9 +390,39 @@
   </section>
 
   <div class="callout warn">
-    <h3>Gap the original plan missed</h3>
-    <p><b>Surgical Strike</b> (rank 4, flat turret damage %) and <b>Trajectory Analysis</b> (rank 5, turret optimal range) are both sitting at rank 1 trained and aren't in the live queue at all. They're the actual next-best Hurricane upgrades available &mdash; recommended insertion point is <b>after Weapon Upgrades IV, before Mechanics V</b>, ahead of the level-V gate and the entire Loki/Jaguar/Rapier/HAC tail behind it, since none of that back half does anything for a Hurricane.</p>
+    <h3>Gaps found, checked against a real Hurricane pilot's skill benchmark</h3>
+    <p>Cross-checked the current trained levels against Captain Benzi's "what I'd recommend before undocking a Hurricane" breakdown (see the full table below) and against the original plan. Four skills come up short of what a Hurricane actually wants:</p>
+    <p><b>Surgical Strike</b> (rank 4, flat turret damage %) and <b>Trajectory Analysis</b> (rank 5, turret optimal range) are both sitting at rank 1 trained and aren't in the live queue at all &mdash; already flagged last pass, and the benchmark confirms both are worth training to at least IV. <b>Minmatar Battlecruiser</b> is at III; the benchmark's own line is "I wouldn't even bother undocking this really before getting that at least to level four," and it's not in the live queue either. <b>Medium Projectile Turret</b> is at III; the benchmark runs IV today and is training toward V + specializations for T2 ammo access &mdash; also absent from the queue. Recommended insertion point for all four: <b>after Weapon Upgrades IV, before Mechanics V</b>, ahead of the level-V gate and the entire Loki/Jaguar/Rapier/HAC tail behind it, since none of that back half does anything for a Hurricane.</p>
   </div>
+
+  <section>
+    <h2>Checked against a Hurricane pilot's benchmark</h2>
+    <p class="note">Every skill Captain Benzi calls out as his own recommended baseline before flying a Hurricane, matched against the real export. Sixteen of twenty match or exceed; four fall short.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Skill</th><th>Benchmark</th><th>Yours</th><th>Status</th></tr></thead>
+        <tbody>
+<tr><td>Minmatar Frigate</td><td>III</td><td>V</td><td><span class="pill ready">exceeds</span></td></tr>
+<tr><td>Minmatar Destroyer</td><td>III</td><td>III</td><td><span class="pill ready">met</span></td></tr>
+<tr><td>Minmatar Cruiser</td><td>III</td><td>IV</td><td><span class="pill ready">exceeds</span></td></tr>
+<tr><td>Minmatar Battlecruiser</td><td>IV &mdash; "wouldn't undock without it"</td><td>III</td><td><span class="pill warn">short, not queued</span></td></tr>
+<tr><td>Gunnery</td><td>V</td><td>V</td><td><span class="pill ready">met &middot; maxed</span></td></tr>
+<tr><td>Motion Prediction</td><td>IV</td><td>IV</td><td><span class="pill ready">met</span></td></tr>
+<tr><td>Rapid Firing</td><td>IV</td><td>III</td><td><span class="pill warn">training now, 53.7%</span></td></tr>
+<tr><td>Sharpshooter</td><td>IV</td><td>IV</td><td><span class="pill ready">met</span></td></tr>
+<tr><td>Surgical Strike</td><td>IV</td><td>I</td><td><span class="pill warn">short, not queued</span></td></tr>
+<tr><td>Trajectory Analysis</td><td>IV</td><td>I</td><td><span class="pill warn">short, not queued</span></td></tr>
+<tr><td>Medium Projectile Turret</td><td>IV, heading to V</td><td>III</td><td><span class="pill warn">short, not queued</span></td></tr>
+<tr><td>Power Grid Management</td><td>V</td><td>IV</td><td><span class="pill warn">training, queued 05 Sep</span></td></tr>
+<tr><td>Drone skills (light drones)</td><td>"fairly high"</td><td>Drones V, Light Drone Op II, Avionics/Navigation/Sharpshooting II</td><td><span class="pill ready">adequate</span></td></tr>
+<tr><td>Shield Management</td><td>III</td><td>III</td><td><span class="pill ready">met</span></td></tr>
+<tr><td>Shield Operation</td><td>III&ndash;IV</td><td>IV</td><td><span class="pill ready">met</span></td></tr>
+<tr><td>Shield Upgrades</td><td>III</td><td>III</td><td><span class="pill ready">met</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Source: Captain Benzi's Hurricane flying guide (own recommended skill levels before undocking, passive-shield artillery build). Not a min-max requirement list &mdash; his own words are "good enough to run a ship like this," so treat shortfalls as the next things worth training, not blockers.</p>
+  </section>
 
   <section>
     <h2>Live training queue &mdash; real export, pulled 31 Aug 2026</h2>
@@ -403,7 +434,7 @@
 <tr><td class="num" style="text-align:left;color:var(--ink-3)">1</td><td>Rapid Firing IV</td><td>ends 31 Aug 21:20</td><td><span class="pill warn">training &middot; 53.7%</span></td></tr>
 <tr><td class="num" style="text-align:left;color:var(--ink-3)">2</td><td>Controlled Bursts IV</td><td>31 Aug 21:20</td><td><span class="pill ready">queued</span></td></tr>
 <tr><td class="num" style="text-align:left;color:var(--ink-3)">3</td><td>Weapon Upgrades IV</td><td>01 Sep 19:19</td><td><span class="pill ready">queued</span></td></tr>
-<tr style="background:var(--warn-bg)"><td class="num" style="text-align:left;color:var(--warn)">&middot;</td><td><b>Insert here &rarr; Surgical Strike IV, Trajectory Analysis V</b></td><td>&mdash;</td><td><span class="pill warn">recommended, not in queue</span></td></tr>
+<tr style="background:var(--warn-bg)"><td class="num" style="text-align:left;color:var(--warn)">&middot;</td><td><b>Insert here &rarr; Minmatar Battlecruiser IV, Surgical Strike IV, Trajectory Analysis V, Medium Projectile Turret IV</b></td><td>&mdash;</td><td><span class="pill warn">recommended, not in queue</span></td></tr>
 <tr><td class="num" style="text-align:left;color:var(--ink-3)">4</td><td>Mechanics V</td><td>02 Sep 18:58</td><td><span class="pill ready">queued</span></td></tr>
 <tr><td class="num" style="text-align:left;color:var(--ink-3)">5</td><td>Power Grid Management V</td><td>05 Sep 22:30</td><td><span class="pill ready">queued</span></td></tr>
 <tr><td class="num" style="text-align:left;color:var(--ink-3)">6</td><td>Spaceship Command V</td><td>09 Sep 02:02</td><td><span class="pill ready">queued</span></td></tr>
@@ -438,7 +469,7 @@
     <div class="trio">
       <div class="card"><div class="card-body">
         <h4>Stay the course &mdash; Hurricane mission runner</h4>
-        <p class="note">Stop after Signature Analysis V (plus Surgical Strike / Trajectory Analysis inserted ahead of it) and you're fully kitted for L1&ndash;L4s without touching the level-V gate or the PvP tail at all.</p>
+        <p class="note">Stop after Signature Analysis V (plus the four Hurricane gaps &mdash; Battlecruiser IV, Surgical Strike IV, Trajectory Analysis V, Medium Projectile Turret IV &mdash; inserted ahead of it) and you're fully kitted for L1&ndash;L4s without touching the level-V gate or the PvP tail at all.</p>
       </div></div>
       <div class="card"><div class="card-body">
         <h4>Branch into PvP</h4>
