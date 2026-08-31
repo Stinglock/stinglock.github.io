@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Character sheets for Stinglock Sigma, Coreun, and Miko.">
-<title>Pilots &middot; Roster</title>
+<meta name="description" content="Damage, EWar, and PvP alternatives for Stinglock's Stabber and other hulls, plus a full-drone rework for Coreun's Myrmidon and Dominix.">
+<title>Playbook Variations</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 
@@ -207,127 +207,156 @@
 </head>
 <body>
 <div class="wrap">
-<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="playbook.html">Playbook</a><span class="sep">/</span><a href="playbook-variations.html">Variations</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html" class="active">Pilots</a><span class="sep">/</span><a href="content.html">Content</a></nav>
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="playbook.html">Playbook</a><span class="sep">/</span><a href="playbook-variations.html" class="active">Variations</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a></nav>
 
   <header>
-    <div class="eyebrow">Roster &middot; Three Pilots</div>
-    <h1>Pilots</h1>
-    <p class="standfirst">Stinglock funds, Coreun flies, Miko is unconfirmed. Character sheets for everyone in the operation.</p>
+    <div class="eyebrow">Alternatives &middot; Damage, EWar, PvP, Full Drones</div>
+    <h1>Playbook Variations</h1>
+    <p class="standfirst">The base playbook is the safe mission-running default. These are the swaps if Stinglock wants more damage or EWar leaning toward PvP later, and a full-drone rework for Chezz.</p>
   </header>
 
   <section>
+    <h2>Stinglock &mdash; Stabber variants</h2>
+    <p class="note">All still 4 high / 4 mid / 6 low, 3 rigs &mdash; module swaps against the base fit on <a href="playbook.html" style="color:var(--rust)">the playbook</a>, not new hulls. The Stabber has no EWar bonus, so the EWar option below is a compromise, not a real EWar boat &mdash; see the dedicated hulls further down for that.</p>
+
+    <div class="trio">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who s">Variant 1</span>
+          <h3>Damage-max</h3>
+          <span class="sub">Best for L1/L2, nothing shoots back hard</span>
+        </div>
+        <div class="card-body">
+          <ul class="fit">
+            <li><span class="n">Low</span>3&ndash;4&times; Gyrostabilizer II <em>&mdash; up from 2</em></li>
+            <li><span class="n">Mid</span>10MN MWD <em>&mdash; swap from AB, range control on gank runs</em></li>
+            <li><span class="n">Drop</span>Tracking Computer + Tracking Enhancer</li>
+          </ul>
+          <p class="note">Loses tank and cap stability, gains flat DPS. Bad idea once tanking L3+ solo.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who c">Variant 2</span>
+          <h3>EWar / support</h3>
+          <span class="sub">Compromise fit &mdash; useful in a duo, not solo</span>
+        </div>
+        <div class="card-body">
+          <ul class="fit">
+            <li><span class="n">Hi</span>Drop 1&ndash;2 turrets for utility</li>
+            <li><span class="n">Mid</span>Target Painter <em>&mdash; helps fleetmate's tracking</em></li>
+            <li><span class="n">Mid</span>Stasis Webifier <em>&mdash; or this, for tackle</em></li>
+          </ul>
+          <p class="note">The real answer to EWar is the <b>Rapier</b> &mdash; force recon, webs + points, EWar bonuses baked in. Locked behind Minmatar Cruiser V (~19d), same as the Loki.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who s">Variant 3</span>
+          <h3>PvP-lean, now</h3>
+          <span class="sub">Don't touch the Stabber &mdash; use a frigate instead</span>
+        </div>
+        <div class="card-body">
+          <p class="note">Use the <b>Slasher or Condor</b> instead &mdash; both already flyable, both proper tackle frigates, and losing one doesn't hurt like losing the Stabber does.</p>
+          <ul class="fit">
+            <li><span class="n">Mid</span>Warp Disruptor</li>
+            <li><span class="n">Mid</span>Stasis Webifier</li>
+            <li><span class="n">Low</span>Cheap plate or nothing &mdash; align time over tank</li>
+          </ul>
+          <p class="note">Basically Path B from the fleet page pulled forward to today instead of waiting on Assault Frigates.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Stinglock &mdash; other hangar options for PvP</h2>
+
+    <h4 style="margin-top:4px">Already flyable, PvP-relevant</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Ship</th><th>Role</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td class="shipname">Thrasher</td><td>Alpha-strike autocannon destroyer</td><td>Higher burst than the Stabber, paper-thin. Gate camps and ganks, not sustained fights.</td></tr>
+          <tr><td class="shipname">Rifter &times;2</td><td>Cheap, disposable brawler</td><td>What you throw at someone when losing the ship doesn't matter. Learn PvP without risking the Stabber.</td></tr>
+          <tr><td class="shipname">Talwar &times;2</td><td>Missile destroyer, 7 launchers</td><td>Currently unarmed &mdash; comes online once the missile block in the plan lands. High alpha for a T1 hull once it does.</td></tr>
+          <tr><td class="shipname">Burst</td><td>Logistics frigate, remote shield rep</td><td>Not damage or EWar itself &mdash; pairs with any of the above, keeps tackle alive longer.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="margin-top:8px">Owned but gated &mdash; the actual dedicated PvP hulls</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Ship</th><th>Role</th><th>Blocker</th></tr></thead>
+        <tbody>
+          <tr><td class="shipname">Jaguar</td><td>Assault frigate, T2 &mdash; the real damage/tank PvP frigate</td><td>Cap Systems Op V + Mechanics V</td></tr>
+          <tr><td class="shipname">Rapier</td><td>Force recon, T2 EWar &mdash; webs, points, bonused</td><td>Minmatar Cruiser V + Recon Ships I</td></tr>
+          <tr><td class="shipname">Hound</td><td>Stealth bomber, T2 &mdash; alpha-strike torpedoes, cloaky</td><td>Electronics Upgrades V</td></tr>
+          <tr><td class="shipname">Loki</td><td>T3 strategic cruiser &mdash; damage, EWar, or tackle depending on subsystems</td><td>~20d out, most expensive of the lot to lose</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout sting">
+      <h3>The honest ranking</h3>
+      <p>Rifters and the Thrasher get you into PvP <b>today</b> with stuff already owned. Talwars come online once the missile skills land in a couple days. Jaguar/Rapier/Hound/Loki are the real dedicated PvP hulls but sit behind level-V-adjacent walls weeks out. Nothing new needs buying &mdash; it's all sitting in the hangar or the queue already.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Coreun &mdash; full-drone rework</h2>
+
     <div class="pair">
+      <div class="card">
+        <div class="card-head">
+          <span class="who c">Now</span>
+          <h3>Myrmidon &mdash; full drone</h3>
+          <span class="sub">Drop the turrets, go all-in on the drone bonus</span>
+        </div>
+        <div class="card-body">
+          <ul class="fit">
+            <li><span class="n">Hi</span>2&times; Salvager I</li>
+            <li><span class="n">Hi</span>4&times; empty or Drone Link Augmentor I <em>&mdash; extends control range for kiting</em></li>
+            <li><span class="n">Mid</span>10MN Afterburner I</li>
+            <li><span class="n">Mid</span>2&times; Cap Recharger II</li>
+            <li><span class="n">Mid</span>2&times; Omnidirectional Tracking Link I <em>&mdash; drone tracking/optimal, stacks</em></li>
+            <li><span class="n">Low</span>Medium Armor Repairer II</li>
+            <li><span class="n">Low</span>Damage Control II</li>
+            <li><span class="n">Low</span>3&times; Drone Damage Amplifier II <em>&mdash; up from 2</em></li>
+            <li><span class="n">Rig</span>2&times; Medium Auxiliary Nano Pump I, 1&times; Drone Control Range Augmentor I <em>&mdash; unchanged</em></li>
+            <li><span class="n">Drone</span>10&times; Hammerhead II <em>&mdash; full bay</em> + 5&times; Hobgoblin II for frigate tackle</li>
+          </ul>
+          <p class="note"><b>Trade:</b> no gun damage at all if drones get neuted or killed, but with 200m&sup3; bay and 3 DDAs it out-damages the mixed fit against anything that isn't actively popping drones.</p>
+        </div>
+      </div>
 
       <div class="card">
         <div class="card-head">
-          <span class="who s">Pilot 1 &middot; the user</span>
-          <h3>Stinglock Sigma</h3>
-          <span class="sub">Minmatar &middot; Rens VI Moon 8 &middot; Omega</span>
+          <span class="who c">Later</span>
+          <h3>Dominix &mdash; full drone</h3>
+          <span class="sub">Once Heavy Drone Op IV lands &mdash; the actual endgame version</span>
         </div>
         <div class="card-body">
-          <div class="priceline"><span class="lbl">Total SP</span><span class="val">2,233,389</span></div>
-          <div class="priceline total"><span class="lbl">Wallet</span><span class="val">1,814,317,899</span></div>
-          <h4>Attributes (implants)</h4>
-          <p class="note">INT 20 &middot; CHA 17 &middot; PER 26 &middot; MEM 17 &middot; WIL 25 &mdash; PER/WIL combat remap, base map INT 17 / CHA 17 / PER 23 / MEM 17 / WIL 25, all 14 bonus points in PER and WIL.</p>
-          <h4>Implants</h4>
-          <p class="note">Genolution CA-1 (slot 1, +3 PER), CA-2 (slot 4, +3 INT), BY-810 (Biology V). Slots 2 (MEM), 3 (WIL), 5 (CHA) empty. A standard +3 Memory implant is the recommended next buy over the 389.9M CA-4.</p>
-          <h4>Role</h4>
-          <p class="note">Funds the operation, flies the second gun platform. Shield-tanked, autocannon Minmatar. Full sheet on <a href="skills.html" style="color:var(--rust)">Skills</a> and hangar on <a href="fleet.html" style="color:var(--rust)">Fleet</a>.</p>
+          <p class="note">Five drone bays worth of bandwidth. Runs 5&times; heavy or, once Sentry Drone Interfacing trains, 5&times; sentry.</p>
+          <ul class="fit">
+            <li><span class="n">Sentry</span>5&times; Bouncer / Garde II <em>&mdash; sit still, deploy, tank passively</em></li>
+            <li><span class="n">Low</span>3&ndash;4&times; Drone Damage Amplifier II</li>
+            <li><span class="n">Mid</span>Omnidirectional Tracking Link + tank modules</li>
+            <li><span class="n">Hi</span>Pure utility &mdash; salvagers, a Nosferatu if cap gets tight</li>
+          </ul>
+          <p class="note">This is the fit that "actually prints" &mdash; the endgame reference from the original session handoff.</p>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-head">
-          <span class="who c">Pilot 2 &middot; "Chezz"</span>
-          <h3>Coreun</h3>
-          <span class="sub">Gallente &middot; BPM - Behemoth Panda Mechanics &middot; Omega</span>
-        </div>
-        <div class="card-body">
-          <div class="priceline"><span class="lbl">Total SP</span><span class="val">15,705,396</span></div>
-          <div class="priceline total"><span class="lbl">Wallet</span><span class="val">3,667,130</span></div>
-          <h4>Attributes</h4>
-          <p class="note">INT 24 &middot; CHA 21 &middot; PER 26 &middot; MEM 24 &middot; WIL 24 &mdash; properly remapped with a decent implant set. Drone training rate &asymp; 2,220 SP/hr.</p>
-          <h4>Ship skills</h4>
-          <p class="note">All 8 Gallente ship skills trained: Battleship V, Cruiser IV, Frigate IV, Battlecruiser III, Destroyer I, Hauler II, Mining Barge IV, Spaceship Command V. <b>Zero Minmatar ship skills</b> &mdash; none of Stinglock's hulls are usable by Coreun.</p>
-          <h4>Drone skills</h4>
-          <p class="note">Drones V, Light Drone Op V, Medium Drone Op V, Drone Avionics V, Drone Interfacing IV, Drone Navigation IV, Drone Sharpshooting IV, Gallente Drone Spec IV, Drone Durability II, Mining Drone Op II. Heavy Drone Operation <b>I</b> only; Sentry Drone Interfacing <b>not trained</b>.</p>
-          <div class="barrow">
-            <span class="lbl">Armor <b>8/14</b></span>
-            <div class="bar-track"><div class="bar-fill c" style="width:57%"></div></div>
-          </div>
-          <div class="barrow">
-            <span class="lbl">Shields <b>5/13</b></span>
-            <div class="bar-track"><div class="bar-fill c" style="width:38%"></div></div>
-          </div>
-          <div class="barrow">
-            <span class="lbl">Gunnery <b>12/65</b></span>
-            <div class="bar-track"><div class="bar-fill c" style="width:18%"></div></div>
-          </div>
-          <div class="barrow">
-            <span class="lbl">Fleet Support <b>8/20</b></span>
-            <div class="bar-track"><div class="bar-fill c" style="width:40%"></div></div>
-          </div>
-          <p class="note">Armor-tanked (opposite of Stinglock's shields). Fleet Support 8/20 means leadership/command skills are trained. A medium drone specialist &mdash; Hammerhead IIs are the best payload today; heavies and sentries are off the table until trained.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <h2>Pilot 3 &middot; Miko</h2>
-    <div class="card">
-      <div class="card-head">
-        <span class="who m">Pilot 3</span>
-        <h3>Miko' Kashada</h3>
-        <span class="sub">Race unconfirmed &middot; REDAM - Red Army Militia &middot; no alliance &middot; Omega</span>
-      </div>
-      <div class="card-body">
-        <div class="priceline"><span class="lbl">Total SP</span><span class="val">12,842,233</span></div>
-        <div class="priceline total"><span class="lbl">Wallet</span><span class="val">339,292,092</span></div>
-        <h4>Attributes</h4>
-        <p class="note">INT 24 &middot; CHA 23 &middot; PER 24 &middot; MEM 24 &middot; WIL 24 &mdash; flat, near-balanced spread. No obvious remap toward a single combat style, unlike Stinglock (PER/WIL) or Coreun (properly remapped).</p>
-        <h4>Skill mastery</h4>
-        <p class="note">L0: 2 &middot; L1: 19 &middot; L2: 10 &middot; L3: 28 &middot; L4: 38 &middot; L5: 17. Heavy weight at L3&ndash;L4 &mdash; broad competence across many skills rather than a few maxed specialisations.</p>
-        <div class="barrow">
-          <span class="lbl">Shields <b>10/13</b></span>
-          <div class="bar-track"><div class="bar-fill m" style="width:77%"></div></div>
-        </div>
-        <div class="barrow">
-          <span class="lbl">Armor <b>3/14</b></span>
-          <div class="bar-track"><div class="bar-fill m" style="width:21%"></div></div>
-        </div>
-        <div class="barrow">
-          <span class="lbl">Missiles <b>12/31</b></span>
-          <div class="bar-track"><div class="bar-fill m" style="width:39%"></div></div>
-        </div>
-        <div class="barrow">
-          <span class="lbl">Drones <b>11/28</b></span>
-          <div class="bar-track"><div class="bar-fill m" style="width:39%"></div></div>
-        </div>
-        <div class="barrow">
-          <span class="lbl">Gunnery <b>7/65</b></span>
-          <div class="bar-track"><div class="bar-fill m" style="width:11%"></div></div>
-        </div>
-        <div class="barrow">
-          <span class="lbl">Spaceship Command <b>11/90</b></span>
-          <div class="bar-track"><div class="bar-fill m" style="width:12%"></div></div>
-        </div>
-        <p class="note"><b>Read:</b> shield-tanked (10/13 vs Armor 3/14, same lean as Stinglock, opposite of Coreun) with real missile and drone competence but thin, spread-out gunnery and ship command &mdash; a generalist across hull types rather than committed to one race's line. Fleet Support and Corporation Management both 0 &mdash; no command/leadership skills trained. Zero racial ship-skill breakdown available from this source, so specific flyable hulls are unconfirmed.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>The asymmetry</h2>
-    <div class="callout">
-      <h3>Stinglock funds, Coreun flies</h3>
-      <p>Coreun has 7&times; the SP and 0.2% of the ISK. Every purchase in the operation comes out of Stinglock's wallet; every extra hull Coreun can usefully fly comes from Coreun's skill queue. Neither pilot can solo the gap &mdash; the two-man plan exists because of this split.</p>
     </div>
   </section>
 
   <footer>
-    Attribute and skill figures pulled from live capsuleer.app data during the 31 Aug 2026 session. SP and wallet totals move &mdash; treat as a snapshot, not a live feed.
+    These are alternatives to <a href="playbook.html" style="color:var(--rust)">the base playbook</a>, not a replacement for it &mdash; the mixed Stabber/Myrmidon fit stays the default for tonight. Swap in whichever variant fits the session.
   </footer>
 
 </div>
