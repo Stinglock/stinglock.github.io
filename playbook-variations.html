@@ -143,6 +143,7 @@
   .callout.sting{ border-left-color:var(--sting); }
   .callout.chezz{ border-left-color:var(--chezz); }
   .callout.miko{ border-left-color:var(--miko); }
+  .callout.warn{ border-left-color:var(--warn); }
 
   .scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
   table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
@@ -269,10 +270,15 @@
 <nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="playbook.html">Playbook</a><span class="sep">/</span><a href="playbook-variations.html" class="active">Variations</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a></nav>
 
   <header>
-    <div class="eyebrow">Alternatives &middot; Damage, EWar, PvP, Full Drones</div>
+    <div class="eyebrow">Alternatives &middot; Now the Stabber's Lane, Not the Primary</div>
     <h1>Playbook Variations</h1>
-    <p class="standfirst">The base playbook is the safe mission-running default. These are the swaps if Stinglock wants more damage or EWar leaning toward PvP later, and a full-drone rework for Chezz.</p>
+    <p class="standfirst">The Hurricane is now Stinglock's mission-running primary (see Playbook) &mdash; the Stabber's job shifted to bridge ship and PvP hull. These are the swaps for when the Stabber's flying PvP or backup instead of missions, plus a full-drone rework for Chezz.</p>
   </header>
+
+  <div class="callout warn">
+    <h3>Corrections this pass</h3>
+    <p>Three things below were wrong or stale and are fixed against the real skill/queue export and EVE's own prerequisite data (see Skills and Fleet): the Talwars are already armed, not waiting on missile skills; the Jaguar's real blocker is Power Grid Management V, not Capacitor Systems Operation; and the Hound's Electronics Upgrades V requirement is already done. Jaguar and Hound both land ~16 Sep off the current queue, no separate gate needed.</p>
+  </div>
 
   <section>
     <h2>Stinglock &mdash; Stabber variants</h2>
@@ -292,7 +298,7 @@
             <li><span class="n">Mid</span>10MN MWD <em>&mdash; swap from AB, range control on gank runs</em></li>
             <li><span class="n">Drop</span>Tracking Computer + Tracking Enhancer</li>
           </ul>
-          <p class="note">Loses tank and cap stability, gains flat DPS. Bad idea once tanking L3+ solo.</p>
+          <p class="note">Loses tank and cap stability, gains flat DPS. Bad idea once tanking L3+ solo &mdash; which is exactly why the Hurricane's taking over that job.</p>
         </div>
       </div>
 
@@ -308,7 +314,7 @@
             <li><span class="n">Mid</span>Target Painter <em>&mdash; helps fleetmate's tracking</em></li>
             <li><span class="n">Mid</span>Stasis Webifier <em>&mdash; or this, for tackle</em></li>
           </ul>
-          <p class="note">The real answer to EWar is the <b>Rapier</b> &mdash; force recon, webs + points, EWar bonuses baked in. Locked behind Minmatar Cruiser V (~19d), same as the Loki.</p>
+          <p class="note">The real answer to EWar is the <b>Rapier</b> &mdash; force recon, webs + points, EWar bonuses baked in. Blocked by Minmatar Cruiser V, already queued and landing ~16 Sep, same timeline as the Loki.</p>
         </div>
       </div>
 
@@ -342,7 +348,7 @@
         <tbody>
           <tr><td class="shipname">Thrasher</td><td>Alpha-strike autocannon destroyer</td><td>Higher burst than the Stabber, paper-thin. Gate camps and ganks, not sustained fights.</td></tr>
           <tr><td class="shipname">Rifter &times;2</td><td>Cheap, disposable brawler</td><td>What you throw at someone when losing the ship doesn't matter. Learn PvP without risking the Stabber.</td></tr>
-          <tr><td class="shipname">Talwar &times;2</td><td>Missile destroyer, 7 launchers</td><td>Currently unarmed &mdash; comes online once the missile block in the plan lands. High alpha for a T1 hull once it does.</td></tr>
+          <tr><td class="shipname">Talwar &times;2</td><td>Missile destroyer, 7 launchers</td><td><b>Correction:</b> already armed, not waiting on anything &mdash; Missile Launcher Operation, Rockets and Light Missiles are all confirmed trained in the real skill export (see Skills). High alpha for a T1 hull.</td></tr>
           <tr><td class="shipname">Burst</td><td>Logistics frigate, remote shield rep</td><td>Not damage or EWar itself &mdash; pairs with any of the above, keeps tackle alive longer.</td></tr>
         </tbody>
       </table>
@@ -353,17 +359,17 @@
       <table>
         <thead><tr><th>Ship</th><th>Role</th><th>Blocker</th></tr></thead>
         <tbody>
-          <tr><td class="shipname">Jaguar</td><td>Assault frigate, T2 &mdash; the real damage/tank PvP frigate</td><td>Cap Systems Op V + Mechanics V</td></tr>
-          <tr><td class="shipname">Rapier</td><td>Force recon, T2 EWar &mdash; webs, points, bonused</td><td>Minmatar Cruiser V + Recon Ships I</td></tr>
-          <tr><td class="shipname">Hound</td><td>Stealth bomber, T2 &mdash; alpha-strike torpedoes, cloaky</td><td>Electronics Upgrades V</td></tr>
-          <tr><td class="shipname">Loki</td><td>T3 strategic cruiser &mdash; damage, EWar, or tackle depending on subsystems</td><td>~20d out, most expensive of the lot to lose</td></tr>
+          <tr><td class="shipname">Jaguar</td><td>Assault frigate, T2 &mdash; the real damage/tank PvP frigate</td><td>Minmatar Frigate V <span class="tagown">done</span> &middot; Assault Frigates I training, needs Power Grid Mgmt V + Mechanics V (both already queued) &mdash; lands ~16 Sep</td></tr>
+          <tr><td class="shipname">Rapier</td><td>Force recon, T2 EWar &mdash; webs, points, bonused</td><td>Minmatar Cruiser V + Recon Ships I, both queued &mdash; lands ~16 Sep</td></tr>
+          <tr><td class="shipname">Hound</td><td>Stealth bomber, T2 &mdash; alpha-strike torpedoes, cloaky</td><td>Minmatar Frigate V <span class="tagown">done</span> &middot; Covert Ops I training, its own prereqs (Electronics Upgrades V, Spaceship Command III) are <span class="tagown">already done</span> &mdash; lands ~16 Sep</td></tr>
+          <tr><td class="shipname">Loki</td><td>T3 strategic cruiser &mdash; damage, EWar, or tackle depending on subsystems</td><td>Minmatar Cruiser V (~16 Sep) &rarr; Strategic Cruiser I + 4 subsystem skills, queued into early October &mdash; furthest out, most expensive of the lot to lose</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="callout sting">
       <h3>The honest ranking</h3>
-      <p>Rifters and the Thrasher get you into PvP <b>today</b> with stuff already owned. Talwars come online once the missile skills land in a couple days. Jaguar/Rapier/Hound/Loki are the real dedicated PvP hulls but sit behind level-V-adjacent walls weeks out. Nothing new needs buying &mdash; it's all sitting in the hangar or the queue already.</p>
+      <p>Rifters, the Thrasher, and now the Talwars get you into PvP <b>today</b> with stuff already owned and trained. Jaguar and Hound land next, ~16 Sep, straight off the current queue with no separate gate. Rapier follows on the same date behind Minmatar Cruiser V. Loki is the furthest out and priciest to lose, into early October for its subsystem skills. Nothing new needs buying &mdash; it's all sitting in the hangar or the queue already.</p>
     </div>
   </section>
 
@@ -408,14 +414,14 @@
             <li><span class="n">Mid</span>Omnidirectional Tracking Link + tank modules</li>
             <li><span class="n">Hi</span>Pure utility &mdash; salvagers, a Nosferatu if cap gets tight</li>
           </ul>
-          <p class="note">This is the fit that "actually prints" &mdash; the endgame reference from the original session handoff.</p>
+          <p class="note">This is the fit that "actually prints" &mdash; the endgame reference from the original session handoff. Coreun's own skills weren't re-pulled this session, so this section still reflects the earlier estimate.</p>
         </div>
       </div>
     </div>
   </section>
 
   <footer>
-    These are alternatives to <a href="playbook.html" style="color:var(--rust)">the base playbook</a>, not a replacement for it &mdash; the mixed Stabber/Myrmidon fit stays the default for tonight. Swap in whichever variant fits the session.
+    These are alternatives to <a href="playbook.html" style="color:var(--rust)">the base playbook</a>, not a replacement for it &mdash; the mixed Stabber/Myrmidon fit stays what you fly tonight, bridging until the Hurricane's home. Swap in whichever variant fits the session.
   </footer>
 
 </div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Stinglock's current skill state, the Magic 14, and the rebuilt 105-line training plan with future branch options.">
+<meta name="description" content="Stinglock's current skill state, the Magic 14, and the live training queue with future branch options.">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Skills &middot; Stinglock</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -143,6 +143,8 @@
   .callout.sting{ border-left-color:var(--sting); }
   .callout.chezz{ border-left-color:var(--chezz); }
   .callout.miko{ border-left-color:var(--miko); }
+  .callout.ready{ border-left-color:var(--ready); }
+  .callout.warn{ border-left-color:var(--warn); }
 
   .scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
   table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
@@ -271,14 +273,24 @@
   <header>
     <div class="eyebrow">Stinglock Sigma &middot; Training</div>
     <h1>Skills</h1>
-    <p class="standfirst">2,233,389 SP on an Omega clone, remapped Perception/Willpower. Current state, the rebuilt 105-line queue, and where it branches if the plan changes.</p>
+    <p class="standfirst">Omega clone, remapped Perception/Willpower. Rebuilt from an actual in-game skill export and queue export this session &mdash; not estimates. Turns out even more of the original plan is done than last thought, three skills assumed trained actually aren't, and one gap still needs inserting.</p>
   </header>
 
+  <div class="callout ready">
+    <h3>Correction &mdash; the queue is already imported and reordered</h3>
+    <p>The previous version of this page said the live queue was &ldquo;not yet imported&rdquo; and still sitting on the old order. That's stale. The queue has already been cleared and rebuilt to match this plan &mdash; the snapshot below is a real export of what's actually sitting in the training queue right now, not a proposal.</p>
+  </div>
+
+  <div class="callout warn">
+    <h3>Correction &mdash; three skills assumed trained actually aren't</h3>
+    <p>The real skill export shows <b>Security Connections</b>, <b>Distribution Connections</b> and <b>Minmatar Encryption Methods</b> all sitting at <b>not injected, not trained</b> (level 0, unknown) &mdash; despite being counted as done in the earlier version of this plan, and none of them are in the current live queue either. Security Connections in particular was cited on the Playbook as the reason mission LP would be good at Rens &mdash; that's not true yet. If you still want any of these, they need to be added back into the queue; nothing here assumes that's happened.</p>
+  </div>
+
   <div class="stats">
-    <div class="stat"><span class="k">Total SP</span><span class="stat-num">2,233,389</span><span class="sub">Omega clone</span></div>
-    <div class="stat"><span class="k">Remap</span><span class="stat-num">PER/WIL</span><span class="sub">all 14 bonus points</span></div>
-    <div class="stat"><span class="k">Best training rate</span><span class="stat-num ready">2,310</span><span class="sub">SP/hr &middot; PER/WIL groups</span></div>
-    <div class="stat"><span class="k">Queue status</span><span class="stat-num warn">not imported</span><span class="sub">live queue still old order</span></div>
+    <div class="stat"><span class="k">Total SP</span><span class="stat-num">4,203,756</span><span class="sub">from the live export, Omega clone</span></div>
+    <div class="stat"><span class="k">Currently training</span><span class="stat-num">Rapid Firing IV</span><span class="sub">53.7% &middot; 10h 10m left &middot; ends 31 Aug 21:20</span></div>
+    <div class="stat"><span class="k">Skills trained</span><span class="stat-num ready">135</span><span class="sub">incl. all of the old plan's blocks 1&ndash;10</span></div>
+    <div class="stat"><span class="k">Assumed done, actually aren't</span><span class="stat-num warn">3 skills</span><span class="sub">not trained, not queued &mdash; see below</span></div>
   </div>
 
   <section>
@@ -292,7 +304,7 @@
           <div class="priceline"><span class="lbl">PER</span><span class="val">26 &middot; base 23</span></div>
           <div class="priceline"><span class="lbl">MEM</span><span class="val">17 &middot; base 17</span></div>
           <div class="priceline"><span class="lbl">WIL</span><span class="val">25 &middot; base 25</span></div>
-          <p class="note">Implants: Genolution CA-1 (slot 1, +3 PER), CA-2 (slot 4, +3 INT), BY-810 (Biology V). Slots 2, 3 and 5 &mdash; Memory, Willpower, Charisma &mdash; are <b>empty</b>.</p>
+          <p class="note">Implants: Genolution CA-1 (slot 1, +3 PER), CA-2 (slot 4, +3 INT), BY-810 (Biology V). Slots 2, 3 and 5 &mdash; Memory, Willpower, Charisma &mdash; are still <b>empty</b>; the +3 Memory implant purchase discussed last session isn't confirmed done (see Pilots / outstanding actions).</p>
         </div>
       </div>
       <div class="card">
@@ -311,188 +323,136 @@
   </section>
 
   <section>
-    <h2>Current state</h2>
+    <h2>Current state &mdash; confirmed from the live skill export</h2>
+    <p class="note">135 skills trained. Not just blocks 1&ndash;9 of the original plan &mdash; block 10 (drones, rigging, exploration, tank compensation, EWar) is <b>also</b> essentially all done. This was previously flagged as unverified; the export settles it.</p>
     <div class="pair">
       <div class="card"><div class="card-body">
-        <h4>Racial ship skills</h4>
+        <h4>Hull &amp; combat core</h4>
         <ul class="fit">
-          <li><span class="n"></span>Minmatar Frigate <span class="tagown">V</span></li>
+          <li><span class="n"></span>Minmatar Battlecruiser <span class="tagown">III</span></li>
+          <li><span class="n"></span>Minmatar Battleship <span class="tagown">II</span></li>
           <li><span class="n"></span>Minmatar Cruiser <span class="tagown">IV</span></li>
+          <li><span class="n"></span>Minmatar Frigate <span class="tagown">V</span></li>
           <li><span class="n"></span>Minmatar Destroyer <span class="tagown">III</span></li>
-          <li><span class="n"></span>Minmatar Hauler <span class="tagown">II</span></li>
-          <li><span class="n"></span>Amarr Frigate <span class="tagown">III</span></li>
-          <li><span class="n"></span>Caldari Frigate <span class="tagown">II</span></li>
-          <li><span class="n"></span>Gallente Frigate <span class="tagown">II</span></li>
-          <li><span class="n"></span>Spaceship Command <span class="tagown">IV</span></li>
-          <li><span class="n"></span>Minmatar Battlecruiser, Battleship, Strategic Cruiser <span class="tagno">0 &middot; queued</span></li>
+          <li><span class="n"></span>Gunnery <span class="tagown">V &middot; maxed</span></li>
+          <li><span class="n"></span>Medium Projectile Turret <span class="tagown">III</span></li>
+          <li><span class="n"></span>Large Projectile Turret <span class="tagown">I</span></li>
+          <li><span class="n"></span>Small Projectile Turret <span class="tagown">IV</span></li>
+          <li><span class="n"></span>Motion Prediction / Sharpshooter <span class="tagown">IV / IV</span></li>
+          <li><span class="n"></span>Rapid Firing <span class="tagwarn">III &rarr; training to IV, 53.7%</span></li>
+          <li><span class="n"></span>Controlled Bursts <span class="tagown">III &middot; queued to IV</span></li>
+          <li><span class="n"></span>Weapon Upgrades <span class="tagown">III &middot; queued to IV, then V</span></li>
         </ul>
       </div></div>
       <div class="card"><div class="card-body">
-        <h4>Magic 14 status</h4>
-        <p class="note">CPU Management IV, Capacitor Management III, Capacitor Systems Operation III, Hull Upgrades II, Long Range Targeting II, Shield Management III, Shield Operation III, Signature Analysis IV, Navigation IV, Evasive Maneuvering III, Warp Drive Operation IV, Spaceship Command IV. <b>Power Grid Management</b> and <b>Mechanics</b> are mid-queue.</p>
+        <h4>Tank / cap &mdash; done</h4>
+        <ul class="fit">
+          <li><span class="n"></span>Capacitor Management <span class="tagown">IV</span></li>
+          <li><span class="n"></span>Capacitor Systems Operation <span class="tagown">IV</span></li>
+          <li><span class="n"></span>Long Range Targeting <span class="tagown">IV</span></li>
+          <li><span class="n"></span>Shield Upgrades <span class="tagown">III</span></li>
+          <li><span class="n"></span>Energy Grid Upgrades <span class="tagown">III</span></li>
+          <li><span class="n"></span>Repair Systems <span class="tagown">III</span></li>
+          <li><span class="n"></span>Shield Emission Systems <span class="tagown">III</span></li>
+          <li><span class="n"></span>Thermodynamics <span class="tagown">II</span></li>
+        </ul>
+        <p class="note">Core support &mdash; Mechanics, Power Grid Management, Spaceship Command, Signature Analysis all at <span class="tagown">IV</span>, all queued to V next. That's the legit next-up gate, matches the plan.</p>
+      </div></div>
+    </div>
+    <div class="pair">
+      <div class="card"><div class="card-body">
+        <h4>Drones, rigging &amp; exploration &mdash; done</h4>
+        <ul class="fit">
+          <li><span class="n"></span>Drones <span class="tagown">V</span></li>
+          <li><span class="n"></span>Light / Medium Drone Operation <span class="tagown">II / II</span></li>
+          <li><span class="n"></span>Drone Interfacing / Avionics / Navigation / Sharpshooting <span class="tagown">II each</span></li>
+          <li><span class="n"></span>Drone Durability <span class="tagown">I</span></li>
+          <li><span class="n"></span>Mining Drone Operation <span class="tagown">II</span> &middot; Salvage Drone Operation <span class="tagown">I</span></li>
+          <li><span class="n"></span>Jury Rigging <span class="tagown">III</span> &middot; Shield/Projectile/Astronautics Rigging <span class="tagown">II each</span></li>
+          <li><span class="n"></span>Astrometrics <span class="tagown">IV</span> &middot; Acquisition/Pinpointing <span class="tagown">I each</span> &middot; Rangefinding <span class="tagown">II</span></li>
+          <li><span class="n"></span>Hacking / Archaeology <span class="tagown">III / III</span> &middot; Survey <span class="tagown">III</span></li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h4>EWar, tank compensation &amp; nav &mdash; done</h4>
+        <ul class="fit">
+          <li><span class="n"></span>Electronics Upgrades <span class="tagown">V &middot; maxed</span> <em>&mdash; this alone clears the Hound's old blocker, see Fleet</em></li>
+          <li><span class="n"></span>Cloaking <span class="tagown">IV</span></li>
+          <li><span class="n"></span>Electronic Warfare <span class="tagown">II</span> &middot; Propulsion Jamming <span class="tagown">IV</span> &middot; Target Painting <span class="tagown">III</span></li>
+          <li><span class="n"></span>EM / Explosive / Kinetic / Thermal Shield Compensation <span class="tagown">II each</span></li>
+          <li><span class="n"></span>Tactical Shield Manipulation <span class="tagown">III</span></li>
+          <li><span class="n"></span>Fuel Conservation <span class="tagown">II</span> &middot; High Speed Maneuvering <span class="tagown">II</span></li>
+          <li><span class="n"></span>Nanite Operation <span class="tagown">II</span> &middot; Interplanetary Consolidation / Command Center Upgrades <span class="tagown">II each</span></li>
+        </ul>
       </div></div>
     </div>
   </section>
 
+  <div class="callout warn">
+    <h3>Gap the original plan missed</h3>
+    <p><b>Surgical Strike</b> (rank 4, flat turret damage %) and <b>Trajectory Analysis</b> (rank 5, turret optimal range) are both sitting at rank 1 trained and aren't in the live queue at all. They're the actual next-best Hurricane upgrades available &mdash; recommended insertion point is <b>after Weapon Upgrades IV, before Mechanics V</b>, ahead of the level-V gate and the entire Loki/Jaguar/Rapier/HAC tail behind it, since none of that back half does anything for a Hurricane.</p>
+  </div>
+
   <section>
-    <h2>The rebuilt plan &mdash; 105 lines, in order</h2>
-    <div class="callout">
-      <h3>Not yet imported</h3>
-      <p>The live in-game queue is still the old order. Skill queue imports <b>append, never reorder</b> &mdash; to apply this order the queue has to be cleared first. That's outstanding action #1 across the whole site.</p>
-    </div>
+    <h2>Live training queue &mdash; real export, pulled 31 Aug 2026</h2>
+    <p class="note">Straight from the in-game skill queue export, in order, with real start times. Blocks 1&ndash;10 of the original plan are already fully trained (with the three exceptions flagged above) and don't appear here.</p>
     <div class="scroll">
       <table>
-        <thead><tr><th style="width:50px">#</th><th>Skill &amp; level</th></tr></thead>
+        <thead><tr><th style="width:50px">#</th><th>Skill &amp; level</th><th>Starts</th><th>Status</th></tr></thead>
         <tbody>
-<tr class="grp"><td colspan="2"><span class="grplabel s">1 &middot; SHIP UNLOCKS <span class="n">2 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">001</td><td>Minmatar Battlecruiser 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">002</td><td>Minmatar Battleship 1</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">2 &middot; MISSION ISK <span class="n">3 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">003</td><td>Negotiation 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">004</td><td>Social 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">005</td><td>Connections 3</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">3 &middot; CLONE / IMPLANT <span class="n">4 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">006</td><td>Cybernetics 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">007</td><td>Infomorph Psychology 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">008</td><td>Infomorph Synchronizing 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">009</td><td>Anchoring 1</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">4 &middot; MISSILES + TARGETING <span class="n">6 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">010</td><td>Missile Launcher Operation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">011</td><td>Rockets 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">012</td><td>Light Missiles 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">013</td><td>Target Management 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">014</td><td>Rapid Launch 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">015</td><td>Missile Bombardment 2</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">5 &middot; MISSION LP <span class="n">1 skill</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">016</td><td>Security Connections 2</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">6 &middot; GAMEPLAY DOOR-OPENERS <span class="n">11 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">017</td><td>Mining 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">018</td><td>Mining Drone Operation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">019</td><td>Reprocessing 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">020</td><td>Industry 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">021</td><td>Leadership 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">022</td><td>Shield Command 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">023</td><td>Corporation Management 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">024</td><td>Laboratory Operation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">025</td><td>Research 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">026</td><td>Minmatar Encryption Methods 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">027</td><td>Capacitor Emission Systems 2</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">7 &middot; TRADE / MARKET <span class="n">7 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">028</td><td>Trade 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">029</td><td>Distribution Connections 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">030</td><td>Daytrading 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">031</td><td>Marketing 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">032</td><td>Broker Relations 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">033</td><td>Accounting 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">034</td><td>Contracting 2</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">8 &middot; CORE SUPPORT <span class="n">3 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">035</td><td>Capacitor Management 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">036</td><td>Capacitor Systems Operation 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">037</td><td>Long Range Targeting 4</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">9 &middot; COMBAT / TURRET SUPPORT <span class="n">12 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">038</td><td>Shield Upgrades 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">039</td><td>Energy Grid Upgrades 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">040</td><td>Weapon Upgrades 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">041</td><td>Rapid Firing 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">042</td><td>Sharpshooter 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">043</td><td>Motion Prediction 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">044</td><td>Controlled Bursts 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">045</td><td>Small Projectile Turret 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">046</td><td>Large Projectile Turret 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">047</td><td>Repair Systems 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">048</td><td>Shield Emission Systems 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">049</td><td>Thermodynamics 2</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">10 &middot; SHIP BONUSES, RIGGING, PI, DRONES, EXPLORATION, NAV, TANK, EWAR <span class="n">40 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">050</td><td>Nanite Operation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">051</td><td>Minmatar Battlecruiser 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">052</td><td>Minmatar Battlecruiser 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">053</td><td>Minmatar Battleship 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">054</td><td>Jury Rigging 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">055</td><td>Shield Rigging 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">056</td><td>Projectile Weapon Rigging 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">057</td><td>Astronautics Rigging 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">058</td><td>Electronics Upgrades 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">059</td><td>Mechanics 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">060</td><td>Power Grid Management 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">061</td><td>Spaceship Command 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">062</td><td>Interplanetary Consolidation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">063</td><td>Command Center Upgrades 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">064</td><td>Salvage Drone Operation 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">065</td><td>Medium Drone Operation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">066</td><td>Drone Interfacing 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">067</td><td>Drone Avionics 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">068</td><td>Drone Navigation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">069</td><td>Drone Sharpshooting 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">070</td><td>Drone Durability 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">071</td><td>Astrometrics 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">072</td><td>Astrometric Acquisition 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">073</td><td>Astrometric Pinpointing 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">074</td><td>Astrometric Rangefinding 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">075</td><td>Hacking 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">076</td><td>Archaeology 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">077</td><td>Survey 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">078</td><td>Cloaking 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">079</td><td>Fuel Conservation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">080</td><td>High Speed Maneuvering 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">081</td><td>Tactical Shield Manipulation 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">082</td><td>EM Shield Compensation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">083</td><td>Explosive Shield Compensation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">084</td><td>Kinetic Shield Compensation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">085</td><td>Thermal Shield Compensation 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">086</td><td>Electronic Warfare 2</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">087</td><td>Propulsion Jamming 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">088</td><td>Target Painting 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">089</td><td>Sharpshooter 4</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">11 &middot; TURRET SUPPORT TO IV <span class="n">5 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">090</td><td>Motion Prediction 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">091</td><td>Rapid Firing 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">092</td><td>Controlled Bursts 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">093</td><td>Weapon Upgrades 4</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">094</td><td>Mechanics 5</td></tr>
-<tr class="grp"><td colspan="2"><span class="grplabel s">12&ndash;13 &middot; THE LEVEL-V GATE &amp; WHAT'S BEHIND IT <span class="n">16 skills</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">095</td><td>Power Grid Management 5</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">096</td><td>Spaceship Command 5</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">097</td><td>Gunnery 5</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">098</td><td>Signature Analysis 5</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">099</td><td>Assault Frigates 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">100</td><td>Covert Ops 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">101</td><td>Recon Ships 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">102</td><td>Minmatar Cruiser 5</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">103</td><td>Minmatar Strategic Cruiser 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">104</td><td>Minmatar Defensive Systems 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">105</td><td>Minmatar Offensive Systems 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">106</td><td>Minmatar Propulsion Systems 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">107</td><td>Minmatar Core Systems 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">108</td><td>Advanced Spaceship Command 3</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">109</td><td>Heavy Assault Cruisers 1</td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">110</td><td>Advanced Weapon Upgrades 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">1</td><td>Rapid Firing IV</td><td>ends 31 Aug 21:20</td><td><span class="pill warn">training &middot; 53.7%</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">2</td><td>Controlled Bursts IV</td><td>31 Aug 21:20</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">3</td><td>Weapon Upgrades IV</td><td>01 Sep 19:19</td><td><span class="pill ready">queued</span></td></tr>
+<tr style="background:var(--warn-bg)"><td class="num" style="text-align:left;color:var(--warn)">&middot;</td><td><b>Insert here &rarr; Surgical Strike IV, Trajectory Analysis V</b></td><td>&mdash;</td><td><span class="pill warn">recommended, not in queue</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">4</td><td>Mechanics V</td><td>02 Sep 18:58</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">5</td><td>Power Grid Management V</td><td>05 Sep 22:30</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">6</td><td>Spaceship Command V</td><td>09 Sep 02:02</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">7</td><td>Signature Analysis V</td><td>11 Sep 16:32</td><td><span class="pill ready">queued</span></td></tr>
+<tr class="grp"><td colspan="4"><span class="grplabel s">PvP / HAC tail <span class="n">not Hurricane-relevant &mdash; candidate to deprioritize</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">8</td><td>Assault Frigates I</td><td>16 Sep 19:46</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">9</td><td>Covert Ops I</td><td>16 Sep 20:13</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">10</td><td>Recon Ships I</td><td>16 Sep 20:39</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">11</td><td>Minmatar Cruiser V</td><td>16 Sep 21:18</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">12</td><td>Minmatar Strategic Cruiser I</td><td>05 Oct 21:28</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">13</td><td>Minmatar Defensive Systems I</td><td>05 Oct 22:00</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">14</td><td>Missile Launcher Operation III</td><td>05 Oct 22:09</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">15</td><td>Minmatar Offensive Systems I</td><td>06 Oct 01:00</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">16</td><td>Navigation V</td><td>06 Oct 01:07</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">17</td><td>Minmatar Propulsion Systems I</td><td>10 Oct 11:33</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">18</td><td>Minmatar Core Systems I</td><td>10 Oct 11:39</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">19</td><td>Advanced Spaceship Command I / II / III</td><td>10 Oct 11:48 &rarr; 14:52</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">20</td><td>Energy Grid Upgrades IV / V</td><td>11 Oct 05:07 &rarr; 13 Oct 00:42</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">21</td><td>Weapon Upgrades V</td><td>23 Oct 07:11</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">22</td><td>Heavy Assault Cruisers I</td><td>31 Oct 18:48</td><td><span class="pill ready">queued</span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">23</td><td>Advanced Weapon Upgrades I / II</td><td>31 Oct 19:27 &rarr; 20:06</td><td><span class="pill ready">queued</span></td></tr>
         </tbody>
       </table>
     </div>
+    <p class="note">Everything from Assault Frigates I onward (16 Sep on) is the Loki/Jaguar/Rapier/HAC path &mdash; none of it makes the Hurricane better. If the near-term goal is genuinely &ldquo;make the Hurricane better,&rdquo; this whole block, running out to 31 Oct, is the candidate to push back behind Surgical Strike and Trajectory Analysis, or further.</p>
   </section>
 
   <section>
     <h2>Future path options &mdash; if the plan branches</h2>
-    <p class="note">The rebuilt plan already leans mission-runner-first (§10 gameplay door-openers cover trade, industry, exploration and combat support broadly), but three later blocks are really separate specialisations bolted onto the same base. Matches the fleet paths on <a href="fleet.html" style="color:var(--rust)">the fleet page</a>.</p>
+    <p class="note">With blocks 1&ndash;9 done and the Hurricane now the primary (see Playbook), the live queue's first seven lines (through Signature Analysis V) are Hurricane infrastructure everyone should train regardless of direction. Everything after that is a branch point.</p>
 
     <div class="trio">
       <div class="card"><div class="card-body">
-        <h4>Stay the course &mdash; mission runner</h4>
-        <p class="note">Everything through block 11 (turret support to IV) is mission-runner infrastructure. Stop there and you're fully kitted for L1&ndash;L4s without touching the level-V gate at all.</p>
+        <h4>Stay the course &mdash; Hurricane mission runner</h4>
+        <p class="note">Stop after Signature Analysis V (plus Surgical Strike / Trajectory Analysis inserted ahead of it) and you're fully kitted for L1&ndash;L4s without touching the level-V gate or the PvP tail at all.</p>
       </div></div>
       <div class="card"><div class="card-body">
         <h4>Branch into PvP</h4>
-        <p class="note">Block 13's Assault Frigates 1 and Recon Ships 1 unlock the Jaguar and Rapier respectively &mdash; both already owned. Electronic Warfare and Propulsion Jamming (block 10) are already queued and double as tackle/support skills.</p>
+        <p class="note">Assault Frigates I and Recon Ships I unlock the Jaguar and Rapier respectively &mdash; both already owned. This is exactly the tail flagged above as deprioritizable if the near-term focus stays Hurricane-first.</p>
       </div></div>
       <div class="card"><div class="card-body">
         <h4>Branch into exploration</h4>
-        <p class="note">Astrometrics, Hacking, Archaeology and Survey (block 10) are already in the plan &mdash; they're what make the five owned exploration frigates actually productive, not just flyable.</p>
+        <p class="note">Astrometrics, Hacking, Archaeology and Survey aren't in the current live queue at all &mdash; they'd need to be added back in if this direction gets picked up. Five exploration frigates are already flyable and waiting (see Fleet).</p>
       </div></div>
     </div>
   </section>
 
   <footer>
-    <b>Verify before acting.</b> A skill absent from the queue is either already trained or untrained &mdash; the queue alone can't tell you which, only live skill data can. This caused three wrong findings in the source session (see the corrections log in the original handoff).
+    <b>Source.</b> Total SP, all trained levels, and the queue order/timestamps on this page come directly from a skill export and a skill-queue export pulled this session &mdash; not estimates. Re-pull both before trusting anything here more than a few days old; Rapid Firing's ETA and the queue's later dates especially will have moved.
   </footer>
 
 </div>
