@@ -1,1 +1,352 @@
-# stinglock.github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="What Stinglock and Coreun fly tonight, what it costs at Rens, and the upgrade path for each pilot.">
+<title>Rens Two-Man Playbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ground:#EDE8E2; --surface:#F7F4F0; --surface-2:#E3DCD4;
+    --rule:#CFC5BA; --rule-soft:#DFD7CD;
+    --ink:#221C17; --ink-2:#5F544B; --ink-3:#8B7F74;
+    --rust:#B4451F; --rust-soft:rgba(180,69,31,0.10);
+    --sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
+    --chezz:#6B4A8A; --chezz-soft:rgba(107,74,138,0.11);
+    --ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
+    --shadow:0 1px 2px rgba(34,28,23,0.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+      --rule:#372E26; --rule-soft:#2A231C;
+      --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+      --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+      --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+      --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+      --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+      --shadow:0 1px 2px rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+    --rule:#372E26; --rule-soft:#2A231C;
+    --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+    --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+    --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+    --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+    --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+    --shadow:0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:'Archivo',system-ui,-apple-system,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:1020px; margin:0 auto; padding:44px 22px 88px; display:flex; flex-direction:column; gap:44px; }
+  h1,h2,h3,h4,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
+  .mono{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+
+  header{ display:flex; flex-direction:column; gap:10px; }
+  .eyebrow{
+    font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--rust); display:flex; align-items:center; gap:9px;
+  }
+  .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
+  h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
+  .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
+
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+    gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden;
+  }
+  .stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
+  .stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
+  .stat-num{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    font-size:25px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
+  .stat .sub{ font-size:11.5px; color:var(--ink-3); }
+  .stat-num.rust{ color:var(--rust); } .stat-num.ready{ color:var(--ready); }
+
+  section{ display:flex; flex-direction:column; gap:18px; }
+  h2{
+    margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule);
+  }
+
+  .pair{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+
+  .card{
+    background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px;
+    box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column;
+  }
+  .card-head{ padding:16px 18px 14px; border-bottom:1px solid var(--rule-soft); display:flex; flex-direction:column; gap:3px; }
+  .who{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
+  .who.s{ color:var(--sting); } .who.c{ color:var(--chezz); }
+  .card-head h3{ margin:0; font-size:22px; font-weight:700; letter-spacing:-.01em; }
+  .card-head .sub{ font-size:13px; color:var(--ink-2); }
+  .card-body{ padding:16px 18px; display:flex; flex-direction:column; gap:14px; }
+
+  .priceline{ display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+    padding:9px 11px; background:var(--surface-2); border-radius:3px; }
+  .priceline .lbl{ font-size:12px; color:var(--ink-2); }
+  .priceline .val{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    font-size:14.5px; font-weight:600; white-space:nowrap; }
+  .priceline.total .val{ color:var(--rust); font-size:16px; }
+  .priceline.owned .val{ color:var(--ready); }
+
+  h4{ margin:0; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+  ul.fit{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+  ul.fit li{ font-size:13.5px; display:flex; gap:8px; align-items:baseline; }
+  ul.fit li .n{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); min-width:18px; }
+  ul.fit li em{ font-style:normal; color:var(--ink-3); font-size:12px; }
+  .tagown{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--ready); background:var(--ready-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+
+  .note{ font-size:13px; color:var(--ink-2); margin:0; }
+  .note b{ color:var(--ink); }
+
+  .callout{
+    background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust);
+    border-radius:3px; padding:15px 18px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:5px;
+  }
+  .callout h3{ margin:0; font-size:15.5px; font-weight:600; }
+  .callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
+
+  .scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
+  thead th{ text-align:left; font-family:'Chakra Petch',sans-serif; font-size:10.5px; font-weight:600;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2);
+    padding:10px 14px; border-bottom:1px solid var(--rule); white-space:nowrap; }
+  tbody td{ padding:11px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top; }
+  tbody tr:last-child td{ border-bottom:none; }
+  td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .shipname{ font-weight:600; display:block; }
+  .shipsub{ font-size:11.5px; color:var(--ink-3); display:block; margin-top:1px; }
+  tbody tr.grp td{ background:var(--surface-2); padding:9px 14px; border-bottom:1px solid var(--rule); }
+  .grplabel{ font-family:'Chakra Petch',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; display:flex; align-items:baseline; gap:10px; }
+  .grplabel.s{ color:var(--sting); } .grplabel.c{ color:var(--chezz); }
+  .grplabel .n{ font-family:'IBM Plex Mono',monospace; font-weight:500; letter-spacing:0;
+    color:var(--ink-3); text-transform:none; font-size:11.5px; }
+
+  footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
+  footer b{ color:var(--ink-2); font-weight:600; }
+</style>
+<style>
+  /* standalone reset */
+  :root{ color-scheme: light dark; }
+  html,body{ margin:0; padding:0; }
+  img{ max-width:100%; height:auto; }
+  [hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Stinglock Sigma &amp; Coreun &middot; Highsec PvE</div>
+    <h1>Rens Two-Man Playbook</h1>
+    <p class="standfirst">One of you has 1.81 billion ISK and can barely fly a cruiser. The other has 15.7 million SP and 3.6 million ISK. This is what you fly tonight, what it costs, and what you upgrade into.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><span class="k">To start tonight</span><span class="stat-num rust">~140M</span><span class="sub">both pilots, fully fitted</span></div>
+    <div class="stat"><span class="k">Stinglock's wallet</span><span class="stat-num">1.81B</span><span class="sub">7.7% of it</span></div>
+    <div class="stat"><span class="k">Content</span><span class="stat-num ready">L1&ndash;L3</span><span class="sub">highsec, CONCORD covered</span></div>
+    <div class="stat"><span class="k">Staging</span><span class="stat-num">Rens</span><span class="sub">0.9 &middot; everything's here</span></div>
+  </div>
+
+  <section>
+    <h2>Tonight &mdash; what you actually undock in</h2>
+
+    <div class="callout">
+      <h3>The split: Chezz shoots, you tank and salvage</h3>
+      <p>Coreun has Drones V, Medium Drone Operation V and Gallente Drone Specialization IV. Five Hammerhead IIs off a drone-bonused hull is real damage right now, today, with no training. Stinglock's Stabber brings a second gun platform and mops up wrecks. Fleet up so bounties share automatically, and alternate whose mission it is so LP and reward split evenly over a session.</p>
+    </div>
+
+    <div class="pair">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who c">Coreun &middot; buy this</span>
+          <h3>Myrmidon</h3>
+          <span class="sub">Gallente battlecruiser &middot; drone boat, armor tank</span>
+        </div>
+        <div class="card-body">
+          <div class="priceline"><span class="lbl">Hull at Rens</span><span class="val">53,990,000</span></div>
+          <div class="priceline"><span class="lbl">Fit (modules + rigs)</span><span class="val">~55,000,000</span></div>
+          <div class="priceline"><span class="lbl">Drones + spares</span><span class="val">~10,000,000</span></div>
+          <div class="priceline total"><span class="lbl">All in</span><span class="val">~120,000,000</span></div>
+
+          <p class="note">6 high / 5 mid / 5 low, 3 rigs. 200 m&sup3; drone bay, 100 m&sup3; bandwidth. Gallente Battlecruiser III gives +30% drone damage and HP, +22.5% armor repair.</p>
+
+          <h4>Suggested build</h4>
+          <ul class="fit">
+            <li><span class="n">Hi</span>5&times; 220mm Vulcan AutoCannon II <em>&mdash; or whatever medium turret they hold</em></li>
+            <li><span class="n">Hi</span>1&times; Salvager I <em>&mdash; second salvager in the fleet</em></li>
+            <li><span class="n">Mid</span>10MN Afterburner I</li>
+            <li><span class="n">Mid</span>2&times; Cap Recharger II</li>
+            <li><span class="n">Mid</span>Omnidirectional Tracking Link I</li>
+            <li><span class="n">Mid</span>Drone Navigation Computer I</li>
+            <li><span class="n">Low</span>Medium Armor Repairer II</li>
+            <li><span class="n">Low</span>Damage Control II</li>
+            <li><span class="n">Low</span>2&times; Drone Damage Amplifier II</li>
+            <li><span class="n">Low</span>Energized Adaptive Nano Membrane I</li>
+            <li><span class="n">Rig</span>2&times; Medium Auxiliary Nano Pump I, 1&times; Medium Drone Control Range Augmentor I</li>
+            <li><span class="n">Drone</span>5&times; Hammerhead II <em>&mdash; 890K each at Rens</em></li>
+            <li><span class="n">Drone</span>5&times; Hammerhead II spare + 5&times; Hobgoblin II <em>&mdash; for frigates</em></li>
+          </ul>
+
+          <p class="note"><b>Why mediums, not heavies:</b> Coreun is Heavy Drone Operation <b>I</b> and has no Sentry Drone Interfacing at all. Hammerhead IIs off Medium Drone Op V and Gallente Spec IV hit far harder than Ogres would. Don't buy heavy drones yet.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who s">Stinglock &middot; already own it</span>
+          <h3>Stabber</h3>
+          <span class="sub">Minmatar cruiser &middot; autocannons, shield tank</span>
+        </div>
+        <div class="card-body">
+          <div class="priceline owned"><span class="lbl">Hull</span><span class="val">owned</span></div>
+          <div class="priceline owned"><span class="lbl">Guns, drones, cap</span><span class="val">owned</span></div>
+          <div class="priceline"><span class="lbl">Top-up modules + ammo</span><span class="val">~20,000,000</span></div>
+          <div class="priceline total"><span class="lbl">All in</span><span class="val">~20,000,000</span></div>
+
+          <p class="note">4 high (4 turret) / 4 mid / 6 low, 3 rigs. 25 m&sup3; drone bay &mdash; exactly five light drones.</p>
+
+          <h4>Suggested build</h4>
+          <ul class="fit">
+            <li><span class="n">Hi</span>4&times; 425mm AutoCannon I <span class="tagown">have 7</span></li>
+            <li><span class="n">Mid</span>Medium Shield Extender II</li>
+            <li><span class="n">Mid</span>10MN Afterburner I <em>&mdash; not the 1MN, that's frigate-sized</em></li>
+            <li><span class="n">Mid</span>Cap Recharger II <span class="tagown">have 3</span></li>
+            <li><span class="n">Mid</span>Tracking Computer I</li>
+            <li><span class="n">Low</span>IFFA Compact Damage Control <span class="tagown">owned</span></li>
+            <li><span class="n">Low</span>2&times; Gyrostabilizer I</li>
+            <li><span class="n">Low</span>Tracking Enhancer I</li>
+            <li><span class="n">Low</span>2&times; Overdrive Injector System I</li>
+            <li><span class="n">Rig</span>2&times; Medium Anti-EM Screen Reinforcer I, 1&times; Medium Projectile Ambit Extension I</li>
+            <li><span class="n">Drone</span>5&times; Hobgoblin I <span class="tagown">have 11</span></li>
+            <li><span class="n">Ammo</span>Titanium Sabot M <span class="tagown">have 4,000</span> + buy EMP M</li>
+          </ul>
+
+          <p class="note"><b>Ammo trap:</b> you have 40,272 EMP <b>S</b> in Hek. That's small ammo for the Rifters &mdash; your 425mm guns are medium and won't load it. The 4,000 Titanium Sabot M is the right stuff, and you'll want EMP M alongside it for close work.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Where to run it</h2>
+    <div class="callout">
+      <h3>L1s and L2s out of Rens until standings catch up</h3>
+      <p>L3 agents need corp standing neither of you has confirmed. Start on L2 security agents in and around Rens, let the Myrmidon carry, and grind standing. <b>Security Connections</b> sits near the front of Stinglock's rebuilt skill plan at +10% loyalty points per level for exactly these agents &mdash; it was the right call before this conversation and it's the right call now. Alternate mission holders: bounties are shared by the fleet automatically, but reward and LP go only to whoever accepted the mission.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Future plans &mdash; what each of you upgrades into</h2>
+
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Ship</th><th>Role</th><th>Skills needed</th><th>Time</th><th class="num">Hull</th><th class="num">Fitted</th></tr>
+        </thead>
+        <tbody>
+
+          <tr class="grp"><td colspan="6"><span class="grplabel s">Stinglock <span class="n">already owns every hull below &mdash; only the skills are missing</span></span></td></tr>
+
+          <tr>
+            <td><span class="shipname">Hurricane</span><span class="shipsub">Combat battlecruiser</span></td>
+            <td>The real step up. 7 turrets, L3 workhorse</td>
+            <td>Minmatar Battlecruiser I &mdash; <b>front of the new plan</b></td>
+            <td class="num">1h 31m</td>
+            <td class="num">owned</td>
+            <td class="num">~70M</td>
+          </tr>
+          <tr>
+            <td><span class="shipname">Maelstrom</span><span class="shipsub">Battleship</span></td>
+            <td>Artillery, long-range alpha. L4 boat</td>
+            <td>Minmatar Battleship I &mdash; same skill as Typhoon</td>
+            <td class="num">1h 31m</td>
+            <td class="num">owned</td>
+            <td class="num">~200M</td>
+          </tr>
+          <tr>
+            <td><span class="shipname">Typhoon</span><span class="shipsub">Battleship</span></td>
+            <td>Torpedo/autocannon brawler. L4 boat</td>
+            <td>Minmatar Battleship I &mdash; and the missile skills already queued</td>
+            <td class="num">1h 31m</td>
+            <td class="num">owned</td>
+            <td class="num">~200M</td>
+          </tr>
+          <tr>
+            <td><span class="shipname">Loki</span><span class="shipsub">Strategic cruiser &middot; T3</span></td>
+            <td>Modular. Reconfigure per job</td>
+            <td>Minmatar Cruiser V &rarr; Strategic Cruiser I + 4 subsystem skills</td>
+            <td class="num">~20d</td>
+            <td class="num">owned</td>
+            <td class="num">~400M</td>
+          </tr>
+          <tr>
+            <td><span class="shipname">Rapier</span><span class="shipsub">Force recon &middot; T2</span></td>
+            <td>Cloaky webber. Fleet support, not solo PvE</td>
+            <td>Minmatar Cruiser V + Recon Ships I</td>
+            <td class="num">~20d</td>
+            <td class="num">owned</td>
+            <td class="num">~250M</td>
+          </tr>
+
+          <tr class="grp"><td colspan="6"><span class="grplabel c">Coreun <span class="n">owns nothing &mdash; every line is a purchase, funded from Stinglock's 1.81B</span></span></td></tr>
+
+          <tr>
+            <td><span class="shipname">Dominix</span><span class="shipsub">Gallente battleship</span></td>
+            <td>The drone battleship. L4 mission machine</td>
+            <td>Gallente Battleship V <b>already trained</b> &mdash; wait for Heavy Drone Operation IV</td>
+            <td class="num">4d 5h</td>
+            <td class="num">169,900,000</td>
+            <td class="num">~300M</td>
+          </tr>
+          <tr>
+            <td><span class="shipname">Dominix</span><span class="shipsub">sentry refit</span></td>
+            <td>Gardes and Bouncers. The version that actually prints</td>
+            <td>Sentry Drone Interfacing &mdash; not trained at all yet</td>
+            <td class="num">+~5d</td>
+            <td class="num">&mdash;</td>
+            <td class="num">+~40M</td>
+          </tr>
+          <tr>
+            <td><span class="shipname">Ishtar</span><span class="shipsub">Heavy assault cruiser &middot; T2</span></td>
+            <td>The premier drone HAC. Endgame for this pilot</td>
+            <td>Gallente Cruiser V (at IV) + Heavy Assault Cruisers I</td>
+            <td class="num">~2&ndash;3wk</td>
+            <td class="num">~300M</td>
+            <td class="num">~450M</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Order of operations</h2>
+    <div class="callout">
+      <h3>Do these four things, in this order</h3>
+      <p><b>1.</b> Stinglock clears the skill queue and imports the rebuilt plan &mdash; nothing else works until this happens, and it puts Minmatar Battlecruiser I and Battleship I first. <b>2.</b> Buy and fit the Myrmidon at Rens, ~120M. <b>3.</b> Top up the Stabber, ~20M, and buy medium ammo. <b>4.</b> Ninety minutes later Stinglock swaps the Stabber for the Hurricane and the pair goes from a cruiser and a battlecruiser to two proper battlecruisers.</p>
+    </div>
+  </section>
+
+  <footer>
+    <b>On the numbers.</b> Hull prices are live sell orders in Heimatar as of this session: Myrmidon 53,990,000 and Dominix 169,900,000, both at Rens VI Moon 8; Hammerhead II 890,000, also Rens. Fit and future costs are estimates &mdash; check the market before committing, especially anything months out. <b>One unknown:</b> Coreun's Gunnery is 12 of 65 skills and I couldn't see which. If their medium turret skills are thin, drop the Myrmidon's guns for utility highs and let the drones do all of it &mdash; the fit still works, it just loses some damage.
+  </footer>
+
+</div>
+</body>
+</html>
