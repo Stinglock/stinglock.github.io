@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Character sheets for Stinglock Sigma, Coreun, and Miko.">
+<title>Pilots &middot; Roster</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+
+  :root{
+    --ground:#EDE8E2; --surface:#F7F4F0; --surface-2:#E3DCD4;
+    --rule:#CFC5BA; --rule-soft:#DFD7CD;
+    --ink:#221C17; --ink-2:#5F544B; --ink-3:#8B7F74;
+    --rust:#B4451F; --rust-soft:rgba(180,69,31,0.10);
+    --sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
+    --chezz:#6B4A8A; --chezz-soft:rgba(107,74,138,0.11);
+    --miko:#9A7B2E; --miko-soft:rgba(154,123,46,0.12);
+    --ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
+    --warn:#9A6B2E; --warn-bg:rgba(154,107,46,0.12);
+    --shadow:0 1px 2px rgba(34,28,23,0.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+      --rule:#372E26; --rule-soft:#2A231C;
+      --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+      --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+      --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+      --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+      --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+      --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+      --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+      --shadow:0 1px 2px rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+    --rule:#372E26; --rule-soft:#2A231C;
+    --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+    --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+    --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+    --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+    --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+    --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+    --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+    --shadow:0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:'Archivo',system-ui,-apple-system,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:1020px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
+  h1,h2,h3,h4,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
+  .mono{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+
+  nav.pagenav{
+    display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center;
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em;
+    padding-bottom:14px; border-bottom:1px solid var(--rule);
+  }
+  nav.pagenav a{
+    color:var(--ink-2); text-decoration:none; padding:5px 9px; border-radius:3px;
+  }
+  nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
+  nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
+  nav.pagenav .sep{ color:var(--rule); }
+
+  header{ display:flex; flex-direction:column; gap:10px; }
+  .eyebrow{
+    font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--rust); display:flex; align-items:center; gap:9px;
+  }
+  .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
+  h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
+  .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
+
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+    gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden;
+  }
+  .stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
+  .stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
+  .stat-num{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    font-size:25px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
+  .stat .sub{ font-size:11.5px; color:var(--ink-3); }
+  .stat-num.rust{ color:var(--rust); } .stat-num.ready{ color:var(--ready); } .stat-num.warn{ color:var(--warn); }
+
+  section{ display:flex; flex-direction:column; gap:18px; }
+  h2{
+    margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule);
+  }
+
+  .pair{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+  .trio{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+
+  .card{
+    background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px;
+    box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column;
+  }
+  .card-head{ padding:16px 18px 14px; border-bottom:1px solid var(--rule-soft); display:flex; flex-direction:column; gap:3px; }
+  .who{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
+  .who.s{ color:var(--sting); } .who.c{ color:var(--chezz); } .who.m{ color:var(--miko); }
+  .card-head h3{ margin:0; font-size:22px; font-weight:700; letter-spacing:-.01em; }
+  .card-head .sub{ font-size:13px; color:var(--ink-2); }
+  .card-body{ padding:16px 18px; display:flex; flex-direction:column; gap:14px; }
+
+  .priceline{ display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+    padding:9px 11px; background:var(--surface-2); border-radius:3px; }
+  .priceline .lbl{ font-size:12px; color:var(--ink-2); }
+  .priceline .val{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    font-size:14.5px; font-weight:600; white-space:nowrap; }
+  .priceline.total .val{ color:var(--rust); font-size:16px; }
+  .priceline.owned .val{ color:var(--ready); }
+
+  h4{ margin:0; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+  ul.fit{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+  ul.fit li{ font-size:13.5px; display:flex; gap:8px; align-items:baseline; }
+  ul.fit li .n{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); min-width:18px; }
+  ul.fit li em{ font-style:normal; color:var(--ink-3); font-size:12px; }
+  .tagown{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--ready); background:var(--ready-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+  .tagno{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--rust); background:var(--rust-soft); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+  .tagwarn{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--warn); background:var(--warn-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+
+  .note{ font-size:13px; color:var(--ink-2); margin:0; }
+  .note b{ color:var(--ink); }
+
+  .callout{
+    background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust);
+    border-radius:3px; padding:15px 18px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:5px;
+  }
+  .callout h3{ margin:0; font-size:15.5px; font-weight:600; }
+  .callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
+  .callout.sting{ border-left-color:var(--sting); }
+  .callout.chezz{ border-left-color:var(--chezz); }
+  .callout.miko{ border-left-color:var(--miko); }
+
+  .scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
+  thead th{ text-align:left; font-family:'Chakra Petch',sans-serif; font-size:10.5px; font-weight:600;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2);
+    padding:10px 14px; border-bottom:1px solid var(--rule); white-space:nowrap; }
+  tbody td{ padding:11px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top; }
+  tbody tr:last-child td{ border-bottom:none; }
+  td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .shipname{ font-weight:600; display:block; }
+  .shipsub{ font-size:11.5px; color:var(--ink-3); display:block; margin-top:1px; }
+  tbody tr.grp td{ background:var(--surface-2); padding:9px 14px; border-bottom:1px solid var(--rule); }
+  .grplabel{ font-family:'Chakra Petch',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; display:flex; align-items:baseline; gap:10px; }
+  .grplabel.s{ color:var(--sting); } .grplabel.c{ color:var(--chezz); } .grplabel.m{ color:var(--miko); }
+  .grplabel .n{ font-family:'IBM Plex Mono',monospace; font-weight:500; letter-spacing:0;
+    color:var(--ink-3); text-transform:none; font-size:11.5px; }
+
+  .pill{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em;
+    text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap; font-weight:600; }
+  .pill.ready{ color:var(--ready); background:var(--ready-bg); }
+  .pill.warn{ color:var(--warn); background:var(--warn-bg); }
+  .pill.no{ color:var(--rust); background:var(--rust-soft); }
+
+  .bar-track{ height:6px; border-radius:3px; background:var(--surface-2); overflow:hidden; }
+  .bar-fill{ height:100%; background:var(--sting); border-radius:3px; }
+  .bar-fill.c{ background:var(--chezz); }
+  .bar-fill.m{ background:var(--miko); }
+  .barrow{ display:flex; flex-direction:column; gap:4px; }
+  .barrow .lbl{ display:flex; justify-content:space-between; font-size:12px; color:var(--ink-2); }
+  .barrow .lbl b{ color:var(--ink); font-family:'IBM Plex Mono',monospace; font-weight:600; }
+
+  .toc-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+  .toc-card{
+    background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px;
+    box-shadow:var(--shadow); padding:20px; text-decoration:none; color:var(--ink);
+    display:flex; flex-direction:column; gap:8px; transition:border-color .15s;
+  }
+  .toc-card:hover{ border-color:var(--rust); }
+  .toc-card .num{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--rust); font-weight:600; letter-spacing:.1em; }
+  .toc-card h3{ margin:0; font-size:19px; font-weight:700; }
+  .toc-card p{ margin:0; font-size:13.5px; color:var(--ink-2); }
+  .toc-card .arrow{ margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-3); }
+  .toc-card:hover .arrow{ color:var(--rust); }
+
+  .list-plain{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:0; }
+  .list-plain li{ padding:8px 0; border-bottom:1px solid var(--rule-soft); font-size:13.5px; display:flex; gap:10px; align-items:baseline; }
+  .list-plain li:last-child{ border-bottom:none; }
+  .list-plain .idx{ font-family:'IBM Plex Mono',monospace; color:var(--ink-3); font-size:11px; min-width:20px; }
+
+  footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
+  footer b{ color:var(--ink-2); font-weight:600; }
+
+</style>
+<style>
+
+  :root{ color-scheme: dark; }
+  html,body{ margin:0; padding:0; }
+  img{ max-width:100%; height:auto; }
+  [hidden]{ display:none !important; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="playbook.html">Playbook</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html" class="active">Pilots</a><span class="sep">/</span><a href="content.html">Content</a></nav>
+
+  <header>
+    <div class="eyebrow">Roster &middot; Three Pilots</div>
+    <h1>Pilots</h1>
+    <p class="standfirst">Stinglock funds, Coreun flies, Miko is unconfirmed. Character sheets for everyone in the operation.</p>
+  </header>
+
+  <section>
+    <div class="pair">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who s">Pilot 1 &middot; the user</span>
+          <h3>Stinglock Sigma</h3>
+          <span class="sub">Minmatar &middot; Rens VI Moon 8 &middot; Omega</span>
+        </div>
+        <div class="card-body">
+          <div class="priceline"><span class="lbl">Total SP</span><span class="val">2,233,389</span></div>
+          <div class="priceline total"><span class="lbl">Wallet</span><span class="val">1,814,317,899</span></div>
+          <h4>Attributes (implants)</h4>
+          <p class="note">INT 20 &middot; CHA 17 &middot; PER 26 &middot; MEM 17 &middot; WIL 25 &mdash; PER/WIL combat remap, base map INT 17 / CHA 17 / PER 23 / MEM 17 / WIL 25, all 14 bonus points in PER and WIL.</p>
+          <h4>Implants</h4>
+          <p class="note">Genolution CA-1 (slot 1, +3 PER), CA-2 (slot 4, +3 INT), BY-810 (Biology V). Slots 2 (MEM), 3 (WIL), 5 (CHA) empty. A standard +3 Memory implant is the recommended next buy over the 389.9M CA-4.</p>
+          <h4>Role</h4>
+          <p class="note">Funds the operation, flies the second gun platform. Shield-tanked, autocannon Minmatar. Full sheet on <a href="skills.html" style="color:var(--rust)">Skills</a> and hangar on <a href="fleet.html" style="color:var(--rust)">Fleet</a>.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who c">Pilot 2 &middot; "Chezz"</span>
+          <h3>Coreun</h3>
+          <span class="sub">Gallente &middot; BPM - Behemoth Panda Mechanics &middot; Omega</span>
+        </div>
+        <div class="card-body">
+          <div class="priceline"><span class="lbl">Total SP</span><span class="val">15,705,396</span></div>
+          <div class="priceline total"><span class="lbl">Wallet</span><span class="val">3,667,130</span></div>
+          <h4>Attributes</h4>
+          <p class="note">INT 24 &middot; CHA 21 &middot; PER 26 &middot; MEM 24 &middot; WIL 24 &mdash; properly remapped with a decent implant set. Drone training rate &asymp; 2,220 SP/hr.</p>
+          <h4>Ship skills</h4>
+          <p class="note">All 8 Gallente ship skills trained: Battleship V, Cruiser IV, Frigate IV, Battlecruiser III, Destroyer I, Hauler II, Mining Barge IV, Spaceship Command V. <b>Zero Minmatar ship skills</b> &mdash; none of Stinglock's hulls are usable by Coreun.</p>
+          <h4>Drone skills</h4>
+          <p class="note">Drones V, Light Drone Op V, Medium Drone Op V, Drone Avionics V, Drone Interfacing IV, Drone Navigation IV, Drone Sharpshooting IV, Gallente Drone Spec IV, Drone Durability II, Mining Drone Op II. Heavy Drone Operation <b>I</b> only; Sentry Drone Interfacing <b>not trained</b>.</p>
+          <div class="barrow">
+            <span class="lbl">Armor <b>8/14</b></span>
+            <div class="bar-track"><div class="bar-fill c" style="width:57%"></div></div>
+          </div>
+          <div class="barrow">
+            <span class="lbl">Shields <b>5/13</b></span>
+            <div class="bar-track"><div class="bar-fill c" style="width:38%"></div></div>
+          </div>
+          <div class="barrow">
+            <span class="lbl">Gunnery <b>12/65</b></span>
+            <div class="bar-track"><div class="bar-fill c" style="width:18%"></div></div>
+          </div>
+          <div class="barrow">
+            <span class="lbl">Fleet Support <b>8/20</b></span>
+            <div class="bar-track"><div class="bar-fill c" style="width:40%"></div></div>
+          </div>
+          <p class="note">Armor-tanked (opposite of Stinglock's shields). Fleet Support 8/20 means leadership/command skills are trained. A medium drone specialist &mdash; Hammerhead IIs are the best payload today; heavies and sentries are off the table until trained.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Pilot 3 &middot; Miko</h2>
+    <div class="card">
+      <div class="card-head">
+        <span class="who m">Pilot 3</span>
+        <h3>Miko' Kashada</h3>
+        <span class="sub">Race unconfirmed &middot; REDAM - Red Army Militia &middot; no alliance &middot; Omega</span>
+      </div>
+      <div class="card-body">
+        <div class="priceline"><span class="lbl">Total SP</span><span class="val">12,842,233</span></div>
+        <div class="priceline total"><span class="lbl">Wallet</span><span class="val">339,292,092</span></div>
+        <h4>Attributes</h4>
+        <p class="note">INT 24 &middot; CHA 23 &middot; PER 24 &middot; MEM 24 &middot; WIL 24 &mdash; flat, near-balanced spread. No obvious remap toward a single combat style, unlike Stinglock (PER/WIL) or Coreun (properly remapped).</p>
+        <h4>Skill mastery</h4>
+        <p class="note">L0: 2 &middot; L1: 19 &middot; L2: 10 &middot; L3: 28 &middot; L4: 38 &middot; L5: 17. Heavy weight at L3&ndash;L4 &mdash; broad competence across many skills rather than a few maxed specialisations.</p>
+        <div class="barrow">
+          <span class="lbl">Shields <b>10/13</b></span>
+          <div class="bar-track"><div class="bar-fill m" style="width:77%"></div></div>
+        </div>
+        <div class="barrow">
+          <span class="lbl">Armor <b>3/14</b></span>
+          <div class="bar-track"><div class="bar-fill m" style="width:21%"></div></div>
+        </div>
+        <div class="barrow">
+          <span class="lbl">Missiles <b>12/31</b></span>
+          <div class="bar-track"><div class="bar-fill m" style="width:39%"></div></div>
+        </div>
+        <div class="barrow">
+          <span class="lbl">Drones <b>11/28</b></span>
+          <div class="bar-track"><div class="bar-fill m" style="width:39%"></div></div>
+        </div>
+        <div class="barrow">
+          <span class="lbl">Gunnery <b>7/65</b></span>
+          <div class="bar-track"><div class="bar-fill m" style="width:11%"></div></div>
+        </div>
+        <div class="barrow">
+          <span class="lbl">Spaceship Command <b>11/90</b></span>
+          <div class="bar-track"><div class="bar-fill m" style="width:12%"></div></div>
+        </div>
+        <p class="note"><b>Read:</b> shield-tanked (10/13 vs Armor 3/14, same lean as Stinglock, opposite of Coreun) with real missile and drone competence but thin, spread-out gunnery and ship command &mdash; a generalist across hull types rather than committed to one race's line. Fleet Support and Corporation Management both 0 &mdash; no command/leadership skills trained. Zero racial ship-skill breakdown available from this source, so specific flyable hulls are unconfirmed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The asymmetry</h2>
+    <div class="callout">
+      <h3>Stinglock funds, Coreun flies</h3>
+      <p>Coreun has 7&times; the SP and 0.2% of the ISK. Every purchase in the operation comes out of Stinglock's wallet; every extra hull Coreun can usefully fly comes from Coreun's skill queue. Neither pilot can solo the gap &mdash; the two-man plan exists because of this split.</p>
+    </div>
+  </section>
+
+  <footer>
+    Attribute and skill figures pulled from live capsuleer.app data during the 31 Aug 2026 session. SP and wallet totals move &mdash; treat as a snapshot, not a live feed.
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Stinglock's current skill state, the Magic 14, and the rebuilt 105-line training plan with future branch options.">
+<title>Skills &middot; Stinglock</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+
+  :root{
+    --ground:#EDE8E2; --surface:#F7F4F0; --surface-2:#E3DCD4;
+    --rule:#CFC5BA; --rule-soft:#DFD7CD;
+    --ink:#221C17; --ink-2:#5F544B; --ink-3:#8B7F74;
+    --rust:#B4451F; --rust-soft:rgba(180,69,31,0.10);
+    --sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
+    --chezz:#6B4A8A; --chezz-soft:rgba(107,74,138,0.11);
+    --miko:#9A7B2E; --miko-soft:rgba(154,123,46,0.12);
+    --ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
+    --warn:#9A6B2E; --warn-bg:rgba(154,107,46,0.12);
+    --shadow:0 1px 2px rgba(34,28,23,0.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+      --rule:#372E26; --rule-soft:#2A231C;
+      --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+      --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+      --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+      --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+      --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+      --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+      --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+      --shadow:0 1px 2px rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+    --rule:#372E26; --rule-soft:#2A231C;
+    --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+    --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+    --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+    --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+    --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+    --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+    --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+    --shadow:0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:'Archivo',system-ui,-apple-system,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:1020px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
+  h1,h2,h3,h4,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
+  .mono{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+
+  nav.pagenav{
+    display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center;
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em;
+    padding-bottom:14px; border-bottom:1px solid var(--rule);
+  }
+  nav.pagenav a{
+    color:var(--ink-2); text-decoration:none; padding:5px 9px; border-radius:3px;
+  }
+  nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
+  nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
+  nav.pagenav .sep{ color:var(--rule); }
+
+  header{ display:flex; flex-direction:column; gap:10px; }
+  .eyebrow{
+    font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--rust); display:flex; align-items:center; gap:9px;
+  }
+  .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
+  h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
+  .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
+
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+    gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden;
+  }
+  .stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
+  .stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
+  .stat-num{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    font-size:25px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
+  .stat .sub{ font-size:11.5px; color:var(--ink-3); }
+  .stat-num.rust{ color:var(--rust); } .stat-num.ready{ color:var(--ready); } .stat-num.warn{ color:var(--warn); }
+
+  section{ display:flex; flex-direction:column; gap:18px; }
+  h2{
+    margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule);
+  }
+
+  .pair{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+  .trio{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+
+  .card{
+    background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px;
+    box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column;
+  }
+  .card-head{ padding:16px 18px 14px; border-bottom:1px solid var(--rule-soft); display:flex; flex-direction:column; gap:3px; }
+  .who{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
+  .who.s{ color:var(--sting); } .who.c{ color:var(--chezz); } .who.m{ color:var(--miko); }
+  .card-head h3{ margin:0; font-size:22px; font-weight:700; letter-spacing:-.01em; }
+  .card-head .sub{ font-size:13px; color:var(--ink-2); }
+  .card-body{ padding:16px 18px; display:flex; flex-direction:column; gap:14px; }
+
+  .priceline{ display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+    padding:9px 11px; background:var(--surface-2); border-radius:3px; }
+  .priceline .lbl{ font-size:12px; color:var(--ink-2); }
+  .priceline .val{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    font-size:14.5px; font-weight:600; white-space:nowrap; }
+  .priceline.total .val{ color:var(--rust); font-size:16px; }
+  .priceline.owned .val{ color:var(--ready); }
+
+  h4{ margin:0; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+  ul.fit{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+  ul.fit li{ font-size:13.5px; display:flex; gap:8px; align-items:baseline; }
+  ul.fit li .n{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); min-width:18px; }
+  ul.fit li em{ font-style:normal; color:var(--ink-3); font-size:12px; }
+  .tagown{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--ready); background:var(--ready-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+  .tagno{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--rust); background:var(--rust-soft); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+  .tagwarn{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--warn); background:var(--warn-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+
+  .note{ font-size:13px; color:var(--ink-2); margin:0; }
+  .note b{ color:var(--ink); }
+
+  .callout{
+    background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust);
+    border-radius:3px; padding:15px 18px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:5px;
+  }
+  .callout h3{ margin:0; font-size:15.5px; font-weight:600; }
+  .callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
+  .callout.sting{ border-left-color:var(--sting); }
+  .callout.chezz{ border-left-color:var(--chezz); }
+  .callout.miko{ border-left-color:var(--miko); }
+
+  .scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
+  thead th{ text-align:left; font-family:'Chakra Petch',sans-serif; font-size:10.5px; font-weight:600;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2);
+    padding:10px 14px; border-bottom:1px solid var(--rule); white-space:nowrap; }
+  tbody td{ padding:11px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top; }
+  tbody tr:last-child td{ border-bottom:none; }
+  td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .shipname{ font-weight:600; display:block; }
+  .shipsub{ font-size:11.5px; color:var(--ink-3); display:block; margin-top:1px; }
+  tbody tr.grp td{ background:var(--surface-2); padding:9px 14px; border-bottom:1px solid var(--rule); }
+  .grplabel{ font-family:'Chakra Petch',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; display:flex; align-items:baseline; gap:10px; }
+  .grplabel.s{ color:var(--sting); } .grplabel.c{ color:var(--chezz); } .grplabel.m{ color:var(--miko); }
+  .grplabel .n{ font-family:'IBM Plex Mono',monospace; font-weight:500; letter-spacing:0;
+    color:var(--ink-3); text-transform:none; font-size:11.5px; }
+
+  .pill{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em;
+    text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap; font-weight:600; }
+  .pill.ready{ color:var(--ready); background:var(--ready-bg); }
+  .pill.warn{ color:var(--warn); background:var(--warn-bg); }
+  .pill.no{ color:var(--rust); background:var(--rust-soft); }
+
+  .bar-track{ height:6px; border-radius:3px; background:var(--surface-2); overflow:hidden; }
+  .bar-fill{ height:100%; background:var(--sting); border-radius:3px; }
+  .bar-fill.c{ background:var(--chezz); }
+  .bar-fill.m{ background:var(--miko); }
+  .barrow{ display:flex; flex-direction:column; gap:4px; }
+  .barrow .lbl{ display:flex; justify-content:space-between; font-size:12px; color:var(--ink-2); }
+  .barrow .lbl b{ color:var(--ink); font-family:'IBM Plex Mono',monospace; font-weight:600; }
+
+  .toc-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+  .toc-card{
+    background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px;
+    box-shadow:var(--shadow); padding:20px; text-decoration:none; color:var(--ink);
+    display:flex; flex-direction:column; gap:8px; transition:border-color .15s;
+  }
+  .toc-card:hover{ border-color:var(--rust); }
+  .toc-card .num{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--rust); font-weight:600; letter-spacing:.1em; }
+  .toc-card h3{ margin:0; font-size:19px; font-weight:700; }
+  .toc-card p{ margin:0; font-size:13.5px; color:var(--ink-2); }
+  .toc-card .arrow{ margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-3); }
+  .toc-card:hover .arrow{ color:var(--rust); }
+
+  .list-plain{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:0; }
+  .list-plain li{ padding:8px 0; border-bottom:1px solid var(--rule-soft); font-size:13.5px; display:flex; gap:10px; align-items:baseline; }
+  .list-plain li:last-child{ border-bottom:none; }
+  .list-plain .idx{ font-family:'IBM Plex Mono',monospace; color:var(--ink-3); font-size:11px; min-width:20px; }
+
+  footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
+  footer b{ color:var(--ink-2); font-weight:600; }
+
+</style>
+<style>
+
+  :root{ color-scheme: dark; }
+  html,body{ margin:0; padding:0; }
+  img{ max-width:100%; height:auto; }
+  [hidden]{ display:none !important; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="playbook.html">Playbook</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html" class="active">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a></nav>
+
+  <header>
+    <div class="eyebrow">Stinglock Sigma &middot; Training</div>
+    <h1>Skills</h1>
+    <p class="standfirst">2,233,389 SP on an Omega clone, remapped Perception/Willpower. Current state, the rebuilt 105-line queue, and where it branches if the plan changes.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><span class="k">Total SP</span><span class="stat-num">2,233,389</span><span class="sub">Omega clone</span></div>
+    <div class="stat"><span class="k">Remap</span><span class="stat-num">PER/WIL</span><span class="sub">all 14 bonus points</span></div>
+    <div class="stat"><span class="k">Best training rate</span><span class="stat-num ready">2,310</span><span class="sub">SP/hr &middot; PER/WIL groups</span></div>
+    <div class="stat"><span class="k">Queue status</span><span class="stat-num warn">not imported</span><span class="sub">live queue still old order</span></div>
+  </div>
+
+  <section>
+    <h2>Attributes &amp; training rates</h2>
+    <div class="pair">
+      <div class="card">
+        <div class="card-head"><h3>Attributes</h3><span class="sub">With implants / base map</span></div>
+        <div class="card-body">
+          <div class="priceline"><span class="lbl">INT</span><span class="val">20 &middot; base 17</span></div>
+          <div class="priceline"><span class="lbl">CHA</span><span class="val">17 &middot; base 17</span></div>
+          <div class="priceline"><span class="lbl">PER</span><span class="val">26 &middot; base 23</span></div>
+          <div class="priceline"><span class="lbl">MEM</span><span class="val">17 &middot; base 17</span></div>
+          <div class="priceline"><span class="lbl">WIL</span><span class="val">25 &middot; base 25</span></div>
+          <p class="note">Implants: Genolution CA-1 (slot 1, +3 PER), CA-2 (slot 4, +3 INT), BY-810 (Biology V). Slots 2, 3 and 5 &mdash; Memory, Willpower, Charisma &mdash; are <b>empty</b>.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Measured training rates</h3><span class="sub">SP/hr, verified across five skills</span></div>
+        <div class="card-body">
+          <div class="priceline total"><span class="lbl">PER/WIL &mdash; Gunnery, Spaceship Cmd, Missiles</span><span class="val">2,310</span></div>
+          <div class="priceline"><span class="lbl">PER/MEM &mdash; Weapon Upgrades etc</span><span class="val">2,070</span></div>
+          <div class="priceline"><span class="lbl">INT/PER &mdash; Navigation</span><span class="val">1,980</span></div>
+          <div class="priceline"><span class="lbl">MEM/PER &mdash; Drones</span><span class="val">1,800</span></div>
+          <div class="priceline"><span class="lbl">CHA/WIL &mdash; Trade</span><span class="val">1,770</span></div>
+          <div class="priceline"><span class="lbl">INT/MEM &mdash; Engineering, Shields, Science...</span><span class="val">1,710</span></div>
+          <div class="priceline"><span class="lbl">CHA/INT &mdash; Social</span><span class="val">1,620</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Current state</h2>
+    <div class="pair">
+      <div class="card"><div class="card-body">
+        <h4>Racial ship skills</h4>
+        <ul class="fit">
+          <li><span class="n"></span>Minmatar Frigate <span class="tagown">V</span></li>
+          <li><span class="n"></span>Minmatar Cruiser <span class="tagown">IV</span></li>
+          <li><span class="n"></span>Minmatar Destroyer <span class="tagown">III</span></li>
+          <li><span class="n"></span>Minmatar Hauler <span class="tagown">II</span></li>
+          <li><span class="n"></span>Amarr Frigate <span class="tagown">III</span></li>
+          <li><span class="n"></span>Caldari Frigate <span class="tagown">II</span></li>
+          <li><span class="n"></span>Gallente Frigate <span class="tagown">II</span></li>
+          <li><span class="n"></span>Spaceship Command <span class="tagown">IV</span></li>
+          <li><span class="n"></span>Minmatar Battlecruiser, Battleship, Strategic Cruiser <span class="tagno">0 &middot; queued</span></li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h4>Magic 14 status</h4>
+        <p class="note">CPU Management IV, Capacitor Management III, Capacitor Systems Operation III, Hull Upgrades II, Long Range Targeting II, Shield Management III, Shield Operation III, Signature Analysis IV, Navigation IV, Evasive Maneuvering III, Warp Drive Operation IV, Spaceship Command IV. <b>Power Grid Management</b> and <b>Mechanics</b> are mid-queue.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The rebuilt plan &mdash; 105 lines, in order</h2>
+    <div class="callout">
+      <h3>Not yet imported</h3>
+      <p>The live in-game queue is still the old order. Skill queue imports <b>append, never reorder</b> &mdash; to apply this order the queue has to be cleared first. That's outstanding action #1 across the whole site.</p>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead><tr><th style="width:50px">#</th><th>Skill &amp; level</th></tr></thead>
+        <tbody>
+<tr class="grp"><td colspan="2"><span class="grplabel s">1 &middot; SHIP UNLOCKS <span class="n">2 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">001</td><td>Minmatar Battlecruiser 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">002</td><td>Minmatar Battleship 1</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">2 &middot; MISSION ISK <span class="n">3 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">003</td><td>Negotiation 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">004</td><td>Social 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">005</td><td>Connections 3</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">3 &middot; CLONE / IMPLANT <span class="n">4 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">006</td><td>Cybernetics 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">007</td><td>Infomorph Psychology 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">008</td><td>Infomorph Synchronizing 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">009</td><td>Anchoring 1</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">4 &middot; MISSILES + TARGETING <span class="n">6 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">010</td><td>Missile Launcher Operation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">011</td><td>Rockets 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">012</td><td>Light Missiles 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">013</td><td>Target Management 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">014</td><td>Rapid Launch 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">015</td><td>Missile Bombardment 2</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">5 &middot; MISSION LP <span class="n">1 skill</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">016</td><td>Security Connections 2</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">6 &middot; GAMEPLAY DOOR-OPENERS <span class="n">11 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">017</td><td>Mining 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">018</td><td>Mining Drone Operation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">019</td><td>Reprocessing 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">020</td><td>Industry 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">021</td><td>Leadership 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">022</td><td>Shield Command 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">023</td><td>Corporation Management 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">024</td><td>Laboratory Operation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">025</td><td>Research 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">026</td><td>Minmatar Encryption Methods 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">027</td><td>Capacitor Emission Systems 2</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">7 &middot; TRADE / MARKET <span class="n">7 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">028</td><td>Trade 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">029</td><td>Distribution Connections 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">030</td><td>Daytrading 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">031</td><td>Marketing 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">032</td><td>Broker Relations 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">033</td><td>Accounting 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">034</td><td>Contracting 2</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">8 &middot; CORE SUPPORT <span class="n">3 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">035</td><td>Capacitor Management 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">036</td><td>Capacitor Systems Operation 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">037</td><td>Long Range Targeting 4</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">9 &middot; COMBAT / TURRET SUPPORT <span class="n">12 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">038</td><td>Shield Upgrades 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">039</td><td>Energy Grid Upgrades 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">040</td><td>Weapon Upgrades 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">041</td><td>Rapid Firing 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">042</td><td>Sharpshooter 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">043</td><td>Motion Prediction 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">044</td><td>Controlled Bursts 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">045</td><td>Small Projectile Turret 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">046</td><td>Large Projectile Turret 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">047</td><td>Repair Systems 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">048</td><td>Shield Emission Systems 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">049</td><td>Thermodynamics 2</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">10 &middot; SHIP BONUSES, RIGGING, PI, DRONES, EXPLORATION, NAV, TANK, EWAR <span class="n">40 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">050</td><td>Nanite Operation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">051</td><td>Minmatar Battlecruiser 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">052</td><td>Minmatar Battlecruiser 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">053</td><td>Minmatar Battleship 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">054</td><td>Jury Rigging 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">055</td><td>Shield Rigging 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">056</td><td>Projectile Weapon Rigging 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">057</td><td>Astronautics Rigging 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">058</td><td>Electronics Upgrades 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">059</td><td>Mechanics 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">060</td><td>Power Grid Management 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">061</td><td>Spaceship Command 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">062</td><td>Interplanetary Consolidation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">063</td><td>Command Center Upgrades 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">064</td><td>Salvage Drone Operation 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">065</td><td>Medium Drone Operation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">066</td><td>Drone Interfacing 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">067</td><td>Drone Avionics 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">068</td><td>Drone Navigation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">069</td><td>Drone Sharpshooting 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">070</td><td>Drone Durability 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">071</td><td>Astrometrics 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">072</td><td>Astrometric Acquisition 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">073</td><td>Astrometric Pinpointing 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">074</td><td>Astrometric Rangefinding 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">075</td><td>Hacking 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">076</td><td>Archaeology 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">077</td><td>Survey 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">078</td><td>Cloaking 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">079</td><td>Fuel Conservation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">080</td><td>High Speed Maneuvering 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">081</td><td>Tactical Shield Manipulation 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">082</td><td>EM Shield Compensation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">083</td><td>Explosive Shield Compensation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">084</td><td>Kinetic Shield Compensation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">085</td><td>Thermal Shield Compensation 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">086</td><td>Electronic Warfare 2</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">087</td><td>Propulsion Jamming 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">088</td><td>Target Painting 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">089</td><td>Sharpshooter 4</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">11 &middot; TURRET SUPPORT TO IV <span class="n">5 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">090</td><td>Motion Prediction 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">091</td><td>Rapid Firing 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">092</td><td>Controlled Bursts 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">093</td><td>Weapon Upgrades 4</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">094</td><td>Mechanics 5</td></tr>
+<tr class="grp"><td colspan="2"><span class="grplabel s">12&ndash;13 &middot; THE LEVEL-V GATE &amp; WHAT'S BEHIND IT <span class="n">16 skills</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">095</td><td>Power Grid Management 5</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">096</td><td>Spaceship Command 5</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">097</td><td>Gunnery 5</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">098</td><td>Signature Analysis 5</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">099</td><td>Assault Frigates 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">100</td><td>Covert Ops 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">101</td><td>Recon Ships 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">102</td><td>Minmatar Cruiser 5</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">103</td><td>Minmatar Strategic Cruiser 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">104</td><td>Minmatar Defensive Systems 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">105</td><td>Minmatar Offensive Systems 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">106</td><td>Minmatar Propulsion Systems 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">107</td><td>Minmatar Core Systems 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">108</td><td>Advanced Spaceship Command 3</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">109</td><td>Heavy Assault Cruisers 1</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">110</td><td>Advanced Weapon Upgrades 2</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Future path options &mdash; if the plan branches</h2>
+    <p class="note">The rebuilt plan already leans mission-runner-first (§10 gameplay door-openers cover trade, industry, exploration and combat support broadly), but three later blocks are really separate specialisations bolted onto the same base. Matches the fleet paths on <a href="fleet.html" style="color:var(--rust)">the fleet page</a>.</p>
+
+    <div class="trio">
+      <div class="card"><div class="card-body">
+        <h4>Stay the course &mdash; mission runner</h4>
+        <p class="note">Everything through block 11 (turret support to IV) is mission-runner infrastructure. Stop there and you're fully kitted for L1&ndash;L4s without touching the level-V gate at all.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h4>Branch into PvP</h4>
+        <p class="note">Block 13's Assault Frigates 1 and Recon Ships 1 unlock the Jaguar and Rapier respectively &mdash; both already owned. Electronic Warfare and Propulsion Jamming (block 10) are already queued and double as tackle/support skills.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h4>Branch into exploration</h4>
+        <p class="note">Astrometrics, Hacking, Archaeology and Survey (block 10) are already in the plan &mdash; they're what make the five owned exploration frigates actually productive, not just flyable.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <footer>
+    <b>Verify before acting.</b> A skill absent from the queue is either already trained or untrained &mdash; the queue alone can't tell you which, only live skill data can. This caused three wrong findings in the source session (see the corrections log in the original handoff).
+  </footer>
+
+</div>
+</body>
+</html>

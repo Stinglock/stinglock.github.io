@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="All 25 hulls Stinglock owns: flyable status, roles, values, blockers, and future fleet paths.">
+<title>Fleet &middot; Stinglock</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+
+  :root{
+    --ground:#EDE8E2; --surface:#F7F4F0; --surface-2:#E3DCD4;
+    --rule:#CFC5BA; --rule-soft:#DFD7CD;
+    --ink:#221C17; --ink-2:#5F544B; --ink-3:#8B7F74;
+    --rust:#B4451F; --rust-soft:rgba(180,69,31,0.10);
+    --sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
+    --chezz:#6B4A8A; --chezz-soft:rgba(107,74,138,0.11);
+    --miko:#9A7B2E; --miko-soft:rgba(154,123,46,0.12);
+    --ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
+    --warn:#9A6B2E; --warn-bg:rgba(154,107,46,0.12);
+    --shadow:0 1px 2px rgba(34,28,23,0.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+      --rule:#372E26; --rule-soft:#2A231C;
+      --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+      --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+      --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+      --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+      --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+      --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+      --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+      --shadow:0 1px 2px rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+    --rule:#372E26; --rule-soft:#2A231C;
+    --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+    --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+    --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+    --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+    --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+    --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+    --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+    --shadow:0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:'Archivo',system-ui,-apple-system,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:1020px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
+  h1,h2,h3,h4,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
+  .mono{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+
+  nav.pagenav{
+    display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center;
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em;
+    padding-bottom:14px; border-bottom:1px solid var(--rule);
+  }
+  nav.pagenav a{
+    color:var(--ink-2); text-decoration:none; padding:5px 9px; border-radius:3px;
+  }
+  nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
+  nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
+  nav.pagenav .sep{ color:var(--rule); }
+
+  header{ display:flex; flex-direction:column; gap:10px; }
+  .eyebrow{
+    font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--rust); display:flex; align-items:center; gap:9px;
+  }
+  .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
+  h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
+  .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
+
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+    gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden;
+  }
+  .stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
+  .stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
+  .stat-num{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    font-size:25px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
+  .stat .sub{ font-size:11.5px; color:var(--ink-3); }
+  .stat-num.rust{ color:var(--rust); } .stat-num.ready{ color:var(--ready); } .stat-num.warn{ color:var(--warn); }
+
+  section{ display:flex; flex-direction:column; gap:18px; }
+  h2{
+    margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule);
+  }
+
+  .pair{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+  .trio{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+
+  .card{
+    background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px;
+    box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column;
+  }
+  .card-head{ padding:16px 18px 14px; border-bottom:1px solid var(--rule-soft); display:flex; flex-direction:column; gap:3px; }
+  .who{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
+  .who.s{ color:var(--sting); } .who.c{ color:var(--chezz); } .who.m{ color:var(--miko); }
+  .card-head h3{ margin:0; font-size:22px; font-weight:700; letter-spacing:-.01em; }
+  .card-head .sub{ font-size:13px; color:var(--ink-2); }
+  .card-body{ padding:16px 18px; display:flex; flex-direction:column; gap:14px; }
+
+  .priceline{ display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+    padding:9px 11px; background:var(--surface-2); border-radius:3px; }
+  .priceline .lbl{ font-size:12px; color:var(--ink-2); }
+  .priceline .val{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    font-size:14.5px; font-weight:600; white-space:nowrap; }
+  .priceline.total .val{ color:var(--rust); font-size:16px; }
+  .priceline.owned .val{ color:var(--ready); }
+
+  h4{ margin:0; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+  ul.fit{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+  ul.fit li{ font-size:13.5px; display:flex; gap:8px; align-items:baseline; }
+  ul.fit li .n{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); min-width:18px; }
+  ul.fit li em{ font-style:normal; color:var(--ink-3); font-size:12px; }
+  .tagown{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--ready); background:var(--ready-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+  .tagno{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--rust); background:var(--rust-soft); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+  .tagwarn{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--warn); background:var(--warn-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+
+  .note{ font-size:13px; color:var(--ink-2); margin:0; }
+  .note b{ color:var(--ink); }
+
+  .callout{
+    background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust);
+    border-radius:3px; padding:15px 18px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:5px;
+  }
+  .callout h3{ margin:0; font-size:15.5px; font-weight:600; }
+  .callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
+  .callout.sting{ border-left-color:var(--sting); }
+  .callout.chezz{ border-left-color:var(--chezz); }
+  .callout.miko{ border-left-color:var(--miko); }
+
+  .scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
+  thead th{ text-align:left; font-family:'Chakra Petch',sans-serif; font-size:10.5px; font-weight:600;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2);
+    padding:10px 14px; border-bottom:1px solid var(--rule); white-space:nowrap; }
+  tbody td{ padding:11px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top; }
+  tbody tr:last-child td{ border-bottom:none; }
+  td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .shipname{ font-weight:600; display:block; }
+  .shipsub{ font-size:11.5px; color:var(--ink-3); display:block; margin-top:1px; }
+  tbody tr.grp td{ background:var(--surface-2); padding:9px 14px; border-bottom:1px solid var(--rule); }
+  .grplabel{ font-family:'Chakra Petch',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; display:flex; align-items:baseline; gap:10px; }
+  .grplabel.s{ color:var(--sting); } .grplabel.c{ color:var(--chezz); } .grplabel.m{ color:var(--miko); }
+  .grplabel .n{ font-family:'IBM Plex Mono',monospace; font-weight:500; letter-spacing:0;
+    color:var(--ink-3); text-transform:none; font-size:11.5px; }
+
+  .pill{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em;
+    text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap; font-weight:600; }
+  .pill.ready{ color:var(--ready); background:var(--ready-bg); }
+  .pill.warn{ color:var(--warn); background:var(--warn-bg); }
+  .pill.no{ color:var(--rust); background:var(--rust-soft); }
+
+  .bar-track{ height:6px; border-radius:3px; background:var(--surface-2); overflow:hidden; }
+  .bar-fill{ height:100%; background:var(--sting); border-radius:3px; }
+  .bar-fill.c{ background:var(--chezz); }
+  .bar-fill.m{ background:var(--miko); }
+  .barrow{ display:flex; flex-direction:column; gap:4px; }
+  .barrow .lbl{ display:flex; justify-content:space-between; font-size:12px; color:var(--ink-2); }
+  .barrow .lbl b{ color:var(--ink); font-family:'IBM Plex Mono',monospace; font-weight:600; }
+
+  .toc-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+  .toc-card{
+    background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px;
+    box-shadow:var(--shadow); padding:20px; text-decoration:none; color:var(--ink);
+    display:flex; flex-direction:column; gap:8px; transition:border-color .15s;
+  }
+  .toc-card:hover{ border-color:var(--rust); }
+  .toc-card .num{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--rust); font-weight:600; letter-spacing:.1em; }
+  .toc-card h3{ margin:0; font-size:19px; font-weight:700; }
+  .toc-card p{ margin:0; font-size:13.5px; color:var(--ink-2); }
+  .toc-card .arrow{ margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-3); }
+  .toc-card:hover .arrow{ color:var(--rust); }
+
+  .list-plain{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:0; }
+  .list-plain li{ padding:8px 0; border-bottom:1px solid var(--rule-soft); font-size:13.5px; display:flex; gap:10px; align-items:baseline; }
+  .list-plain li:last-child{ border-bottom:none; }
+  .list-plain .idx{ font-family:'IBM Plex Mono',monospace; color:var(--ink-3); font-size:11px; min-width:20px; }
+
+  footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
+  footer b{ color:var(--ink-2); font-weight:600; }
+
+</style>
+<style>
+
+  :root{ color-scheme: dark; }
+  html,body{ margin:0; padding:0; }
+  img{ max-width:100%; height:auto; }
+  [hidden]{ display:none !important; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="playbook.html">Playbook</a><span class="sep">/</span><a href="fleet.html" class="active">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a></nav>
+
+  <header>
+    <div class="eyebrow">Stinglock Sigma &middot; Hangar Audit</div>
+    <h1>Fleet</h1>
+    <p class="standfirst">25 hulls, 827,055,806 ISK total, bare, no fittings. Eighteen of them you can undock today &mdash; the rest are gated by a 90-minute skill or a multi-week level-V.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><span class="k">Total hulls</span><span class="stat-num">25</span><span class="sub">827,055,806 ISK</span></div>
+    <div class="stat"><span class="k">Flyable now</span><span class="stat-num ready">18</span><span class="sub">21,981,725 ISK</span></div>
+    <div class="stat"><span class="k">90 min away</span><span class="stat-num warn">3</span><span class="sub">379,561,935 ISK</span></div>
+    <div class="stat"><span class="k">Level-V locked</span><span class="stat-num rust">4</span><span class="sub">425,512,146 ISK</span></div>
+  </div>
+
+  <section>
+    <h2>Flyable now &mdash; 18 hulls, 21,981,725 ISK</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Ship</th><th>Hull</th><th>Role</th><th>PvE/PvP</th><th class="num">Value</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="shipname">Stabby Mc Stab Stab</td><td>Stabber</td><td>Main combat &mdash; autocannons, shield tank</td><td>Both</td><td class="num">12,466,199</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">I LIFT 4 REEL</td><td>Mammoth</td><td>Hauler, afterburner fit</td><td>Logistics</td><td class="num">2,277,254</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Ms Aisle</td><td>Talwar</td><td>Missile destroyer, 7 launchers 0 turrets</td><td>PvP</td><td class="num">1,039,178</td><td><span class="pill warn">unarmed &mdash; no missile skills</span></td></tr>
+          <tr><td class="shipname">Ms Aisle II</td><td>Talwar</td><td>Same</td><td>PvP</td><td class="num">1,039,178</td><td><span class="pill warn">unarmed &mdash; no missile skills</span></td></tr>
+          <tr><td class="shipname">Thrasher</td><td>Thrasher</td><td>Autocannon alpha destroyer, good L1/L2</td><td>Both</td><td class="num">1,025,219</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Magnate</td><td>Magnate</td><td>Exploration (Amarr)</td><td>PvE</td><td class="num">545,891</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Slasher</td><td>Slasher</td><td>Fastest Minmatar frigate, tackle</td><td>PvP</td><td class="num">530,811</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Heron</td><td>Heron</td><td>Exploration (Caldari)</td><td>PvE</td><td class="num">517,060</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Imicus</td><td>Imicus</td><td>Exploration (Gallente)</td><td>PvE</td><td class="num">498,677</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Condor</td><td>Condor</td><td>Fast tackle (Caldari)</td><td>PvP</td><td class="num">437,769</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Destiny</td><td>Probe</td><td>Exploration</td><td>PvE</td><td class="num">408,829</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Probe</td><td>Probe</td><td>Exploration</td><td>PvE</td><td class="num">408,829</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Mihawk Express</td><td>Rifter</td><td>Cheap brawler</td><td>PvP</td><td class="num">313,559</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Starship Express</td><td>Rifter</td><td>Cheap brawler</td><td>PvP</td><td class="num">313,559</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Burst</td><td>Burst</td><td>Logistics frigate, remote shield rep</td><td>Support</td><td class="num">147,815</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Reaper &times;2</td><td>Corvette</td><td>Free rookie ships</td><td>Throwaway</td><td class="num">8,286</td><td><span class="pill ready">flyable</span></td></tr>
+          <tr><td class="shipname">Pew Pew</td><td>Corvette</td><td>Free rookie ship</td><td>Throwaway</td><td class="num">3,612</td><td><span class="pill ready">flyable</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Note:</b> both Talwars are flyable but unarmed &mdash; no missile skills trained yet. They're not combat-ready until Missile Launcher Operation and friends land, which the rebuilt skill plan puts early.</p>
+  </section>
+
+  <section>
+    <h2>90 minutes away &mdash; 3 hulls, 379,561,935 ISK</h2>
+    <p class="note">Unlocked by Minmatar Battlecruiser I (38m 58s) and Minmatar Battleship I (51m 57s), both of which now sit at positions 1 and 2 in the rebuilt skill plan.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Ship</th><th>Hull</th><th>Role</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td class="shipname">Typhoon</td><td>Battleship</td><td>Torpedo/autocannon brawler, L4 boat</td><td class="num">166,348,241</td></tr>
+          <tr><td class="shipname">Maelstrom</td><td>Battleship</td><td>Artillery, long-range alpha</td><td class="num">158,988,583</td></tr>
+          <tr><td class="shipname">Hurricane</td><td>Combat Battlecruiser</td><td>The workhorse, L3 missions</td><td class="num">54,225,111</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Behind level-V prerequisites &mdash; 4 hulls, 425,512,146 ISK</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Ship</th><th>Hull</th><th>Blocker</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td class="shipname">Loki</td><td>Strategic Cruiser T3</td><td>Minmatar Cruiser <b>V</b> (19d 9m) &rarr; Strategic Cruiser I + 4 subsystem skills</td><td class="num">239,172,403</td></tr>
+          <tr><td class="shipname">Rapier</td><td>Force Recon T2</td><td>Minmatar Cruiser <b>V</b> + Recon Ships I</td><td class="num">149,913,436</td></tr>
+          <tr><td class="shipname">Jaguar</td><td>Assault Frigate T2</td><td>Assault Frigates I, which needs <b>Cap Systems Op V + Mechanics V</b></td><td class="num">19,839,552</td></tr>
+          <tr><td class="shipname">Hound</td><td>Stealth Bomber T2</td><td>Covert Ops I, which needs <b>Electronics Upgrades V</b></td><td class="num">16,586,755</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Locations</h2>
+    <div class="trio">
+      <div class="card"><div class="card-body">
+        <h4>Rens VI Moon 8</h4>
+        <p class="note">Home station &mdash; everything consolidated here as of the last session.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h4>Hek VIII Moon 12</h4>
+        <p class="note">Loki, Rapier, Maelstrom, Hurricane, Jaguar, Hound &mdash; stranded.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h4>Josekorn X Moon 1</h4>
+        <p class="note">Typhoon &mdash; stranded.</p>
+      </div></div>
+    </div>
+    <p class="note">Hurricane, Maelstrom and Typhoon un-strand themselves once the 90-minute skills train &mdash; they can simply be flown home. The Loki (80,000 m&sup3;), Rapier (85,000 m&sup3;), Hound (28,100 m&sup3;) and Jaguar (27,289 m&sup3;) all exceed Mammoth capacity and need <b>courier contracts</b>.</p>
+  </section>
+
+  <section>
+    <h2>Future fleet paths &mdash; if you wanted to specialise</h2>
+    <p class="note">The hangar already supports several directions beyond the two-man mission grind. None of this is committed &mdash; it's what's already sitting in the hangar or one skill away, grouped by playstyle.</p>
+
+    <div class="trio">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who s">Path A</span>
+          <h3>Mission runner</h3>
+          <span class="sub">The default track &mdash; already underway</span>
+        </div>
+        <div class="card-body">
+          <p class="note">Stabber &rarr; Hurricane &rarr; Maelstrom/Typhoon. L1&ndash;L4 security missions, standings-gated. Highest ISK/hour ceiling for the least new-skill investment since every hull is already owned.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who c">Path B</span>
+          <h3>Small-gang PvP</h3>
+          <span class="sub">Slasher, Condor, Rifters, Jaguar</span>
+        </div>
+        <div class="card-body">
+          <p class="note">Tackle frigates are already flyable today. The Jaguar (assault frigate) and eventually the Rapier (force recon, needs Minmatar Cruiser V) turn this into a real roaming kit. Doesn't touch the mission-runner skill queue much &mdash; mostly separate support skills (Cap Systems Op, Mechanics).</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who s">Path C</span>
+          <h3>Exploration</h3>
+          <span class="sub">Magnate, Heron, Imicus, 2&times; Probe</span>
+        </div>
+        <div class="card-body">
+          <p class="note">Five exploration-capable frigates already owned and flyable, across all four empire races. Relic/data site running for LP and salvage, or wormhole scouting later. Astrometrics and hacking/archaeology skills are already in the rebuilt plan (§10).</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who c">Path D</span>
+          <h3>Logistics &amp; support</h3>
+          <span class="sub">Mammoth, Burst</span>
+        </div>
+        <div class="card-body">
+          <p class="note">Mammoth handles hauling between Rens and the stranded hulls at Hek/Josekorn until the courier contracts clear. Burst is a shield-logi frigate &mdash; pairs naturally with Coreun's armor-tanked Myrmidon/Dominix for a proper two-man rep chain later.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who s">Path E</span>
+          <h3>T3 / covert endgame</h3>
+          <span class="sub">Loki, Rapier, Hound</span>
+        </div>
+        <div class="card-body">
+          <p class="note">All three sit behind level-V skills (Minmatar Cruiser V, Electronics Upgrades V). Loki is the modular do-anything hull; Rapier and Hound are fleet-support/solo-stealth tools rather than mission runners. ~20 days out at the earliest.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="who c">Path F</span>
+          <h3>Fund Coreun's drone track</h3>
+          <span class="sub">Myrmidon &rarr; Dominix &rarr; Ishtar</span>
+        </div>
+        <div class="card-body">
+          <p class="note">Not Stinglock's hull, but funded from Stinglock's wallet. See <a href="pilots.html" style="color:var(--rust)">Pilots</a> and <a href="content.html" style="color:var(--rust)">Content</a> for the full progression and what it unlocks.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <b>On the numbers.</b> All values are in-game estimated prices for bare hulls, no fittings, pulled during the 31 Aug 2026 session. Re-check before committing to anything a courier contract or long skill queue would delay.
+  </footer>
+
+</div>
+</body>
+</html>
