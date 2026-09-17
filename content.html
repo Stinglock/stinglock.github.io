@@ -91,6 +91,16 @@ td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-nu
 .list-plain li{ padding:8px 0; border-bottom:1px solid var(--rule-soft); font-size:13.5px; display:flex; gap:10px; align-items:baseline; }
 .list-plain li:last-child{ border-bottom:none; }
 .list-plain .idx{ font-family:'IBM Plex Mono',monospace; color:var(--ink-3); font-size:11px; min-width:20px; }
+ul.fit{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+ul.fit li{ font-size:13px; display:flex; gap:8px; align-items:baseline; }
+ul.fit li .n{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); min-width:16px; }
+ul.fit li em{ font-style:normal; color:var(--ink-3); font-size:11.5px; }
+details.ships{ background:var(--surface-2); border:1px solid var(--rule-soft); border-radius:3px; padding:2px 0; margin-top:8px; }
+details.ships summary{ cursor:pointer; padding:8px 12px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-2); list-style:none; }
+details.ships summary::-webkit-details-marker{ display:none; }
+details.ships summary::before{ content:'\25B8'; display:inline-block; margin-right:7px; color:var(--ink-3); transition:transform .12s; }
+details.ships[open] summary::before{ transform:rotate(90deg); }
+details.ships .inner{ padding:2px 12px 12px 12px; }
 footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
 .gate{ position:fixed; inset:0; z-index:999; background:var(--ground); display:flex; align-items:center; justify-content:center; padding:22px; }
 .gate-card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:4px; box-shadow:var(--shadow); padding:28px 26px; max-width:340px; width:100%; display:flex; flex-direction:column; gap:14px; }
@@ -138,15 +148,54 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <header>
 <div class="eyebrow">Content Plan &middot; By Fit, Not By Hull</div>
 <h1>Content</h1>
-<p class="standfirst">Each row is a specific fit, not just a ship &mdash; the same hull often does more than one job under a different loadout. All-in cost is hull + fitting, rounded. Brief on purpose; the Exploration and Group Ops pages go deeper on the wormhole/nullsec side of this.</p>
+<p class="standfirst">Every kind of content EVE offers, filtered against what's actually trained and owned right now. Ready first, then what's blocking the rest &mdash; SP shown two ways: entry (bare minimum to do it at all) and optimal (worth training toward). Detailed fits for the ready stuff follow below.</p>
 </header>
 
 <div class="stats">
-<div class="stat"><span class="k">Solo tiers covered</span><span class="stat-num">L1&ndash;L4</span><span class="sub">Hurricane, Maelstrom</span></div>
+<div class="stat"><span class="k">Explorer fits</span><span class="stat-num ready">3</span><span class="sub">Astero, Cheetah, Heron</span></div>
 <div class="stat"><span class="k">Wormhole tiers covered</span><span class="stat-num ready">C1&ndash;C3</span><span class="sub">Rupture, Loki</span></div>
-<div class="stat"><span class="k">Support fits</span><span class="stat-num">2</span><span class="sub">Noctis salvage, Mammoth haul</span></div>
-<div class="stat"><span class="k">Not yet fit</span><span class="stat-num warn">1</span><span class="sub">Cyclone &mdash; hull owned, no loadout built</span></div>
+<div class="stat"><span class="k">Content types, ready today</span><span class="stat-num ready">9</span><span class="sub">of ~19 surveyed</span></div>
+<div class="stat"><span class="k">Blocked on territory, not SP</span><span class="stat-num warn">4</span><span class="sub">sov, capitals, citadels, moon mining</span></div>
 </div>
+
+<section>
+<h2>Everything the game offers</h2>
+<div class="scroll"><table>
+<thead><tr><th>Content</th><th>Ships</th><th class="num">Cost to enter</th><th>SP: now &rarr; optimal</th><th>Time</th><th>Risk</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Security missions L1&ndash;L4</td><td>Thrasher, Hurricane, Maelstrom</td><td class="num">~4&ndash;400M</td><td class="num">0 &rarr; 0</td><td>15&ndash;30min</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">ready</span></td></tr>
+<tr><td>Security missions L5</td><td>&mdash;</td><td class="num">&mdash;</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">needs 8.0+ standing, not close</span></td></tr>
+<tr><td>Exploration, all tiers</td><td>Astero, Cheetah, Heron</td><td class="num">~2&ndash;170M</td><td class="num">0 &rarr; 0</td><td>1&ndash;4h</td><td><span class="pill warn">low&ndash;moderate</span></td><td><span class="pill ready">ready</span></td></tr>
+<tr><td>Incursions</td><td>Maelstrom, Typhoon</td><td class="num">already owned</td><td class="num">0 &rarr; 0</td><td>10&ndash;20min/site</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">ready, unused</span></td></tr>
+<tr><td>Abyssal Deadspace, T0&ndash;T2</td><td>Rupture, Stabber</td><td class="num">~10k/filament</td><td class="num">0 &rarr; 0</td><td>&le;20min, hard cap</td><td><span class="pill no">high</span></td><td><span class="pill ready">ready, untested</span></td></tr>
+<tr><td>Abyssal Deadspace, T3+</td><td>&mdash; dedicated hull recommended</td><td class="num">150M+</td><td class="num">0 &rarr; several M</td><td>&le;20min, hard cap</td><td><span class="pill no">high</span></td><td><span class="pill no">not fit</span></td></tr>
+<tr><td>Wormhole Sleeper sites, C1&ndash;C3</td><td>Loki (Cyclone once fit)</td><td class="num">already owned</td><td class="num">0 &rarr; ~2.7M</td><td>2&ndash;3h</td><td><span class="pill warn">moderate&ndash;high</span></td><td><span class="pill ready">ready, solo</span></td></tr>
+<tr><td>Wormhole Sleeper sites, C4&ndash;C6</td><td>&mdash;</td><td class="num">already owned</td><td class="num">N/A, crew-limited</td><td>3&ndash;5h+</td><td><span class="pill no">high</span></td><td><span class="pill no">needs a 2nd combat pilot</span></td></tr>
+<tr><td>Nullsec relic, filament</td><td>Astero, Cheetah</td><td class="num">~65&ndash;70k</td><td class="num">0 &rarr; 0</td><td>2.5&ndash;4h</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">ready</span></td></tr>
+<tr><td>Nullsec ratting (sov)</td><td>&mdash;</td><td class="num">&mdash;</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">needs sov/rental space, corp has none</span></td></tr>
+<tr><td>Mining (ore/ice/gas)</td><td>Venture</td><td class="num">~2&ndash;3M</td><td class="num">0 &rarr; ~500k <span style="color:var(--ink-3);font-size:11px;">(Mining Frigate V for barge access)</span></td><td>20&ndash;40min/site</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">ready</span></td></tr>
+<tr><td>Moon mining</td><td>&mdash;</td><td class="num">structure cost</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">needs a refinery, not owned</span></td></tr>
+<tr><td>Planetary Interaction</td><td>Mammoth (collection)</td><td class="num">already running</td><td class="num">0 &rarr; 0</td><td>passive</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">already running</span></td></tr>
+<tr><td>Manufacturing / Industry</td><td>any hull, station-side</td><td class="num">BPOs/BPCs + fees</td><td class="num">0 &rarr; several M</td><td>hours&ndash;days/job</td><td><span class="pill ready">very low</span></td><td><span class="pill warn">open, unused</span></td></tr>
+<tr><td>Invention / Research</td><td>station-side</td><td class="num">BPCs + fees</td><td class="num">0 &rarr; several M</td><td>hours/job</td><td><span class="pill ready">very low</span></td><td><span class="pill warn">open, unused</span></td></tr>
+<tr><td>Market trading</td><td>none</td><td class="num">starting capital only</td><td class="num">0 &rarr; ~1M <span style="color:var(--ink-3);font-size:11px;">(Trade/Broker skills)</span></td><td>ongoing</td><td><span class="pill ready">low</span></td><td><span class="pill warn">open, unused</span></td></tr>
+<tr><td>DED escalations</td><td>whatever cleared the trigger site</td><td class="num">already owned</td><td class="num">0 &rarr; N/A</td><td>varies</td><td><span class="pill warn">moderate&ndash;high</span></td><td><span class="pill warn">triggerable, higher tiers want a fleet</span></td></tr>
+<tr><td>Faction Warfare</td><td>Jaguar</td><td class="num">already owned</td><td class="num">0 &rarr; 0</td><td>15&ndash;20min/plex</td><td><span class="pill no">high</span></td><td><span class="pill warn">ready, unfit</span></td></tr>
+<tr><td>Small-gang PvP</td><td>Hurricane, Loki</td><td class="num">already owned</td><td class="num">0 &rarr; N/A</td><td>varies</td><td><span class="pill no">high</span></td><td><span class="pill warn">ships exist, no fit/practice</span></td></tr>
+<tr><td>Nullsec sov warfare</td><td>&mdash;</td><td class="num">&mdash;</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">needs an alliance holding space</span></td></tr>
+<tr><td>Wormhole hole defence</td><td>&mdash;</td><td class="num">citadel cost</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">no citadel owned in any hole</span></td></tr>
+<tr><td>Citadels / structures</td><td>&mdash;</td><td class="num">100M&ndash;billions</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">alliance-scale, not close</span></td></tr>
+<tr><td>Capital ships</td><td>&mdash;</td><td class="num">billions</td><td class="num">tens of millions</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">far off, not on any current path</span></td></tr>
+<tr><td>Project Discovery</td><td>none</td><td class="num">free</td><td class="num">0 &rarr; 0</td><td>however long you want</td><td><span class="pill ready">none</span></td><td><span class="pill ready">available</span></td></tr>
+</tbody>
+</table></div>
+<p class="note">SP figures for the "ready" rows are real, computed this session. Everything marked N/A isn't gated by training at all &mdash; it's gated by territory, corp resources, or ISK, which no amount of skill points fixes. Cost and time ranges are the same community-shape estimates used across Exploration and Group Ops, not measured logs.</p>
+</section>
+
+<section>
+<h2>Fit detail &mdash; the "ready" rows</h2>
+<p class="note">The master table above answers <i>can I</i>; everything below answers <i>what do I actually fly</i>.</p>
+</section>
 
 <section>
 <h2>Security missions</h2>
@@ -177,9 +226,79 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <div class="scroll"><table>
 <thead><tr><th>Content</th><th>Ship &amp; fit</th><th class="num">All-in cost</th><th>Notes</th></tr></thead>
 <tbody>
-<tr><td><span class="pill ready">Relic sites, via filament</span></td><td><div><span class="shipname">Astero Explorer</span><span class="shipsub">Covert cloak, T2 analyzers, Sisters probes, cargo rig</span></div></td><td class="num">~150&ndash;170M</td><td>Hull 89.4M (live) + covert fit. Full write-up on <a href="exploration.html" style="color:var(--rust)">Exploration</a>.</td></tr>
+<tr><td><span class="pill ready">Relic sites, via filament</span></td><td><div><span class="shipname">Astero Explorer</span><span class="shipsub">Covert cloak, T2 analyzers, Sisters probes, cargo rig</span></div></td><td class="num">~150&ndash;170M</td><td>Hull 89.4M (live) + covert fit. Main runner &mdash; full write-up on <a href="exploration.html" style="color:var(--rust)">Exploration</a>.</td></tr>
+<tr><td><span class="pill ready">Relic sites, via filament</span></td><td><div><span class="shipname">Cheetah Explo</span><span class="shipsub">Covert cloak, T2 analyzers, Warp Core Stabilizer</span></div></td><td class="num">~55&ndash;65M</td><td>Hull 15.69M + fit. Own 2 &mdash; second explorer, or the hole-watcher's own ship for a solo/duo trip.</td></tr>
+<tr><td><span class="pill warn">Highsec/lowsec relic only</span></td><td><div><span class="shipname">Heron Explo</span><span class="shipsub">T1 analyzers, cheap and disposable</span></div></td><td class="num">~2&ndash;3M</td><td>Hull 394K + T1 fit. No covert cloak &mdash; not for null, but nothing to cry over if it's lost.</td></tr>
 </tbody>
 </table></div>
+
+<details class="ships">
+<summary>Full fits &mdash; Cheetah &amp; Heron</summary>
+<div class="inner">
+<div class="pair">
+<div class="card">
+<div class="card-head"><h3>Cheetah Explo</h3></div>
+<div class="card-body">
+<ul class="fit">
+<li><span class="n">H</span><span>Core Probe Launcher I</span></li>
+<li><span class="n">H</span><span>Covert Ops Cloaking Device II</span></li>
+<li><span class="n">M</span><span>Relic Analyzer II</span></li>
+<li><span class="n">M</span><span>Data Analyzer II</span></li>
+<li><span class="n">M</span><span>1MN Afterburner II</span></li>
+<li><span class="n">M</span><span>Scan Rangefinding Array I</span></li>
+<li><span class="n">L</span><span>Warp Core Stabilizer II</span></li>
+<li><span class="n">L</span><span>Nanofiber Internal Structure II</span></li>
+<li><span class="n">L</span><span>Nanofiber Internal Structure II</span></li>
+<li><span class="n">L</span><span>Micro Auxiliary Power Core I</span></li>
+<li><span class="n">R</span><span>Small Emission Scope Sharpener I</span></li>
+<li><span class="n">R</span><span>Small Gravity Capacitor Upgrade I</span></li>
+</ul>
+<p class="note" style="margin-top:8px;">Same design logic as the Astero &mdash; T2 analyzers (Archaeology/Hacking both V), one stab, cloak-and-run over tank. Cheetah's 4-mid/4-low layout is one more of each than the Astero, at the cost of a smaller cargo hold.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-head"><h3>Heron Explo</h3></div>
+<div class="card-body">
+<ul class="fit">
+<li><span class="n">H</span><span>Core Probe Launcher I</span></li>
+<li><span class="n">M</span><span>Relic Analyzer I</span></li>
+<li><span class="n">M</span><span>Data Analyzer I</span></li>
+<li><span class="n">M</span><span>1MN Afterburner I</span></li>
+<li><span class="n">L</span><span>Nanofiber Internal Structure I</span></li>
+<li><span class="n">L</span><span>Expanded Cargohold I</span></li>
+<li><span class="n">R</span><span>Small Cargohold Optimization I</span></li>
+<li><span class="n">R</span><span>Small Emission Scope Sharpener I</span></li>
+</ul>
+<p class="note" style="margin-top:8px;">No covert cloak &mdash; T1 explo frigates can't fit one. T1 analyzers deliberately, since a lost T2 analyzer on a 394K hull is a worse trade than the cheap upgrade. Highsec/lowsec only, and a fine backup if both covert ops ships are out.</p>
+</div>
+</div>
+</div>
+</div>
+</details>
+</section>
+
+<section>
+<h2>Faction Warfare</h2>
+<div class="scroll"><table>
+<thead><tr><th>Content</th><th>Ship &amp; fit</th><th class="num">All-in cost</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><span class="pill no">Not yet fit</span></td><td><div><span class="shipname">Jaguar</span><span class="shipsub">Assault frigate, owned, unused</span></div></td><td class="num">15.61M hull</td><td>Sitting idle in Hek all session &mdash; no loadout designed yet. Full details on <a href="group-content.html#fw" style="color:var(--rust)">Group Ops</a>.</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section>
+<h2>Other content the game offers</h2>
+<div class="scroll"><table>
+<thead><tr><th>Content</th><th>Ship &amp; fit</th><th class="num">All-in cost</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><span class="pill ready">Gas/ore/ice mining</span></td><td><div><span class="shipname">Venture Miner</span><span class="shipsub">Mining lasers, ore hold</span></div></td><td class="num">~2&ndash;3M</td><td>Own 2. Ore bay + built-in warp stab bonus. See <a href="group-content.html#gas" style="color:var(--rust)">Group Ops</a> for the gas-harvesting angle.</td></tr>
+<tr><td><span class="pill ready">Ready, untested</span></td><td><div><span class="shipname">Abyssal Deadspace</span><span class="shipsub">T0&ndash;T2 filaments, Rupture or Stabber</span></div></td><td class="num">~10k/filament</td><td><b>Correction from an earlier version of this page:</b> entry only needs any T1/T2/navy/pirate cruiser (T3 barred, so not the Loki) &mdash; the Rupture or Stabber genuinely qualify today. No Triglavian hull required, that's just the optimized choice at higher tiers.</td></tr>
+<tr><td><span class="pill ready">Already running</span></td><td><div><span class="shipname">Planetary Interaction</span><span class="shipsub">Ryddinjorn, 5 planets, Coolant + Nanites</span></div></td><td class="num">passive</td><td>Not a ship activity &mdash; standing colonies, collected via the Mammoth. No new fit needed.</td></tr>
+<tr><td><span class="pill warn">Public fleet, not solo</span></td><td><div><span class="shipname">Maelstrom / Typhoon</span><span class="shipsub">Sansha incursion fleets</span></div></td><td class="num">already owned</td><td>Battleship-tier hulls already fit that role. See <a href="group-content.html#incursions" style="color:var(--rust)">Group Ops</a> &mdash; joins a public fleet, no personal setup needed beyond the ship itself.</td></tr>
+</tbody>
+</table></div>
+<p class="note">Left off this list: capital ships, sovereignty/structure warfare, and manufacturing/industry &mdash; none reachable with the current skill set or facility access, and not close enough to be worth pricing out yet.</p>
 </section>
 
 <section>
