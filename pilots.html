@@ -60,6 +60,7 @@ nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
 nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
 nav.pagenav a:focus-visible{ outline:2px solid var(--rust); outline-offset:2px; }
 nav.pagenav .sep{ color:var(--rule); }
+nav.pagenav .navgroup{ color:var(--ink-3); font-size:9.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:5px 3px 5px 4px; }
 header{ display:flex; flex-direction:column; gap:10px; }
 .eyebrow{ font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--rust); display:flex; align-items:center; gap:9px; }
 .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
@@ -119,6 +120,14 @@ footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); 
 .gate-err{ font-size:12px; color:var(--rust); min-height:14px; }
 body.locked{ overflow:hidden; }
 body.locked .wrap{ display:none; }
+thead th{ cursor:pointer; user-select:none; }
+thead th:hover{ color:var(--ink); }
+thead th .sort-arrow{ margin-left:5px; font-size:9px; color:var(--rust); }
+.filterbar{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+.filterchip{ font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em; text-transform:uppercase; padding:4px 10px; border-radius:12px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer; }
+.filterchip:hover{ border-color:var(--rust); color:var(--ink); }
+.filterchip.on{ background:var(--rust-soft); border-color:var(--rust); color:var(--rust); }
+.filterchip.clearchip{ opacity:.55; }
 @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
 </style>
 <style>
@@ -149,7 +158,7 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </script>
 
 <div class="wrap">
-<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="archive.html">Archive</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html" class="active">Pilots</a><span class="sep">/</span><a href="content.html">Content</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="group-content.html">Group Ops</a></nav>
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><span class="navgroup">Personal</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="content.html">Solo Ops</a><span class="sep">/</span><span class="navgroup">Corp</span><a href="pilots.html" class="active">Pilots</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="group-content.html">Group Ops</a><span class="sep">/</span><a href="archive.html">Archive</a></nav>
 
 <header>
 <div class="eyebrow">Roster &middot; Four Pilots</div>
@@ -289,5 +298,92 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </footer>
 
 </div>
+<script>
+(function(){
+  function makeSortable(table){
+    var thead = table.querySelector('thead');
+    if(!thead) return;
+    var ths = Array.prototype.slice.call(thead.querySelectorAll('th'));
+    ths.forEach(function(th, idx){
+      th.addEventListener('click', function(){
+        var tbody = table.querySelector('tbody');
+        if(!tbody) return;
+        var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+        var dir = th.getAttribute('data-sort-dir') === 'asc' ? 'desc' : 'asc';
+        ths.forEach(function(t){ t.removeAttribute('data-sort-dir'); var a=t.querySelector('.sort-arrow'); if(a) a.remove(); });
+        th.setAttribute('data-sort-dir', dir);
+        var arrow = document.createElement('span');
+        arrow.className = 'sort-arrow';
+        arrow.textContent = dir === 'asc' ? '\u25B2' : '\u25BC';
+        th.appendChild(arrow);
+        rows.sort(function(a, b){
+          var ca = (a.children[idx] && a.children[idx].innerText || '').trim();
+          var cb = (b.children[idx] && b.children[idx].innerText || '').trim();
+          var na = parseFloat(ca.replace(/[^0-9.\-]/g,''));
+          var nb = parseFloat(cb.replace(/[^0-9.\-]/g,''));
+          var cmp;
+          if(!isNaN(na) && !isNaN(nb) && /[0-9]/.test(ca) && /[0-9]/.test(cb)){
+            cmp = na - nb;
+          } else {
+            cmp = ca.localeCompare(cb);
+          }
+          return dir === 'asc' ? cmp : -cmp;
+        });
+        rows.forEach(function(r){ tbody.appendChild(r); });
+      });
+    });
+  }
+  function makeFilterable(table){
+    var tbody = table.querySelector('tbody');
+    if(!tbody) return;
+    var pills = Array.prototype.slice.call(tbody.querySelectorAll('.pill'));
+    if(pills.length === 0) return;
+    var labels = [];
+    pills.forEach(function(p){ var t = p.textContent.trim(); if(labels.indexOf(t) === -1) labels.push(t); });
+    if(labels.length < 2) return;
+    var host = table.closest('.scroll') || table.parentElement;
+    var bar = document.createElement('div');
+    bar.className = 'filterbar';
+    var active = [];
+    function applyFilter(){
+      var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+      rows.forEach(function(r){
+        if(active.length === 0){ r.style.display = ''; return; }
+        var rowPills = Array.prototype.slice.call(r.querySelectorAll('.pill')).map(function(p){ return p.textContent.trim(); });
+        var match = active.every(function(f){ return rowPills.indexOf(f) !== -1; });
+        r.style.display = match ? '' : 'none';
+      });
+    }
+    labels.forEach(function(l){
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'filterchip';
+      chip.textContent = l;
+      chip.addEventListener('click', function(){
+        var i = active.indexOf(l);
+        if(i === -1){ active.push(l); chip.classList.add('on'); }
+        else { active.splice(i,1); chip.classList.remove('on'); }
+        applyFilter();
+      });
+      bar.appendChild(chip);
+    });
+    var clear = document.createElement('button');
+    clear.type = 'button';
+    clear.className = 'filterchip clearchip';
+    clear.textContent = 'Clear';
+    clear.addEventListener('click', function(){
+      active = [];
+      bar.querySelectorAll('.filterchip').forEach(function(c){ c.classList.remove('on'); });
+      applyFilter();
+    });
+    bar.appendChild(clear);
+    host.parentElement.insertBefore(bar, host);
+  }
+  document.querySelectorAll('table').forEach(function(t){
+    makeSortable(t);
+    makeFilterable(t);
+  });
+})();
+</script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="What content each of Stinglock's own fits can run, with all-in cost per fit.">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Content Plan &middot; Stinglock</title>
+<title>Solo Ops <title>Content Plan &middot; Stinglock</title>middot; Stinglock</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
@@ -57,6 +57,7 @@ nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
 nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
 nav.pagenav a:focus-visible{ outline:2px solid var(--rust); outline-offset:2px; }
 nav.pagenav .sep{ color:var(--rule); }
+nav.pagenav .navgroup{ color:var(--ink-3); font-size:9.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:5px 3px 5px 4px; }
 header{ display:flex; flex-direction:column; gap:10px; }
 .eyebrow{ font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--rust); display:flex; align-items:center; gap:9px; }
 .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
@@ -113,6 +114,14 @@ footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); 
 .gate-err{ font-size:12px; color:var(--rust); min-height:14px; }
 body.locked{ overflow:hidden; }
 body.locked .wrap{ display:none; }
+thead th{ cursor:pointer; user-select:none; }
+thead th:hover{ color:var(--ink); }
+thead th .sort-arrow{ margin-left:5px; font-size:9px; color:var(--rust); }
+.filterbar{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+.filterchip{ font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em; text-transform:uppercase; padding:4px 10px; border-radius:12px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer; }
+.filterchip:hover{ border-color:var(--rust); color:var(--ink); }
+.filterchip.on{ background:var(--rust-soft); border-color:var(--rust); color:var(--rust); }
+.filterchip.clearchip{ opacity:.55; }
 @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
 </style>
 <style>
@@ -143,11 +152,11 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </script>
 
 <div class="wrap">
-<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="archive.html">Archive</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html" class="active">Content</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="group-content.html">Group Ops</a></nav>
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><span class="navgroup">Personal</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="content.html" class="active">Solo Ops</a><span class="sep">/</span><span class="navgroup">Corp</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="group-content.html">Group Ops</a><span class="sep">/</span><a href="archive.html">Archive</a></nav>
 
 <header>
-<div class="eyebrow">Content Plan &middot; By Fit, Not By Hull</div>
-<h1>Content</h1>
+<div class="eyebrow">Solo Ops <div class="eyebrow">Content Plan &middot; By Fit, Not By Hull</div>middot; By Fit, Not By Hull</div>
+<h1>Solo Ops</h1>
 <p class="standfirst">Every kind of content EVE offers, filtered against what's actually trained and owned right now. Ready first, then what's blocking the rest &mdash; SP shown two ways: entry (bare minimum to do it at all) and optimal (worth training toward). Detailed fits for the ready stuff follow below.</p>
 </header>
 
@@ -161,35 +170,35 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <section>
 <h2>Everything the game offers</h2>
 <div class="scroll"><table>
-<thead><tr><th>Content</th><th>Ships</th><th class="num">Cost to enter</th><th>SP: now &rarr; optimal</th><th>Time</th><th>Risk</th><th>Status</th></tr></thead>
+<thead><tr><th>Content</th><th>Ships</th><th class="num">Cost</th><th class="num">Training</th><th>Time</th><th>Risk</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td>Security missions L1&ndash;L4</td><td>Thrasher, Hurricane, Maelstrom</td><td class="num">~4&ndash;400M</td><td class="num">0 &rarr; 0</td><td>15&ndash;30min</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">ready</span></td></tr>
-<tr><td>Security missions L5</td><td>&mdash;</td><td class="num">&mdash;</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">needs 8.0+ standing, not close</span></td></tr>
-<tr><td>Exploration, all tiers</td><td>Astero, Cheetah, Heron</td><td class="num">~2&ndash;170M</td><td class="num">0 &rarr; 0</td><td>1&ndash;4h</td><td><span class="pill warn">low&ndash;moderate</span></td><td><span class="pill ready">ready</span></td></tr>
-<tr><td>Incursions</td><td>Maelstrom, Typhoon</td><td class="num">already owned</td><td class="num">0 &rarr; 0</td><td>10&ndash;20min/site</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">ready, unused</span></td></tr>
-<tr><td>Abyssal Deadspace, T0&ndash;T2</td><td>Rupture, Stabber</td><td class="num">~10k/filament</td><td class="num">0 &rarr; 0</td><td>&le;20min, hard cap</td><td><span class="pill no">high</span></td><td><span class="pill ready">ready, untested</span></td></tr>
-<tr><td>Abyssal Deadspace, T3+</td><td>&mdash; dedicated hull recommended</td><td class="num">150M+</td><td class="num">0 &rarr; several M</td><td>&le;20min, hard cap</td><td><span class="pill no">high</span></td><td><span class="pill no">not fit</span></td></tr>
-<tr><td>Wormhole Sleeper sites, C1&ndash;C3</td><td>Loki (Cyclone once fit)</td><td class="num">already owned</td><td class="num">0 &rarr; ~2.7M</td><td>2&ndash;3h</td><td><span class="pill warn">moderate&ndash;high</span></td><td><span class="pill ready">ready, solo</span></td></tr>
-<tr><td>Wormhole Sleeper sites, C4&ndash;C6</td><td>&mdash;</td><td class="num">already owned</td><td class="num">N/A, crew-limited</td><td>3&ndash;5h+</td><td><span class="pill no">high</span></td><td><span class="pill no">needs a 2nd combat pilot</span></td></tr>
-<tr><td>Nullsec relic, filament</td><td>Astero, Cheetah</td><td class="num">~65&ndash;70k</td><td class="num">0 &rarr; 0</td><td>2.5&ndash;4h</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">ready</span></td></tr>
-<tr><td>Nullsec ratting (sov)</td><td>&mdash;</td><td class="num">&mdash;</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">needs sov/rental space, corp has none</span></td></tr>
-<tr><td>Mining (ore/ice/gas)</td><td>Venture</td><td class="num">~2&ndash;3M</td><td class="num">0 &rarr; ~500k <span style="color:var(--ink-3);font-size:11px;">(Mining Frigate V for barge access)</span></td><td>20&ndash;40min/site</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">ready</span></td></tr>
-<tr><td>Moon mining</td><td>&mdash;</td><td class="num">structure cost</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">needs a refinery, not owned</span></td></tr>
-<tr><td>Planetary Interaction</td><td>Mammoth (collection)</td><td class="num">already running</td><td class="num">0 &rarr; 0</td><td>passive</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">already running</span></td></tr>
-<tr><td>Manufacturing / Industry</td><td>any hull, station-side</td><td class="num">BPOs/BPCs + fees</td><td class="num">0 &rarr; several M</td><td>hours&ndash;days/job</td><td><span class="pill ready">very low</span></td><td><span class="pill warn">open, unused</span></td></tr>
-<tr><td>Invention / Research</td><td>station-side</td><td class="num">BPCs + fees</td><td class="num">0 &rarr; several M</td><td>hours/job</td><td><span class="pill ready">very low</span></td><td><span class="pill warn">open, unused</span></td></tr>
-<tr><td>Market trading</td><td>none</td><td class="num">starting capital only</td><td class="num">0 &rarr; ~1M <span style="color:var(--ink-3);font-size:11px;">(Trade/Broker skills)</span></td><td>ongoing</td><td><span class="pill ready">low</span></td><td><span class="pill warn">open, unused</span></td></tr>
-<tr><td>DED escalations</td><td>whatever cleared the trigger site</td><td class="num">already owned</td><td class="num">0 &rarr; N/A</td><td>varies</td><td><span class="pill warn">moderate&ndash;high</span></td><td><span class="pill warn">triggerable, higher tiers want a fleet</span></td></tr>
-<tr><td>Faction Warfare</td><td>Jaguar</td><td class="num">already owned</td><td class="num">0 &rarr; 0</td><td>15&ndash;20min/plex</td><td><span class="pill no">high</span></td><td><span class="pill warn">ready, unfit</span></td></tr>
-<tr><td>Small-gang PvP</td><td>Hurricane, Loki</td><td class="num">already owned</td><td class="num">0 &rarr; N/A</td><td>varies</td><td><span class="pill no">high</span></td><td><span class="pill warn">ships exist, no fit/practice</span></td></tr>
-<tr><td>Nullsec sov warfare</td><td>&mdash;</td><td class="num">&mdash;</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">needs an alliance holding space</span></td></tr>
-<tr><td>Wormhole hole defence</td><td>&mdash;</td><td class="num">citadel cost</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">no citadel owned in any hole</span></td></tr>
-<tr><td>Citadels / structures</td><td>&mdash;</td><td class="num">100M&ndash;billions</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">alliance-scale, not close</span></td></tr>
-<tr><td>Capital ships</td><td>&mdash;</td><td class="num">billions</td><td class="num">tens of millions</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">far off, not on any current path</span></td></tr>
-<tr><td>Project Discovery</td><td>none</td><td class="num">free</td><td class="num">0 &rarr; 0</td><td>however long you want</td><td><span class="pill ready">none</span></td><td><span class="pill ready">available</span></td></tr>
+<tr><td>Security missions L1&ndash;L4</td><td>Thrasher, Hurricane, Maelstrom</td><td class="num">~4&ndash;400M</td><td class="num">0d</td><td>15&ndash;30min</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">ready</span></td></tr>
+<tr><td>Security missions L5</td><td>&mdash;</td><td class="num">&mdash;</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">needs 8.0+ standing</span></td></tr>
+<tr><td>Exploration, all tiers</td><td>Astero, Cheetah, Heron</td><td class="num">~2&ndash;170M</td><td class="num">0d</td><td>1&ndash;4h</td><td><span class="pill warn">low&ndash;mod</span></td><td><span class="pill ready">ready</span></td></tr>
+<tr><td>Incursions</td><td>Maelstrom, Typhoon</td><td class="num">owned</td><td class="num">0d</td><td>10&ndash;20min</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">ready, unused</span></td></tr>
+<tr><td>Abyssal, T0&ndash;T2</td><td>Rupture, Stabber</td><td class="num">~10k</td><td class="num">0d</td><td>&le;20min</td><td><span class="pill no">high</span></td><td><span class="pill ready">ready, untested</span></td></tr>
+<tr><td>Abyssal, T3+</td><td>dedicated hull</td><td class="num">150M+</td><td class="num">~25d</td><td>&le;20min</td><td><span class="pill no">high</span></td><td><span class="pill no">not fit</span></td></tr>
+<tr><td>Wormhole C1&ndash;C3</td><td>Loki, Cyclone</td><td class="num">owned</td><td class="num">~54d</td><td>2&ndash;3h</td><td><span class="pill warn">mod&ndash;high</span></td><td><span class="pill ready">ready, solo</span></td></tr>
+<tr><td>Wormhole C4&ndash;C6</td><td>&mdash;</td><td class="num">owned</td><td class="num">crew-limited</td><td>3&ndash;5h+</td><td><span class="pill no">high</span></td><td><span class="pill no">needs a 2nd pilot</span></td></tr>
+<tr><td>Nullsec relic, filament</td><td>Astero, Cheetah</td><td class="num">~65k</td><td class="num">0d</td><td>2.5&ndash;4h</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">ready</span></td></tr>
+<tr><td>Nullsec ratting (sov)</td><td>&mdash;</td><td class="num">&mdash;</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">needs sov space</span></td></tr>
+<tr><td>Mining (ore/ice/gas)</td><td>Venture</td><td class="num">~2&ndash;3M</td><td class="num">~12d</td><td>20&ndash;40min</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">ready</span></td></tr>
+<tr><td>Moon mining</td><td>&mdash;</td><td class="num">structure</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">needs a refinery</span></td></tr>
+<tr><td>Planetary Interaction</td><td>Mammoth</td><td class="num">running</td><td class="num">0d</td><td>passive</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">already running</span></td></tr>
+<tr><td>Manufacturing/Industry</td><td>any, station-side</td><td class="num">BPOs+fees</td><td class="num">~30d</td><td>hrs&ndash;days/job</td><td><span class="pill ready">very low</span></td><td><span class="pill warn">open, unused</span></td></tr>
+<tr><td>Invention/Research</td><td>station-side</td><td class="num">BPCs+fees</td><td class="num">~25d</td><td>hrs/job</td><td><span class="pill ready">very low</span></td><td><span class="pill warn">open, unused</span></td></tr>
+<tr><td>Market trading</td><td>none</td><td class="num">capital only</td><td class="num">~27d</td><td>ongoing</td><td><span class="pill ready">low</span></td><td><span class="pill warn">open, unused</span></td></tr>
+<tr><td>DED escalations</td><td>trigger-site ship</td><td class="num">owned</td><td class="num">0d</td><td>varies</td><td><span class="pill warn">mod&ndash;high</span></td><td><span class="pill warn">triggerable</span></td></tr>
+<tr><td>Faction Warfare</td><td>Jaguar</td><td class="num">owned</td><td class="num">0d</td><td>15&ndash;20min</td><td><span class="pill no">high</span></td><td><span class="pill warn">ready, unfit</span></td></tr>
+<tr><td>Small-gang PvP</td><td>Hurricane, Loki</td><td class="num">owned</td><td class="num">0d</td><td>varies</td><td><span class="pill no">high</span></td><td><span class="pill warn">no fit/practice</span></td></tr>
+<tr><td>Nullsec sov warfare</td><td>&mdash;</td><td class="num">&mdash;</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">needs an alliance</span></td></tr>
+<tr><td>Wormhole hole defence</td><td>&mdash;</td><td class="num">citadel</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">no citadel owned</span></td></tr>
+<tr><td>Citadels/structures</td><td>&mdash;</td><td class="num">100M+</td><td class="num">N/A</td><td>&mdash;</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">alliance-scale</span></td></tr>
+<tr><td>Capital ships</td><td>&mdash;</td><td class="num">billions</td><td class="num">~200d+</td><td>&mdash;</td><td><span class="pill no">high</span></td><td><span class="pill no">not on any path</span></td></tr>
+<tr><td>Project Discovery</td><td>none</td><td class="num">free</td><td class="num">0d</td><td>flexible</td><td><span class="pill ready">none</span></td><td><span class="pill ready">available</span></td></tr>
 </tbody>
 </table></div>
-<p class="note">SP figures for the "ready" rows are real, computed this session. Everything marked N/A isn't gated by training at all &mdash; it's gated by territory, corp resources, or ISK, which no amount of skill points fixes. Cost and time ranges are the same community-shape estimates used across Exploration and Group Ops, not measured logs.</p>
+<p class="note"><b>Training</b> is approximate days at Stinglock's measured rates to close the gap from current skills to a reasonable optimal &mdash; 0d rows are flyable today. N/A rows aren't gated by training at all, only territory, corp scale, or ISK. Cost and time are community-shape estimates, not measured logs.</p>
 </section>
 
 <section>
@@ -317,5 +326,92 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </footer>
 
 </div>
+<script>
+(function(){
+  function makeSortable(table){
+    var thead = table.querySelector('thead');
+    if(!thead) return;
+    var ths = Array.prototype.slice.call(thead.querySelectorAll('th'));
+    ths.forEach(function(th, idx){
+      th.addEventListener('click', function(){
+        var tbody = table.querySelector('tbody');
+        if(!tbody) return;
+        var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+        var dir = th.getAttribute('data-sort-dir') === 'asc' ? 'desc' : 'asc';
+        ths.forEach(function(t){ t.removeAttribute('data-sort-dir'); var a=t.querySelector('.sort-arrow'); if(a) a.remove(); });
+        th.setAttribute('data-sort-dir', dir);
+        var arrow = document.createElement('span');
+        arrow.className = 'sort-arrow';
+        arrow.textContent = dir === 'asc' ? '\u25B2' : '\u25BC';
+        th.appendChild(arrow);
+        rows.sort(function(a, b){
+          var ca = (a.children[idx] && a.children[idx].innerText || '').trim();
+          var cb = (b.children[idx] && b.children[idx].innerText || '').trim();
+          var na = parseFloat(ca.replace(/[^0-9.\-]/g,''));
+          var nb = parseFloat(cb.replace(/[^0-9.\-]/g,''));
+          var cmp;
+          if(!isNaN(na) && !isNaN(nb) && /[0-9]/.test(ca) && /[0-9]/.test(cb)){
+            cmp = na - nb;
+          } else {
+            cmp = ca.localeCompare(cb);
+          }
+          return dir === 'asc' ? cmp : -cmp;
+        });
+        rows.forEach(function(r){ tbody.appendChild(r); });
+      });
+    });
+  }
+  function makeFilterable(table){
+    var tbody = table.querySelector('tbody');
+    if(!tbody) return;
+    var pills = Array.prototype.slice.call(tbody.querySelectorAll('.pill'));
+    if(pills.length === 0) return;
+    var labels = [];
+    pills.forEach(function(p){ var t = p.textContent.trim(); if(labels.indexOf(t) === -1) labels.push(t); });
+    if(labels.length < 2) return;
+    var host = table.closest('.scroll') || table.parentElement;
+    var bar = document.createElement('div');
+    bar.className = 'filterbar';
+    var active = [];
+    function applyFilter(){
+      var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+      rows.forEach(function(r){
+        if(active.length === 0){ r.style.display = ''; return; }
+        var rowPills = Array.prototype.slice.call(r.querySelectorAll('.pill')).map(function(p){ return p.textContent.trim(); });
+        var match = active.every(function(f){ return rowPills.indexOf(f) !== -1; });
+        r.style.display = match ? '' : 'none';
+      });
+    }
+    labels.forEach(function(l){
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'filterchip';
+      chip.textContent = l;
+      chip.addEventListener('click', function(){
+        var i = active.indexOf(l);
+        if(i === -1){ active.push(l); chip.classList.add('on'); }
+        else { active.splice(i,1); chip.classList.remove('on'); }
+        applyFilter();
+      });
+      bar.appendChild(chip);
+    });
+    var clear = document.createElement('button');
+    clear.type = 'button';
+    clear.className = 'filterchip clearchip';
+    clear.textContent = 'Clear';
+    clear.addEventListener('click', function(){
+      active = [];
+      bar.querySelectorAll('.filterchip').forEach(function(c){ c.classList.remove('on'); });
+      applyFilter();
+    });
+    bar.appendChild(clear);
+    host.parentElement.insertBefore(bar, host);
+  }
+  document.querySelectorAll('table').forEach(function(t){
+    makeSortable(t);
+    makeFilterable(t);
+  });
+})();
+</script>
 </body>
 </html>
