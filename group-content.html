@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="What content each of Stinglock's own fits can run, with all-in cost per fit.">
+<meta name="description" content="What the four-person crew can run together, by party size, and which ships each role needs.">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Content Plan &middot; Stinglock</title>
+<title>Group Ops &middot; Stinglock</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
@@ -16,6 +16,7 @@
 --sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
 --chezz:#6B4A8A; --chezz-soft:rgba(107,74,138,0.11);
 --miko:#9A7B2E; --miko-soft:rgba(154,123,46,0.12);
+--cody:#4A7A6B; --cody-soft:rgba(74,122,107,0.11);
 --ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
 --warn:#9A6B2E; --warn-bg:rgba(154,107,46,0.12);
 --shadow:0 1px 2px rgba(34,28,23,0.06);
@@ -29,6 +30,7 @@
 --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
 --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
 --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+--cody:#7FCBB3; --cody-soft:rgba(127,203,179,0.13);
 --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
 --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
 --shadow:0 1px 2px rgba(0,0,0,0.4);
@@ -42,13 +44,14 @@
 --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
 --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
 --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+--cody:#7FCBB3; --cody-soft:rgba(127,203,179,0.13);
 --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
 --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
 --shadow:0 1px 2px rgba(0,0,0,0.4);
 }
 *{ box-sizing:border-box; }
 body{ background:var(--ground); color:var(--ink); font-family:'Archivo',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
-.wrap{ max-width:1060px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
+.wrap{ max-width:1080px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
 h1,h2,h3,h4,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
 .mono{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
 nav.pagenav{ display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em; padding-bottom:14px; border-bottom:1px solid var(--rule); }
@@ -62,12 +65,6 @@ header{ display:flex; flex-direction:column; gap:10px; }
 .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
 h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
 .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
-.stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden; }
-.stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
-.stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
-.stat-num{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; font-size:25px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
-.stat .sub{ font-size:11.5px; color:var(--ink-3); }
-.stat-num.rust{ color:var(--rust); } .stat-num.ready{ color:var(--ready); } .stat-num.warn{ color:var(--warn); }
 section{ display:flex; flex-direction:column; gap:14px; }
 h2{ margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule); }
 .note{ font-size:13px; color:var(--ink-2); margin:0; }
@@ -75,18 +72,22 @@ h2{ margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transf
 .callout{ background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust); border-radius:3px; padding:15px 18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:5px; }
 .callout h3{ margin:0; font-size:15.5px; font-weight:600; }
 .callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
+.callout.warn{ border-left-color:var(--warn); }
 .scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
-table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:760px; }
+table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:820px; }
 thead th{ text-align:left; font-family:'Chakra Petch',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); padding:10px 14px; border-bottom:1px solid var(--rule); white-space:nowrap; }
 tbody td{ padding:10px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top; }
 tbody tr:last-child td{ border-bottom:none; }
 td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap; }
-.shipname{ font-weight:600; display:block; }
-.shipsub{ font-size:11px; color:var(--ink-3); display:block; margin-top:1px; }
 .pill{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em; text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap; font-weight:600; }
 .pill.ready{ color:var(--ready); background:var(--ready-bg); }
 .pill.warn{ color:var(--warn); background:var(--warn-bg); }
 .pill.no{ color:var(--rust); background:var(--rust-soft); }
+.who{ font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.06em; text-transform:uppercase; padding:1px 6px; border-radius:2px; white-space:nowrap; font-weight:600; }
+.who.s{ color:var(--sting); background:var(--sting-soft); }
+.who.m{ color:var(--miko); background:var(--miko-soft); }
+.who.c{ color:var(--chezz); background:var(--chezz-soft); }
+.who.k{ color:var(--cody); background:var(--cody-soft); }
 .list-plain{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:0; }
 .list-plain li{ padding:8px 0; border-bottom:1px solid var(--rule-soft); font-size:13.5px; display:flex; gap:10px; align-items:baseline; }
 .list-plain li:last-child{ border-bottom:none; }
@@ -133,68 +134,76 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </script>
 
 <div class="wrap">
-<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="archive.html">Archive</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html" class="active">Content</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="group-content.html">Group Ops</a></nav>
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="archive.html">Archive</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="group-content.html" class="active">Group Ops</a></nav>
 
 <header>
-<div class="eyebrow">Content Plan &middot; By Fit, Not By Hull</div>
-<h1>Content</h1>
-<p class="standfirst">Each row is a specific fit, not just a ship &mdash; the same hull often does more than one job under a different loadout. All-in cost is hull + fitting, rounded. Brief on purpose; the Exploration and Group Ops pages go deeper on the wormhole/nullsec side of this.</p>
+<div class="eyebrow">Group Ops &middot; Stinglock &middot; Miko &middot; Chezz &middot; Cody</div>
+<h1>Group Ops</h1>
+<p class="standfirst">What the four of us can run together, by party size. Brief on purpose &mdash; full mechanics for the filament run live on <a href="exploration.html" style="color:var(--rust)">Exploration</a>.</p>
 </header>
 
-<div class="stats">
-<div class="stat"><span class="k">Solo tiers covered</span><span class="stat-num">L1&ndash;L4</span><span class="sub">Hurricane, Maelstrom</span></div>
-<div class="stat"><span class="k">Wormhole tiers covered</span><span class="stat-num ready">C1&ndash;C3</span><span class="sub">Rupture, Loki</span></div>
-<div class="stat"><span class="k">Support fits</span><span class="stat-num">2</span><span class="sub">Noctis salvage, Mammoth haul</span></div>
-<div class="stat"><span class="k">Not yet fit</span><span class="stat-num warn">1</span><span class="sub">Cyclone &mdash; hull owned, no loadout built</span></div>
+<section>
+<h2>By party size</h2>
+<div class="scroll"><table>
+<thead><tr><th>Content</th><th>Size</th><th>Roles &amp; ships</th><th>Ready now?</th></tr></thead>
+<tbody>
+<tr>
+<td><a href="#missions" style="color:var(--rust);text-decoration:none;">Highsec missions</a></td>
+<td>2</td>
+<td>Any pair, own ships &mdash; no shared hulls needed</td>
+<td><span class="pill ready">yes</span></td>
+</tr>
+<tr>
+<td><a href="#filament" style="color:var(--rust);text-decoration:none;">Nullsec relic, filament</a></td>
+<td>2&ndash;4</td>
+<td>Everyone in their own covert ops frigate</td>
+<td><span class="pill warn">partial</span></td>
+</tr>
+<tr>
+<td><a href="#sleeper" style="color:var(--rust);text-decoration:none;">C1&ndash;C3 Sleeper sites</a></td>
+<td>2&ndash;3</td>
+<td>1 shooter (Loki), 1 salvager (Noctis), 1 watcher</td>
+<td><span class="pill warn">Stinglock-only</span></td>
+</tr>
+<tr>
+<td><a href="#c4" style="color:var(--rust);text-decoration:none;">C4+ Sleeper sites</a></td>
+<td>3&ndash;4</td>
+<td>2+ combat ships, dedicated salvage, dedicated watch</td>
+<td><span class="pill no">not yet</span></td>
+</tr>
+</tbody>
+</table></div>
+</section>
+
+<section id="missions">
+<h2>Highsec missions &mdash; 2</h2>
+<p class="note">The one that already works with zero coordination. Anyone pairs with anyone &mdash; Stinglock's Hurricane/Maelstrom, Miko's Raven/Drake/Caracal, or whatever Chezz and Cody bring. Fleet up so bounties share, no shared hulls or skill overlap required.</p>
+</section>
+
+<section id="filament">
+<h2>Nullsec relic via filament &mdash; 2 to 4</h2>
+<p class="note">Full run-through on <a href="exploration.html" style="color:var(--rust)">Exploration</a>. One Noise-5 filament (~65-70k ISK) carries the whole group in on one activation.</p>
+<div class="callout warn">
+<h3>Who can actually bring a ship</h3>
+<p><span class="who s">Stinglock</span> has the Astero and two Cheetahs, all covert-ops-cloak capable, ready today. <span class="who m">Miko</span> owns an Astero and Probe too, but both are currently <b>unflyable</b> &mdash; his Gallente Frigate skill is at 0. <span class="who c">Chezz</span> and <span class="who k">Cody</span> have no confirmed covert ops frigate on file. Realistically this is a 1-2 person run until someone else gets a cloaky hull sorted.</p>
 </div>
-
-<section>
-<h2>Security missions</h2>
-<div class="scroll"><table>
-<thead><tr><th>Content</th><th>Ship &amp; fit</th><th class="num">All-in cost</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td><span class="pill ready">L1&ndash;L2</span></td><td><div><span class="shipname">Thrasher Blitz</span><span class="shipsub">220mm ACs, MWD, sensor booster</span></div></td><td class="num">~4&ndash;5M</td><td>Fast clear, cheap to lose. Own 3.</td></tr>
-<tr><td><span class="pill ready">L3</span></td><td><div><span class="shipname">Hurricane AC</span><span class="shipsub">425mm ACs, gyros, shield tank</span></div></td><td class="num">~110&ndash;130M</td><td>Own 3, all currently unfit-detailed &mdash; this is the standard loadout.</td></tr>
-<tr><td><span class="pill warn">L4</span></td><td><div><span class="shipname">Maelstrom Arty</span><span class="shipsub">1400mm Scout Artillery, active shield tank, Angel-hardened</span></div></td><td class="num">~300&ndash;400M</td><td>Current L4 main. Resists tuned for Angel Cartel &mdash; refit hardeners for anything else.</td></tr>
-</tbody>
-</table></div>
 </section>
 
-<section>
-<h2>Wormhole &mdash; C1&ndash;C3</h2>
-<div class="scroll"><table>
-<thead><tr><th>Content</th><th>Ship &amp; fit</th><th class="num">All-in cost</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td><span class="pill ready">Faction relic/data</span></td><td><div><span class="shipname">Rupture AC</span><span class="shipsub">220mm ACs, cloak, probe launcher</span></div></td><td class="num">~24&ndash;29M</td><td>Unguarded pirate-faction cans, no rats. C1&ndash;C3 only.</td></tr>
-<tr><td><span class="pill warn">Sleeper anomalies &amp; sites</span></td><td><div><span class="shipname">Loki HAM</span><span class="shipsub">HAM launchers, active shield tank, cap-focused core</span></div></td><td class="num">~550&ndash;600M</td><td>Hull 236.4M + 6 owned subsystems (~210M) + T2 launchers/tank. Real fit, currently flyable.</td></tr>
-<tr><td><span class="pill no">Not yet built</span></td><td><div><span class="shipname">Cyclone</span><span class="shipsub">HAM/shield practice hull</span></div></td><td class="num">52.71M hull</td><td>Owned, no fit designed yet &mdash; earmarked as the cheap C2 practice ship while Loki-specific skills trained.</td></tr>
-</tbody>
-</table></div>
+<section id="sleeper">
+<h2>C1&ndash;C3 Sleeper sites &mdash; 2 to 3</h2>
+<p class="note">Loki shoots (<span class="who s">Stinglock</span>), Noctis salvages (<span class="who s">Stinglock</span>), a cloaky frigate watches local/d-scan. With only one pilot holding Minmatar ship skills, this currently means one person rotating between roles across trips rather than three people running it live &mdash; or a second/third person tagging along in an unrelated ship just to watch, which still adds real value per the safety notes on Exploration.</p>
 </section>
 
-<section>
-<h2>Nullsec exploration</h2>
-<div class="scroll"><table>
-<thead><tr><th>Content</th><th>Ship &amp; fit</th><th class="num">All-in cost</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td><span class="pill ready">Relic sites, via filament</span></td><td><div><span class="shipname">Astero Explorer</span><span class="shipsub">Covert cloak, T2 analyzers, Sisters probes, cargo rig</span></div></td><td class="num">~150&ndash;170M</td><td>Hull 89.4M (live) + covert fit. Full write-up on <a href="exploration.html" style="color:var(--rust)">Exploration</a>.</td></tr>
-</tbody>
-</table></div>
-</section>
-
-<section>
-<h2>Support</h2>
-<div class="scroll"><table>
-<thead><tr><th>Role</th><th>Ship &amp; fit</th><th class="num">All-in cost</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td>Salvage</td><td><div><span class="shipname">Noctis Salvage</span><span class="shipsub">5x salvager, 3x tractor beam</span></div></td><td class="num">~100&ndash;102M</td><td>Roughly half of C1&ndash;C3 income is salvage &mdash; this does it far faster than a Loki-mounted salvager.</td></tr>
-<tr><td>Hauling</td><td><div><span class="shipname">Mammoth Hauler</span><span class="shipsub">Bulkheads, cargo expanders</span></div></td><td class="num">~4&ndash;5M</td><td>Mids still T1 &mdash; Shield Upgrades V (queued) unlocks T2.</td></tr>
-</tbody>
-</table></div>
+<section id="c4">
+<h2>C4+ Sleeper sites &mdash; 3 to 4</h2>
+<div class="callout">
+<h3>Aspirational, not current</h3>
+<p>From C4 up there are no unguarded faction sites left &mdash; everything is Sleeper-guarded and harder, which is genuinely group content. It needs at least two real combat ships plus salvage and watch, and right now the crew fields exactly one combat-capable Minmatar pilot. Revisit once a second person has a hull and the skills to fight alongside the Loki.</p>
+</div>
 </section>
 
 <footer>
-<b>On the numbers.</b> Hull values pulled live via ESI on 17 Sep 2026 where noted, otherwise the account's own asset valuation from the same date. Fit costs are rounded estimates built from the actual fits worked out this session, not a module-by-module market pull &mdash; treat them as the right order of magnitude, not exact quotes.
+<b>The honest read.</b> Everything above is mechanically available to a 4-person group; what's actually blocking it is that Stinglock is the only pilot with Minmatar ship skills and wormhole-relevant hulls trained right now. Miko's missile/shield background would transfer well if he ever trained into Minmatar cruisers. Chezz and Cody need current exports before their fit into any of this is more than a guess.
 </footer>
 
 </div>

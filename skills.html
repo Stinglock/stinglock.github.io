@@ -3,488 +3,265 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Stinglock's current skill state, the Magic 14, and the live training queue with future branch options.">
+<meta name="description" content="Stinglock's current skill state and live training queue, rebuilt against the missile/Loki pivot.">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Skills &middot; Stinglock</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-
-  :root{
-    --ground:#EDE8E2; --surface:#F7F4F0; --surface-2:#E3DCD4;
-    --rule:#CFC5BA; --rule-soft:#DFD7CD;
-    --ink:#221C17; --ink-2:#5F544B; --ink-3:#8B7F74;
-    --rust:#B4451F; --rust-soft:rgba(180,69,31,0.10);
-    --sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
-    --chezz:#6B4A8A; --chezz-soft:rgba(107,74,138,0.11);
-    --miko:#9A7B2E; --miko-soft:rgba(154,123,46,0.12);
-    --ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
-    --warn:#9A6B2E; --warn-bg:rgba(154,107,46,0.12);
-    --shadow:0 1px 2px rgba(34,28,23,0.06);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
-      --rule:#372E26; --rule-soft:#2A231C;
-      --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
-      --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
-      --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
-      --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
-      --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
-      --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
-      --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
-      --shadow:0 1px 2px rgba(0,0,0,0.4);
-    }
-  }
-  :root[data-theme="dark"]{
-    --ground:#16120F; --surface:#1E1915; --surface-2:#272019;
-    --rule:#372E26; --rule-soft:#2A231C;
-    --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
-    --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
-    --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
-    --chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
-    --miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
-    --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
-    --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
-    --shadow:0 1px 2px rgba(0,0,0,0.4);
-  }
-
-  *{ box-sizing:border-box; }
-  body{
-    background:var(--ground); color:var(--ink);
-    font-family:'Archivo',system-ui,-apple-system,sans-serif;
-    line-height:1.55; -webkit-font-smoothing:antialiased;
-  }
-  .wrap{ max-width:1020px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
-  h1,h2,h3,h4,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
-  .mono{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
-
-  nav.pagenav{
-    display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center;
-    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em;
-    padding-bottom:14px; border-bottom:1px solid var(--rule);
-  }
-  nav.pagenav a{
-    color:var(--ink-2); text-decoration:none; padding:5px 9px; border-radius:3px;
-  }
-  nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
-  nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
-  nav.pagenav .sep{ color:var(--rule); }
-
-  header{ display:flex; flex-direction:column; gap:10px; }
-  .eyebrow{
-    font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
-    color:var(--rust); display:flex; align-items:center; gap:9px;
-  }
-  .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
-  h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
-  .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
-
-  .stats{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
-    gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden;
-  }
-  .stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
-  .stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
-  .stat-num{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
-    font-size:25px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
-  .stat .sub{ font-size:11.5px; color:var(--ink-3); }
-  .stat-num.rust{ color:var(--rust); } .stat-num.ready{ color:var(--ready); } .stat-num.warn{ color:var(--warn); }
-
-  section{ display:flex; flex-direction:column; gap:18px; }
-  h2{
-    margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
-    color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule);
-  }
-
-  .pair{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
-  .trio{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
-
-  .card{
-    background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px;
-    box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column;
-  }
-  .card-head{ padding:16px 18px 14px; border-bottom:1px solid var(--rule-soft); display:flex; flex-direction:column; gap:3px; }
-  .who{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
-  .who.s{ color:var(--sting); } .who.c{ color:var(--chezz); } .who.m{ color:var(--miko); }
-  .card-head h3{ margin:0; font-size:22px; font-weight:700; letter-spacing:-.01em; }
-  .card-head .sub{ font-size:13px; color:var(--ink-2); }
-  .card-body{ padding:16px 18px; display:flex; flex-direction:column; gap:14px; }
-
-  .priceline{ display:flex; align-items:baseline; justify-content:space-between; gap:10px;
-    padding:9px 11px; background:var(--surface-2); border-radius:3px; }
-  .priceline .lbl{ font-size:12px; color:var(--ink-2); }
-  .priceline .val{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
-    font-size:14.5px; font-weight:600; white-space:nowrap; }
-  .priceline.total .val{ color:var(--rust); font-size:16px; }
-  .priceline.owned .val{ color:var(--ready); }
-
-  h4{ margin:0; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
-  ul.fit{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
-  ul.fit li{ font-size:13.5px; display:flex; gap:8px; align-items:baseline; }
-  ul.fit li .n{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); min-width:18px; }
-  ul.fit li em{ font-style:normal; color:var(--ink-3); font-size:12px; }
-  .tagown{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
-    color:var(--ready); background:var(--ready-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
-  .tagno{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
-    color:var(--rust); background:var(--rust-soft); padding:1px 5px; border-radius:2px; white-space:nowrap; }
-  .tagwarn{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
-    color:var(--warn); background:var(--warn-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
-
-  .note{ font-size:13px; color:var(--ink-2); margin:0; }
-  .note b{ color:var(--ink); }
-
-  .callout{
-    background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust);
-    border-radius:3px; padding:15px 18px; box-shadow:var(--shadow);
-    display:flex; flex-direction:column; gap:5px;
-  }
-  .callout h3{ margin:0; font-size:15.5px; font-weight:600; }
-  .callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
-  .callout.sting{ border-left-color:var(--sting); }
-  .callout.chezz{ border-left-color:var(--chezz); }
-  .callout.miko{ border-left-color:var(--miko); }
-  .callout.ready{ border-left-color:var(--ready); }
-  .callout.warn{ border-left-color:var(--warn); }
-
-  .scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
-  table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
-  thead th{ text-align:left; font-family:'Chakra Petch',sans-serif; font-size:10.5px; font-weight:600;
-    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2);
-    padding:10px 14px; border-bottom:1px solid var(--rule); white-space:nowrap; }
-  tbody td{ padding:11px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top; }
-  tbody tr:last-child td{ border-bottom:none; }
-  td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap; }
-  .shipname{ font-weight:600; display:block; }
-  .shipsub{ font-size:11.5px; color:var(--ink-3); display:block; margin-top:1px; }
-  tbody tr.grp td{ background:var(--surface-2); padding:9px 14px; border-bottom:1px solid var(--rule); }
-  .grplabel{ font-family:'Chakra Petch',sans-serif; font-size:11px; font-weight:700;
-    letter-spacing:.13em; text-transform:uppercase; display:flex; align-items:baseline; gap:10px; }
-  .grplabel.s{ color:var(--sting); } .grplabel.c{ color:var(--chezz); } .grplabel.m{ color:var(--miko); }
-  .grplabel .n{ font-family:'IBM Plex Mono',monospace; font-weight:500; letter-spacing:0;
-    color:var(--ink-3); text-transform:none; font-size:11.5px; }
-
-  .pill{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em;
-    text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap; font-weight:600; }
-  .pill.ready{ color:var(--ready); background:var(--ready-bg); }
-  .pill.warn{ color:var(--warn); background:var(--warn-bg); }
-  .pill.no{ color:var(--rust); background:var(--rust-soft); }
-
-  .bar-track{ height:6px; border-radius:3px; background:var(--surface-2); overflow:hidden; }
-  .bar-fill{ height:100%; background:var(--sting); border-radius:3px; }
-  .bar-fill.c{ background:var(--chezz); }
-  .bar-fill.m{ background:var(--miko); }
-  .barrow{ display:flex; flex-direction:column; gap:4px; }
-  .barrow .lbl{ display:flex; justify-content:space-between; font-size:12px; color:var(--ink-2); }
-  .barrow .lbl b{ color:var(--ink); font-family:'IBM Plex Mono',monospace; font-weight:600; }
-
-  .toc-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
-  .toc-card{
-    background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px;
-    box-shadow:var(--shadow); padding:20px; text-decoration:none; color:var(--ink);
-    display:flex; flex-direction:column; gap:8px; transition:border-color .15s;
-  }
-  .toc-card:hover{ border-color:var(--rust); }
-  .toc-card .num{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--rust); font-weight:600; letter-spacing:.1em; }
-  .toc-card h3{ margin:0; font-size:19px; font-weight:700; }
-  .toc-card p{ margin:0; font-size:13.5px; color:var(--ink-2); }
-  .toc-card .arrow{ margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-3); }
-  .toc-card:hover .arrow{ color:var(--rust); }
-
-  .list-plain{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:0; }
-  .list-plain li{ padding:8px 0; border-bottom:1px solid var(--rule-soft); font-size:13.5px; display:flex; gap:10px; align-items:baseline; }
-  .list-plain li:last-child{ border-bottom:none; }
-  .list-plain .idx{ font-family:'IBM Plex Mono',monospace; color:var(--ink-3); font-size:11px; min-width:20px; }
-
-  footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
-  .gate{
-    position:fixed; inset:0; z-index:999; background:var(--ground);
-    display:flex; align-items:center; justify-content:center; padding:22px;
-  }
-  .gate-card{
-    background:var(--surface); border:1px solid var(--rule-soft); border-radius:4px;
-    box-shadow:var(--shadow); padding:28px 26px; max-width:340px; width:100%;
-    display:flex; flex-direction:column; gap:14px;
-  }
-  .gate-card h2{ margin:0; border:none; padding:0; font-size:16px; color:var(--ink); letter-spacing:.04em; }
-  .gate-card p{ margin:0; font-size:12.5px; color:var(--ink-3); }
-  .gate-card input{
-    font-family:'IBM Plex Mono',monospace; font-size:14px; padding:10px 12px;
-    background:var(--surface-2); border:1px solid var(--rule); border-radius:3px; color:var(--ink);
-    outline:none;
-  }
-  .gate-card input:focus{ border-color:var(--rust); }
-  .gate-card button{
-    font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
-    font-size:12.5px; padding:10px 12px; background:var(--rust); color:#fff; border:none; border-radius:3px;
-    cursor:pointer;
-  }
-  .gate-card button:hover{ opacity:.9; }
-  .gate-err{ font-size:12px; color:var(--rust); min-height:14px; }
-  body.locked{ overflow:hidden; }
-  body.locked .wrap{ display:none; }
-
+:root{
+--ground:#EDE8E2; --surface:#F7F4F0; --surface-2:#E3DCD4;
+--rule:#CFC5BA; --rule-soft:#DFD7CD;
+--ink:#221C17; --ink-2:#5F544B; --ink-3:#8B7F74;
+--rust:#B4451F; --rust-soft:rgba(180,69,31,0.10);
+--sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
+--chezz:#6B4A8A; --chezz-soft:rgba(107,74,138,0.11);
+--miko:#9A7B2E; --miko-soft:rgba(154,123,46,0.12);
+--ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
+--warn:#9A6B2E; --warn-bg:rgba(154,107,46,0.12);
+--shadow:0 1px 2px rgba(34,28,23,0.06);
+}
+@media (prefers-color-scheme: dark){
+:root:not([data-theme="light"]){
+--ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+--rule:#372E26; --rule-soft:#2A231C;
+--ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+--rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+--sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+--chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+--miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+--ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+--warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+--shadow:0 1px 2px rgba(0,0,0,0.4);
+}
+}
+:root[data-theme="dark"]{
+--ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+--rule:#372E26; --rule-soft:#2A231C;
+--ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+--rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+--sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+--chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
+--miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
+--ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+--warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+--shadow:0 1px 2px rgba(0,0,0,0.4);
+}
+*{ box-sizing:border-box; }
+body{
+background:var(--ground); color:var(--ink);
+font-family:'Archivo',system-ui,-apple-system,sans-serif;
+line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+.wrap{ max-width:1020px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
+h1,h2,h3,h4,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
+.mono{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+nav.pagenav{ display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em; padding-bottom:14px; border-bottom:1px solid var(--rule); }
+nav.pagenav a{ color:var(--ink-2); text-decoration:none; padding:5px 9px; border-radius:3px; }
+nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
+nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
+nav.pagenav a:focus-visible{ outline:2px solid var(--rust); outline-offset:2px; }
+nav.pagenav .sep{ color:var(--rule); }
+header{ display:flex; flex-direction:column; gap:10px; }
+.eyebrow{ font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--rust); display:flex; align-items:center; gap:9px; }
+.eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
+h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
+.standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
+.stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden; }
+.stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
+.stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
+.stat-num{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; font-size:25px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
+.stat .sub{ font-size:11.5px; color:var(--ink-3); }
+.stat-num.rust{ color:var(--rust); } .stat-num.ready{ color:var(--ready); } .stat-num.warn{ color:var(--warn); }
+section{ display:flex; flex-direction:column; gap:18px; }
+h2{ margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule); }
+.pair{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+.trio{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+.card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
+.card-head{ padding:16px 18px 14px; border-bottom:1px solid var(--rule-soft); display:flex; flex-direction:column; gap:3px; }
+.card-head h3{ margin:0; font-size:19px; font-weight:700; letter-spacing:-.01em; }
+.card-head .sub{ font-size:13px; color:var(--ink-2); }
+.card-body{ padding:16px 18px; display:flex; flex-direction:column; gap:14px; }
+h4{ margin:0; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+ul.fit{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+ul.fit li{ font-size:13.5px; display:flex; gap:8px; align-items:baseline; justify-content:space-between; }
+ul.fit li .n{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); }
+.tagown{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ready); background:var(--ready-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+.tagwarn{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--warn); background:var(--warn-bg); padding:1px 5px; border-radius:2px; white-space:nowrap; }
+.note{ font-size:13px; color:var(--ink-2); margin:0; }
+.note b{ color:var(--ink); }
+.callout{ background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust); border-radius:3px; padding:15px 18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:5px; }
+.callout h3{ margin:0; font-size:15.5px; font-weight:600; }
+.callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
+.callout.ready{ border-left-color:var(--ready); }
+.scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
+thead th{ text-align:left; font-family:'Chakra Petch',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); padding:10px 14px; border-bottom:1px solid var(--rule); white-space:nowrap; }
+tbody td{ padding:10px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top; }
+tbody tr:last-child td{ border-bottom:none; }
+td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap; }
+tbody tr.grp td{ background:var(--surface-2); padding:9px 14px; border-bottom:1px solid var(--rule); }
+.grplabel{ font-family:'Chakra Petch',sans-serif; font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; display:flex; align-items:baseline; gap:10px; color:var(--sting); }
+.grplabel .n{ font-family:'IBM Plex Mono',monospace; font-weight:500; letter-spacing:0; color:var(--ink-3); text-transform:none; font-size:11.5px; }
+.pill{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em; text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap; font-weight:600; }
+.pill.ready{ color:var(--ready); background:var(--ready-bg); }
+.pill.warn{ color:var(--warn); background:var(--warn-bg); }
+.pill.no{ color:var(--rust); background:var(--rust-soft); }
+.bar-track{ height:6px; border-radius:3px; background:var(--surface-2); overflow:hidden; }
+.bar-fill{ height:100%; background:var(--sting); border-radius:3px; }
+.barrow{ display:flex; flex-direction:column; gap:4px; }
+.barrow .lbl{ display:flex; justify-content:space-between; font-size:12px; color:var(--ink-2); }
+.barrow .lbl b{ color:var(--ink); font-family:'IBM Plex Mono',monospace; font-weight:600; }
+.list-plain{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:0; }
+.list-plain li{ padding:8px 0; border-bottom:1px solid var(--rule-soft); font-size:13.5px; display:flex; gap:10px; align-items:baseline; }
+.list-plain li:last-child{ border-bottom:none; }
+.list-plain .idx{ font-family:'IBM Plex Mono',monospace; color:var(--ink-3); font-size:11px; min-width:20px; }
+footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
+.gate{ position:fixed; inset:0; z-index:999; background:var(--ground); display:flex; align-items:center; justify-content:center; padding:22px; }
+.gate-card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:4px; box-shadow:var(--shadow); padding:28px 26px; max-width:340px; width:100%; display:flex; flex-direction:column; gap:14px; }
+.gate-card h2{ margin:0; border:none; padding:0; font-size:16px; color:var(--ink); letter-spacing:.04em; }
+.gate-card p{ margin:0; font-size:12.5px; color:var(--ink-3); }
+.gate-card input{ font-family:'IBM Plex Mono',monospace; font-size:14px; padding:10px 12px; background:var(--surface-2); border:1px solid var(--rule); border-radius:3px; color:var(--ink); outline:none; }
+.gate-card input:focus{ border-color:var(--rust); }
+.gate-card button{ font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:12.5px; padding:10px 12px; background:var(--rust); color:#fff; border:none; border-radius:3px; cursor:pointer; }
+.gate-card button:hover{ opacity:.9; }
+.gate-err{ font-size:12px; color:var(--rust); min-height:14px; }
+body.locked{ overflow:hidden; }
+body.locked .wrap{ display:none; }
+@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
 </style>
 <style>
-
-  :root{ color-scheme: dark; }
-  html,body{ margin:0; padding:0; }
-  img{ max-width:100%; height:auto; }
-  [hidden]{ display:none !important; }
-
+:root{ color-scheme: dark; }
+html,body{ margin:0; padding:0; }
+img{ max-width:100%; height:auto; }
+[hidden]{ display:none !important; }
 </style>
 </head>
 <body class="locked">
-
 <div class="gate" id="gate">
-  <div class="gate-card">
-    <h2>ACCESS &middot; STINGLOCK OPS</h2>
-    <input type="password" id="gate-pass" placeholder="password" autocomplete="off">
-    <div class="gate-err" id="gate-err"></div>
-    <button onclick="checkGate()">Enter</button>
-  </div>
+<div class="gate-card">
+<h2>ACCESS &middot; STINGLOCK OPS</h2>
+<input type="password" id="gate-pass" placeholder="password" autocomplete="off">
+<div class="gate-err" id="gate-err"></div>
+<button onclick="checkGate()">Enter</button>
+</div>
 </div>
 <script>
-  function unlock(){
-    document.getElementById('gate').style.display = 'none';
-    document.body.classList.remove('locked');
-  }
-  function checkGate(){
-    var v = document.getElementById('gate-pass').value;
-    if(v === '69'){
-      try{ sessionStorage.setItem('stinglock_unlocked', '1'); }catch(e){}
-      unlock();
-    } else {
-      document.getElementById('gate-err').textContent = 'wrong password';
-    }
-  }
-  document.getElementById('gate-pass').addEventListener('keydown', function(e){
-    if(e.key === 'Enter'){ checkGate(); }
-  });
-  (function(){
-    try{
-      if(sessionStorage.getItem('stinglock_unlocked') === '1'){ unlock(); }
-    }catch(e){}
-  })();
+function unlock(){ document.getElementById('gate').style.display = 'none'; document.body.classList.remove('locked'); }
+function checkGate(){
+var v = document.getElementById('gate-pass').value;
+if(v === '69'){ try{ sessionStorage.setItem('stinglock_unlocked', '1'); }catch(e){} unlock(); }
+else { document.getElementById('gate-err').textContent = 'wrong password'; }
+}
+document.getElementById('gate-pass').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ checkGate(); } });
+(function(){ try{ if(sessionStorage.getItem('stinglock_unlocked') === '1'){ unlock(); } }catch(e){} })();
 </script>
 
 <div class="wrap">
-<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="playbook.html">Playbook</a><span class="sep">/</span><a href="playbook-variations.html">Variations</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html" class="active">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a></nav>
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="archive.html">Archive</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html" class="active">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="group-content.html">Group Ops</a></nav>
 
-  <header>
-    <div class="eyebrow">Stinglock Sigma &middot; Training</div>
-    <h1>Skills</h1>
-    <p class="standfirst">Omega clone, remapped Perception/Willpower. Rebuilt from an actual in-game skill export and queue export this session &mdash; not estimates. Turns out even more of the original plan is done than last thought, three skills assumed trained actually aren't, and one gap still needs inserting.</p>
-  </header>
+<header>
+<div class="eyebrow">Stinglock Sigma &middot; Training</div>
+<h1>Skills</h1>
+<p class="standfirst">Rebuilt from scratch against this session's actual skill and queue exports. The Hurricane-only framing from the last version is gone &mdash; the plan pivoted hard into Heavy Assault Missiles and the Loki since then, and this page reflects where that project actually stands.</p>
+</header>
 
-  <div class="callout ready">
-    <h3>Correction &mdash; the queue is already imported and reordered</h3>
-    <p>The previous version of this page said the live queue was &ldquo;not yet imported&rdquo; and still sitting on the old order. That's stale. The queue has already been cleared and rebuilt to match this plan &mdash; the snapshot below is a real export of what's actually sitting in the training queue right now, not a proposal.</p>
-  </div>
+<div class="stats">
+<div class="stat"><span class="k">Total SP</span><span class="stat-num">17,976,569</span><span class="sub">live export, 17 Sep 2026</span></div>
+<div class="stat"><span class="k">Currently training</span><span class="stat-num warn">HAM Spec V</span><span class="sub">79.8% &middot; ends 19 Sep 22:02</span></div>
+<div class="stat"><span class="k">Loki status</span><span class="stat-num ready">Flyable</span><span class="sub">4 subsystems at IV, HAM-fit</span></div>
+<div class="stat"><span class="k">Queue depth</span><span class="stat-num">15 entries</span><span class="sub">through 22 Feb, see below</span></div>
+</div>
 
-  <div class="callout warn">
-    <h3>Correction &mdash; three skills assumed trained actually aren't</h3>
-    <p>The real skill export shows <b>Security Connections</b>, <b>Distribution Connections</b> and <b>Minmatar Encryption Methods</b> all sitting at <b>not injected, not trained</b> (level 0, unknown) &mdash; despite being counted as done in the earlier version of this plan, and none of them are in the current live queue either. Security Connections in particular was cited on the Playbook as the reason mission LP would be good at Rens &mdash; that's not true yet. If you still want any of these, they need to be added back into the queue; nothing here assumes that's happened.</p>
-  </div>
+<section>
+<h2>Missile &amp; Loki core &mdash; where the project actually stands</h2>
+<div class="pair">
+<div class="card"><div class="card-body">
+<h4>Missile tree</h4>
+<ul class="fit">
+<li><span>Heavy Assault Missiles</span><span class="tagown">V</span></li>
+<li><span>Heavy Missiles</span><span class="tagown">V</span></li>
+<li><span>Missile Launcher Operation</span><span class="tagown">V</span></li>
+<li><span>Rapid Launch</span><span class="tagown">IV</span></li>
+<li><span>Missile Bombardment</span><span class="tagown">IV</span></li>
+<li><span>Target Navigation Prediction</span><span class="tagown">IV</span></li>
+<li><span>Missile Projection</span><span class="tagown">IV</span></li>
+<li><span>Guided Missile Precision</span><span class="tagown">IV</span></li>
+<li><span>Warhead Upgrades</span><span class="tagown">IV</span></li>
+<li><span>Heavy Assault Missile Specialization</span><span class="tagwarn">IV &rarr; training to V</span></li>
+<li><span>Heavy Missile Specialization</span><span class="tagwarn">II</span></li>
+</ul>
+</div></div>
+<div class="card"><div class="card-body">
+<h4>Loki &amp; hull</h4>
+<ul class="fit">
+<li><span>Minmatar Cruiser</span><span class="tagown">V</span></li>
+<li><span>Minmatar Strategic Cruiser</span><span class="tagown">I</span></li>
+<li><span>Core / Defensive / Offensive / Propulsion Systems</span><span class="tagown">IV each</span></li>
+<li><span>Minmatar Battlecruiser</span><span class="tagwarn">IV &middot; queued to V</span></li>
+<li><span>Shield Upgrades</span><span class="tagown">IV</span></li>
+<li><span>Capacitor Systems Operation</span><span class="tagwarn">IV &middot; queued to V</span></li>
+<li><span>Capacitor Management</span><span class="tagwarn">IV &middot; queued to V</span></li>
+<li><span>Covert Ops</span><span class="tagown">V</span></li>
+<li><span>Light Drone Operation</span><span class="tagown">V &middot; Warrior II unlocked</span></li>
+</ul>
+</div></div>
+</div>
+<p class="note">HAM/Loki milestone is functionally done: Cyclone and Bellicose fly T2 HAMs at Specialization IV, and the Loki is flyable with all four subsystems at IV. What's left is polish, not gating skills.</p>
+</section>
 
-  <div class="stats">
-    <div class="stat"><span class="k">Total SP</span><span class="stat-num">4,203,756</span><span class="sub">from the live export, Omega clone</span></div>
-    <div class="stat"><span class="k">Currently training</span><span class="stat-num">Rapid Firing IV</span><span class="sub">53.7% &middot; 10h 10m left &middot; ends 31 Aug 21:20</span></div>
-    <div class="stat"><span class="k">Skills trained</span><span class="stat-num ready">135</span><span class="sub">incl. all of the old plan's blocks 1&ndash;10</span></div>
-    <div class="stat"><span class="k">Assumed done, actually aren't</span><span class="stat-num warn">3 skills</span><span class="sub">not trained, not queued &mdash; see below</span></div>
-    <div class="stat"><span class="k">Hurricane skill gaps</span><span class="stat-num warn">4 skills</span><span class="sub">checked against a Hurricane pilot's benchmark &mdash; see below</span></div>
-  </div>
+<section>
+<h2>Live training queue</h2>
+<div class="scroll">
+<table>
+<thead><tr><th style="width:36px">#</th><th>Skill</th><th>Status / starts</th><th>Unlocks</th></tr></thead>
+<tbody>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">1</td><td>Heavy Assault Missile Specialization V</td><td><span class="pill warn">training &middot; 79.8%</span> ends 19 Sep 22:02</td><td>Max per-level HAM rate-of-fire bonus.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">2</td><td>Capacitor Systems Operation V</td><td>19 Sep 22:02</td><td>+5%/level cap recharge &mdash; the direct fix for the "2-minute cap" problem.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">3</td><td>Minmatar Battlecruiser V</td><td>23 Sep 06:47</td><td>Straight HAM RoF buff on the Cyclone; also the biggest Claymore prereq, banked either way.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">4</td><td>Shield Upgrades V</td><td>12 Oct 04:30</td><td>Last tier of T2 shield hardener/extender access.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">5</td><td>Capacitor Management V</td><td>23 Oct 15:59</td><td>+5%/level max cap &mdash; second half of the cap fix.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">6</td><td>Rapid Firing V</td><td>09 Nov 21:12</td><td>Turret rate of fire, for the Rupture/Stabber autocannon side.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">7</td><td>Large Projectile Turret V</td><td>18 Nov 03:05</td><td>Unlocks T2 large artillery for the Maelstrom.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">8</td><td>Surgical Strike V</td><td>08 Dec 17:48</td><td>Flat turret damage bonus, all sizes.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">9</td><td>Minmatar Battleship V</td><td>25 Dec 05:34</td><td>Max Maelstrom/Typhoon hull bonuses.</td></tr>
+<tr class="grp"><td colspan="4"><span class="grplabel">Tail beyond this <span class="n">looks auto-filled, not part of the missile/Loki plan &mdash; worth reviewing</span></span></td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">10</td><td>Minmatar Hauler IV / V</td><td>27 Jan &rarr; 30 Jan</td><td>Mammoth cargo/agility bonus.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">11</td><td>Industry IV / V</td><td>15 Feb &rarr; 16 Feb</td><td>Manufacturing job time reduction &mdash; no current industry activity.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">12</td><td>Transport Ships I</td><td>22 Feb 08:55</td><td>Gates the Prowler's T2 bonuses &mdash; owned, currently idle.</td></tr>
+<tr><td class="num" style="text-align:left;color:var(--ink-3)">13</td><td>Energy Grid Upgrades IV</td><td>22 Feb 09:36</td><td>Fitting reduction for cap-related mid slots.</td></tr>
+</tbody>
+</table>
+</div>
+<p class="note">Rows 1&ndash;9 are the direct HAM/Loki/turret polish path and are worth leaving as-is. The tail from Minmatar Hauler onward doesn't connect to anything currently in play &mdash; worth a look next time the queue's open, since Transport Ships I is the one entry there that's actually cheap and would wake the idle Prowler up.</p>
+</section>
 
-  <section>
-    <h2>Attributes &amp; training rates</h2>
-    <div class="pair">
-      <div class="card">
-        <div class="card-head"><h3>Attributes</h3><span class="sub">With implants / base map</span></div>
-        <div class="card-body">
-          <div class="priceline"><span class="lbl">INT</span><span class="val">20 &middot; base 17</span></div>
-          <div class="priceline"><span class="lbl">CHA</span><span class="val">17 &middot; base 17</span></div>
-          <div class="priceline"><span class="lbl">PER</span><span class="val">26 &middot; base 23</span></div>
-          <div class="priceline"><span class="lbl">MEM</span><span class="val">17 &middot; base 17</span></div>
-          <div class="priceline"><span class="lbl">WIL</span><span class="val">25 &middot; base 25</span></div>
-          <p class="note">Implants: Genolution CA-1 (slot 1, +3 PER), CA-2 (slot 4, +3 INT), BY-810 (Biology V). Slots 2, 3 and 5 &mdash; Memory, Willpower, Charisma &mdash; are still <b>empty</b>; the +3 Memory implant purchase discussed last session isn't confirmed done (see Pilots / outstanding actions).</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head"><h3>Measured training rates</h3><span class="sub">SP/hr, verified across five skills</span></div>
-        <div class="card-body">
-          <div class="priceline total"><span class="lbl">PER/WIL &mdash; Gunnery, Spaceship Cmd, Missiles</span><span class="val">2,310</span></div>
-          <div class="priceline"><span class="lbl">PER/MEM &mdash; Weapon Upgrades etc</span><span class="val">2,070</span></div>
-          <div class="priceline"><span class="lbl">INT/PER &mdash; Navigation</span><span class="val">1,980</span></div>
-          <div class="priceline"><span class="lbl">MEM/PER &mdash; Drones</span><span class="val">1,800</span></div>
-          <div class="priceline"><span class="lbl">CHA/WIL &mdash; Trade</span><span class="val">1,770</span></div>
-          <div class="priceline"><span class="lbl">INT/MEM &mdash; Engineering, Shields, Science...</span><span class="val">1,710</span></div>
-          <div class="priceline"><span class="lbl">CHA/INT &mdash; Social</span><span class="val">1,620</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section>
+<h2>Category coverage</h2>
+<p class="note">Trained skills out of total skills that exist in each group &mdash; breadth, not depth. A low ratio in a group you don't use (Science, Production) is fine; the ones that matter are Missiles, Subsystems, Shields.</p>
+<div class="pair">
+<div class="card"><div class="card-body">
+<div class="barrow"><span class="lbl">Missiles <b>14/31</b></span><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div></div>
+<div class="barrow"><span class="lbl">Subsystems <b>4/20</b></span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div></div>
+<div class="barrow"><span class="lbl">Spaceship Command <b>22/104</b></span><div class="bar-track"><div class="bar-fill" style="width:21%"></div></div></div>
+<div class="barrow"><span class="lbl">Gunnery <b>19/67</b></span><div class="bar-track"><div class="bar-fill" style="width:28%"></div></div></div>
+</div></div>
+<div class="card"><div class="card-body">
+<div class="barrow"><span class="lbl">Shields <b>10/14</b></span><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div></div>
+<div class="barrow"><span class="lbl">Engineering <b>12/16</b></span><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div>
+<div class="barrow"><span class="lbl">Drones <b>11/34</b></span><div class="bar-track"><div class="bar-fill" style="width:32%"></div></div></div>
+<div class="barrow"><span class="lbl">Rigging <b>8/10</b></span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div>
+</div></div>
+</div>
+</section>
 
-  <section>
-    <h2>Current state &mdash; confirmed from the live skill export</h2>
-    <p class="note">135 skills trained. Not just blocks 1&ndash;9 of the original plan &mdash; block 10 (drones, rigging, exploration, tank compensation, EWar) is <b>also</b> essentially all done. This was previously flagged as unverified; the export settles it.</p>
-    <div class="pair">
-      <div class="card"><div class="card-body">
-        <h4>Hull &amp; combat core</h4>
-        <ul class="fit">
-          <li><span class="n"></span>Minmatar Battlecruiser <span class="tagown">III</span></li>
-          <li><span class="n"></span>Minmatar Battleship <span class="tagown">II</span></li>
-          <li><span class="n"></span>Minmatar Cruiser <span class="tagown">IV</span></li>
-          <li><span class="n"></span>Minmatar Frigate <span class="tagown">V</span></li>
-          <li><span class="n"></span>Minmatar Destroyer <span class="tagown">III</span></li>
-          <li><span class="n"></span>Gunnery <span class="tagown">V &middot; maxed</span></li>
-          <li><span class="n"></span>Medium Projectile Turret <span class="tagown">III</span></li>
-          <li><span class="n"></span>Large Projectile Turret <span class="tagown">I</span></li>
-          <li><span class="n"></span>Small Projectile Turret <span class="tagown">IV</span></li>
-          <li><span class="n"></span>Motion Prediction / Sharpshooter <span class="tagown">IV / IV</span></li>
-          <li><span class="n"></span>Rapid Firing <span class="tagwarn">III &rarr; training to IV, 53.7%</span></li>
-          <li><span class="n"></span>Controlled Bursts <span class="tagown">III &middot; queued to IV</span></li>
-          <li><span class="n"></span>Weapon Upgrades <span class="tagown">III &middot; queued to IV, then V</span></li>
-        </ul>
-      </div></div>
-      <div class="card"><div class="card-body">
-        <h4>Tank / cap &mdash; done</h4>
-        <ul class="fit">
-          <li><span class="n"></span>Capacitor Management <span class="tagown">IV</span></li>
-          <li><span class="n"></span>Capacitor Systems Operation <span class="tagown">IV</span></li>
-          <li><span class="n"></span>Long Range Targeting <span class="tagown">IV</span></li>
-          <li><span class="n"></span>Shield Upgrades <span class="tagown">III</span></li>
-          <li><span class="n"></span>Energy Grid Upgrades <span class="tagown">III</span></li>
-          <li><span class="n"></span>Repair Systems <span class="tagown">III</span></li>
-          <li><span class="n"></span>Shield Emission Systems <span class="tagown">III</span></li>
-          <li><span class="n"></span>Thermodynamics <span class="tagown">II</span></li>
-        </ul>
-        <p class="note">Core support &mdash; Mechanics, Power Grid Management, Spaceship Command, Signature Analysis all at <span class="tagown">IV</span>, all queued to V next. That's the legit next-up gate, matches the plan.</p>
-      </div></div>
-    </div>
-    <div class="pair">
-      <div class="card"><div class="card-body">
-        <h4>Drones, rigging &amp; exploration &mdash; done</h4>
-        <ul class="fit">
-          <li><span class="n"></span>Drones <span class="tagown">V</span></li>
-          <li><span class="n"></span>Light / Medium Drone Operation <span class="tagown">II / II</span></li>
-          <li><span class="n"></span>Drone Interfacing / Avionics / Navigation / Sharpshooting <span class="tagown">II each</span></li>
-          <li><span class="n"></span>Drone Durability <span class="tagown">I</span></li>
-          <li><span class="n"></span>Mining Drone Operation <span class="tagown">II</span> &middot; Salvage Drone Operation <span class="tagown">I</span></li>
-          <li><span class="n"></span>Jury Rigging <span class="tagown">III</span> &middot; Shield/Projectile/Astronautics Rigging <span class="tagown">II each</span></li>
-          <li><span class="n"></span>Astrometrics <span class="tagown">IV</span> &middot; Acquisition/Pinpointing <span class="tagown">I each</span> &middot; Rangefinding <span class="tagown">II</span></li>
-          <li><span class="n"></span>Hacking / Archaeology <span class="tagown">III / III</span> &middot; Survey <span class="tagown">III</span></li>
-        </ul>
-      </div></div>
-      <div class="card"><div class="card-body">
-        <h4>EWar, tank compensation &amp; nav &mdash; done</h4>
-        <ul class="fit">
-          <li><span class="n"></span>Electronics Upgrades <span class="tagown">V &middot; maxed</span> <em>&mdash; this alone clears the Hound's old blocker, see Fleet</em></li>
-          <li><span class="n"></span>Cloaking <span class="tagown">IV</span></li>
-          <li><span class="n"></span>Electronic Warfare <span class="tagown">II</span> &middot; Propulsion Jamming <span class="tagown">IV</span> &middot; Target Painting <span class="tagown">III</span></li>
-          <li><span class="n"></span>EM / Explosive / Kinetic / Thermal Shield Compensation <span class="tagown">II each</span></li>
-          <li><span class="n"></span>Tactical Shield Manipulation <span class="tagown">III</span></li>
-          <li><span class="n"></span>Fuel Conservation <span class="tagown">II</span> &middot; High Speed Maneuvering <span class="tagown">II</span></li>
-          <li><span class="n"></span>Nanite Operation <span class="tagown">II</span> &middot; Interplanetary Consolidation / Command Center Upgrades <span class="tagown">II each</span></li>
-        </ul>
-      </div></div>
-    </div>
-  </section>
+<div class="callout ready">
+<h3>Parked, not abandoned &mdash; the Claymore block</h3>
+<p>Leadership sits at III (8,000 SP) from before the Claymore project got cut for being fleet-only content this corp doesn't run yet. Command Burst Specialist, Wing Command and Command Ships are all still at 0 and not in the queue. If the corp starts fielding real gangs, that's the block to paste back in &mdash; Minmatar Battlecruiser V above is a shared prerequisite either way.</p>
+</div>
 
-  <div class="callout warn">
-    <h3>Gaps found, checked against a real Hurricane pilot's skill benchmark</h3>
-    <p>Cross-checked the current trained levels against Captain Benzi's "what I'd recommend before undocking a Hurricane" breakdown (see the full table below) and against the original plan. Four skills come up short of what a Hurricane actually wants:</p>
-    <p><b>Surgical Strike</b> (rank 4, flat turret damage %) and <b>Trajectory Analysis</b> (rank 5, turret optimal range) are both sitting at rank 1 trained and aren't in the live queue at all &mdash; already flagged last pass, and the benchmark confirms both are worth training to at least IV. <b>Minmatar Battlecruiser</b> is at III; the benchmark's own line is "I wouldn't even bother undocking this really before getting that at least to level four," and it's not in the live queue either. <b>Medium Projectile Turret</b> is at III; the benchmark runs IV today and is training toward V + specializations for T2 ammo access &mdash; also absent from the queue. Recommended insertion point for all four: <b>after Weapon Upgrades IV, before Mechanics V</b>, ahead of the level-V gate and the entire Loki/Jaguar/Rapier/HAC tail behind it, since none of that back half does anything for a Hurricane.</p>
-  </div>
-
-  <section>
-    <h2>Checked against a Hurricane pilot's benchmark</h2>
-    <p class="note">Every skill Captain Benzi calls out as his own recommended baseline before flying a Hurricane, matched against the real export. Sixteen of twenty match or exceed; four fall short.</p>
-    <div class="scroll">
-      <table>
-        <thead><tr><th>Skill</th><th>Benchmark</th><th>Yours</th><th>Status</th></tr></thead>
-        <tbody>
-<tr><td>Minmatar Frigate</td><td>III</td><td>V</td><td><span class="pill ready">exceeds</span></td></tr>
-<tr><td>Minmatar Destroyer</td><td>III</td><td>III</td><td><span class="pill ready">met</span></td></tr>
-<tr><td>Minmatar Cruiser</td><td>III</td><td>IV</td><td><span class="pill ready">exceeds</span></td></tr>
-<tr><td>Minmatar Battlecruiser</td><td>IV &mdash; "wouldn't undock without it"</td><td>III</td><td><span class="pill warn">short, not queued</span></td></tr>
-<tr><td>Gunnery</td><td>V</td><td>V</td><td><span class="pill ready">met &middot; maxed</span></td></tr>
-<tr><td>Motion Prediction</td><td>IV</td><td>IV</td><td><span class="pill ready">met</span></td></tr>
-<tr><td>Rapid Firing</td><td>IV</td><td>III</td><td><span class="pill warn">training now, 53.7%</span></td></tr>
-<tr><td>Sharpshooter</td><td>IV</td><td>IV</td><td><span class="pill ready">met</span></td></tr>
-<tr><td>Surgical Strike</td><td>IV</td><td>I</td><td><span class="pill warn">short, not queued</span></td></tr>
-<tr><td>Trajectory Analysis</td><td>IV</td><td>I</td><td><span class="pill warn">short, not queued</span></td></tr>
-<tr><td>Medium Projectile Turret</td><td>IV, heading to V</td><td>III</td><td><span class="pill warn">short, not queued</span></td></tr>
-<tr><td>Power Grid Management</td><td>V</td><td>IV</td><td><span class="pill warn">training, queued 05 Sep</span></td></tr>
-<tr><td>Drone skills (light drones)</td><td>"fairly high"</td><td>Drones V, Light Drone Op II, Avionics/Navigation/Sharpshooting II</td><td><span class="pill ready">adequate</span></td></tr>
-<tr><td>Shield Management</td><td>III</td><td>III</td><td><span class="pill ready">met</span></td></tr>
-<tr><td>Shield Operation</td><td>III&ndash;IV</td><td>IV</td><td><span class="pill ready">met</span></td></tr>
-<tr><td>Shield Upgrades</td><td>III</td><td>III</td><td><span class="pill ready">met</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">Source: Captain Benzi's Hurricane flying guide (own recommended skill levels before undocking, passive-shield artillery build). Not a min-max requirement list &mdash; his own words are "good enough to run a ship like this," so treat shortfalls as the next things worth training, not blockers.</p>
-  </section>
-
-  <section>
-    <h2>Live training queue &mdash; real export, pulled 31 Aug 2026</h2>
-    <p class="note">Straight from the in-game skill queue export, in order, with real start times. Blocks 1&ndash;10 of the original plan are already fully trained (with the three exceptions flagged above) and don't appear here.</p>
-    <div class="scroll">
-      <table>
-        <thead><tr><th style="width:50px">#</th><th>Skill &amp; level</th><th>Starts</th><th>Status</th></tr></thead>
-        <tbody>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">1</td><td>Rapid Firing IV</td><td>ends 31 Aug 21:20</td><td><span class="pill warn">training &middot; 53.7%</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">2</td><td>Controlled Bursts IV</td><td>31 Aug 21:20</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">3</td><td>Weapon Upgrades IV</td><td>01 Sep 19:19</td><td><span class="pill ready">queued</span></td></tr>
-<tr style="background:var(--warn-bg)"><td class="num" style="text-align:left;color:var(--warn)">&middot;</td><td><b>Insert here &rarr; Minmatar Battlecruiser IV, Surgical Strike IV, Trajectory Analysis V, Medium Projectile Turret IV</b></td><td>&mdash;</td><td><span class="pill warn">recommended, not in queue</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">4</td><td>Mechanics V</td><td>02 Sep 18:58</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">5</td><td>Power Grid Management V</td><td>05 Sep 22:30</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">6</td><td>Spaceship Command V</td><td>09 Sep 02:02</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">7</td><td>Signature Analysis V</td><td>11 Sep 16:32</td><td><span class="pill ready">queued</span></td></tr>
-<tr class="grp"><td colspan="4"><span class="grplabel s">PvP / HAC tail <span class="n">not Hurricane-relevant &mdash; candidate to deprioritize</span></span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">8</td><td>Assault Frigates I</td><td>16 Sep 19:46</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">9</td><td>Covert Ops I</td><td>16 Sep 20:13</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">10</td><td>Recon Ships I</td><td>16 Sep 20:39</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">11</td><td>Minmatar Cruiser V</td><td>16 Sep 21:18</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">12</td><td>Minmatar Strategic Cruiser I</td><td>05 Oct 21:28</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">13</td><td>Minmatar Defensive Systems I</td><td>05 Oct 22:00</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">14</td><td>Missile Launcher Operation III</td><td>05 Oct 22:09</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">15</td><td>Minmatar Offensive Systems I</td><td>06 Oct 01:00</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">16</td><td>Navigation V</td><td>06 Oct 01:07</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">17</td><td>Minmatar Propulsion Systems I</td><td>10 Oct 11:33</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">18</td><td>Minmatar Core Systems I</td><td>10 Oct 11:39</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">19</td><td>Advanced Spaceship Command I / II / III</td><td>10 Oct 11:48 &rarr; 14:52</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">20</td><td>Energy Grid Upgrades IV / V</td><td>11 Oct 05:07 &rarr; 13 Oct 00:42</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">21</td><td>Weapon Upgrades V</td><td>23 Oct 07:11</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">22</td><td>Heavy Assault Cruisers I</td><td>31 Oct 18:48</td><td><span class="pill ready">queued</span></td></tr>
-<tr><td class="num" style="text-align:left;color:var(--ink-3)">23</td><td>Advanced Weapon Upgrades I / II</td><td>31 Oct 19:27 &rarr; 20:06</td><td><span class="pill ready">queued</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">Everything from Assault Frigates I onward (16 Sep on) is the Loki/Jaguar/Rapier/HAC path &mdash; none of it makes the Hurricane better. If the near-term goal is genuinely &ldquo;make the Hurricane better,&rdquo; this whole block, running out to 31 Oct, is the candidate to push back behind Surgical Strike and Trajectory Analysis, or further.</p>
-  </section>
-
-  <section>
-    <h2>Future path options &mdash; if the plan branches</h2>
-    <p class="note">With blocks 1&ndash;9 done and the Hurricane now the primary (see Playbook), the live queue's first seven lines (through Signature Analysis V) are Hurricane infrastructure everyone should train regardless of direction. Everything after that is a branch point.</p>
-
-    <div class="trio">
-      <div class="card"><div class="card-body">
-        <h4>Stay the course &mdash; Hurricane mission runner</h4>
-        <p class="note">Stop after Signature Analysis V (plus the four Hurricane gaps &mdash; Battlecruiser IV, Surgical Strike IV, Trajectory Analysis V, Medium Projectile Turret IV &mdash; inserted ahead of it) and you're fully kitted for L1&ndash;L4s without touching the level-V gate or the PvP tail at all.</p>
-      </div></div>
-      <div class="card"><div class="card-body">
-        <h4>Branch into PvP</h4>
-        <p class="note">Assault Frigates I and Recon Ships I unlock the Jaguar and Rapier respectively &mdash; both already owned. This is exactly the tail flagged above as deprioritizable if the near-term focus stays Hurricane-first.</p>
-      </div></div>
-      <div class="card"><div class="card-body">
-        <h4>Branch into exploration</h4>
-        <p class="note">Astrometrics, Hacking, Archaeology and Survey aren't in the current live queue at all &mdash; they'd need to be added back in if this direction gets picked up. Five exploration frigates are already flyable and waiting (see Fleet).</p>
-      </div></div>
-    </div>
-  </section>
-
-  <footer>
-    <b>Source.</b> Total SP, all trained levels, and the queue order/timestamps on this page come directly from a skill export and a skill-queue export pulled this session &mdash; not estimates. Re-pull both before trusting anything here more than a few days old; Rapid Firing's ETA and the queue's later dates especially will have moved.
-  </footer>
+<footer>
+<b>Source.</b> Skill levels and totals from the live skill export; queue order and dates from the live skill-queue export, both pulled 17 Sep 2026. Dates will drift &mdash; re-pull before trusting anything here more than a few days old.
+</footer>
 
 </div>
 </body>

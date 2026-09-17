@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Table of contents for the Stinglock / Coreun / Miko / Cody EVE Online operation site.">
+<meta name="description" content="Retired pages from earlier in the operation, kept for reference.">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Command Deck &middot; Stinglock</title>
+<title>Archive &middot; Stinglock</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
@@ -14,8 +14,6 @@
 --ink:#221C17; --ink-2:#5F544B; --ink-3:#8B7F74;
 --rust:#B4451F; --rust-soft:rgba(180,69,31,0.10);
 --sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
---chezz:#6B4A8A; --chezz-soft:rgba(107,74,138,0.11);
---miko:#9A7B2E; --miko-soft:rgba(154,123,46,0.12);
 --ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
 --warn:#9A6B2E; --warn-bg:rgba(154,107,46,0.12);
 --shadow:0 1px 2px rgba(34,28,23,0.06);
@@ -27,8 +25,6 @@
 --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
 --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
 --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
---chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
---miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
 --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
 --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
 --shadow:0 1px 2px rgba(0,0,0,0.4);
@@ -40,8 +36,6 @@
 --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
 --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
 --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
---chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
---miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
 --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
 --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
 --shadow:0 1px 2px rgba(0,0,0,0.4);
@@ -49,7 +43,7 @@
 *{ box-sizing:border-box; }
 body{ background:var(--ground); color:var(--ink); font-family:'Archivo',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
 .wrap{ max-width:1020px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
-h1,h2,h3,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
+h1,h2,h3,.eyebrow{ font-family:'Chakra Petch','Archivo',sans-serif; }
 nav.pagenav{ display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em; padding-bottom:14px; border-bottom:1px solid var(--rule); }
 nav.pagenav a{ color:var(--ink-2); text-decoration:none; padding:5px 9px; border-radius:3px; }
 nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
@@ -61,23 +55,22 @@ header{ display:flex; flex-direction:column; gap:10px; }
 .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
 h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
 .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
-.stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden; }
-.stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
-.stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
-.stat-num{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; font-size:25px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
-.stat .sub{ font-size:11.5px; color:var(--ink-3); }
-.stat-num.rust{ color:var(--rust); } .stat-num.ready{ color:var(--ready); } .stat-num.warn{ color:var(--warn); }
-section{ display:flex; flex-direction:column; gap:18px; }
+section{ display:flex; flex-direction:column; gap:14px; }
 h2{ margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule); }
 .toc-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
 .toc-card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px; box-shadow:var(--shadow); padding:20px; text-decoration:none; color:var(--ink); display:flex; flex-direction:column; gap:8px; transition:border-color .15s; }
 .toc-card:hover{ border-color:var(--rust); }
 .toc-card:focus-visible{ outline:2px solid var(--rust); outline-offset:2px; }
-.toc-card .num{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--rust); font-weight:600; letter-spacing:.1em; }
+.toc-card .tag{ font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--warn); background:var(--warn-bg); padding:2px 7px; border-radius:2px; align-self:flex-start; }
 .toc-card h3{ margin:0; font-size:19px; font-weight:700; }
 .toc-card p{ margin:0; font-size:13.5px; color:var(--ink-2); }
 .toc-card .arrow{ margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-3); }
 .toc-card:hover .arrow{ color:var(--rust); }
+.note{ font-size:13px; color:var(--ink-2); margin:0; }
+.note b{ color:var(--ink); }
+.callout{ background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust); border-radius:3px; padding:15px 18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:5px; }
+.callout h3{ margin:0; font-size:15.5px; font-weight:600; }
+.callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
 footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
 .gate{ position:fixed; inset:0; z-index:999; background:var(--ground); display:flex; align-items:center; justify-content:center; padding:22px; }
 .gate-card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:4px; box-shadow:var(--shadow); padding:28px 26px; max-width:340px; width:100%; display:flex; flex-direction:column; gap:14px; }
@@ -120,73 +113,38 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </script>
 
 <div class="wrap">
-<nav class="pagenav"><a href="index.html" class="active">Command Deck</a><span class="sep">/</span><a href="archive.html">Archive</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="group-content.html">Group Ops</a></nav>
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="archive.html" class="active">Archive</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="group-content.html">Group Ops</a></nav>
 
 <header>
-<div class="eyebrow">Stinglock &middot; Coreun &middot; Miko &middot; Cody &middot; Wormholes &amp; Beyond</div>
-<h1>Command Deck</h1>
-<p class="standfirst">The operation moved on from Rens highsec missions into HAMs, a flyable Loki, and wormhole/nullsec content. Seven pages, start here.</p>
+<div class="eyebrow">Retired &middot; 31 Aug 2026 Session</div>
+<h1>Archive</h1>
+<p class="standfirst">Two pages from the original Rens two-man playbook, before the pivot into HAMs, the Loki, and wormhole content. Kept for reference &mdash; nothing on either page reflects the current plan.</p>
 </header>
 
 <section>
 <div class="toc-grid">
-<a class="toc-card" href="fleet.html">
-<span class="num">01 &middot; HANGAR</span>
-<h3>Fleet</h3>
-<p>Every hull Stinglock owns, 27 types across 42 ships, grouped by class with value and insurance advice.</p>
+<a class="toc-card" href="playbook.html">
+<span class="tag">Superseded</span>
+<h3>Rens Two-Man Playbook</h3>
+<p>The original undock-tonight plan &mdash; Myrmidon and Stabber fits, ~140M all-in, built for Rens L1/L2 missions with Coreun.</p>
 <span class="arrow">open &rarr;</span>
 </a>
-<a class="toc-card" href="skills.html">
-<span class="num">02 &middot; TRAINING</span>
-<h3>Skills</h3>
-<p>Current skill state against the missile/Loki pivot, plus the live training queue with real dates.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="pilots.html">
-<span class="num">03 &middot; ROSTER</span>
-<h3>Pilots</h3>
-<p>Character sheets for all four pilots &mdash; Stinglock, Miko, Coreun, and Cody.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="content.html">
-<span class="num">04 &middot; ENGAGE</span>
-<h3>Content Plan</h3>
-<p>What each specific fit can run &mdash; Maelstrom Arty, Loki HAM, Astero Explorer and the rest &mdash; with all-in cost per row.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="exploration.html">
-<span class="num">05 &middot; SCAN</span>
-<h3>Exploration</h3>
-<p>Solo, duo, and small-group options across highsec, wormholes, and nullsec relic running, plus a full filament run-through.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="group-content.html">
-<span class="num">06 &middot; FLEET UP</span>
-<h3>Group Ops</h3>
-<p>What the four-person group can run together, by party size, and what ships each one needs.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="archive.html">
-<span class="num">07 &middot; RETIRED</span>
-<h3>Archive</h3>
-<p>The original Rens two-man playbook and its variations, kept for reference &mdash; superseded by everything above.</p>
+<a class="toc-card" href="playbook-variations.html">
+<span class="tag">Superseded</span>
+<h3>Playbook Variations</h3>
+<p>Damage, EWar, and PvP-leaning alternatives to the base Stabber fit, plus a full-drone Myrmidon/Dominix build for Coreun.</p>
 <span class="arrow">open &rarr;</span>
 </a>
 </div>
 </section>
 
-<section>
-<h2>State of play</h2>
-<div class="stats">
-<div class="stat"><span class="k">Stinglock's SP</span><span class="stat-num">17.98M</span><span class="sub">live export</span></div>
-<div class="stat"><span class="k">Fleet value</span><span class="stat-num">~1.47B</span><span class="sub">42 hulls + Loki subsystems</span></div>
-<div class="stat"><span class="k">Main hull</span><span class="stat-num ready">Loki</span><span class="sub">flyable, HAM-fit</span></div>
-<div class="stat"><span class="k">Staging</span><span class="stat-num">Rens</span><span class="sub">0.9 Heimatar</span></div>
+<div class="callout">
+<h3>Why these got retired</h3>
+<p>Both pages were built around a Myrmidon/Stabber highsec mission duo. The plan since moved into a HAM-fit Loki, C1&ndash;C3 wormhole Sleeper sites, and nullsec relic running &mdash; none of which either archived page covers. <a href="content.html" style="color:var(--rust)">Content</a>, <a href="fleet.html" style="color:var(--rust)">Fleet</a> and <a href="exploration.html" style="color:var(--rust)">Exploration</a> are the current versions of what these two pages used to do.</p>
 </div>
-</section>
 
 <footer>
-Rebuilt 17 Sep 2026 against live skill, queue, and asset exports plus current ESI market data. The 31 Aug session handoff is retired &mdash; see <a href="archive.html" style="color:var(--rust)">Archive</a>.
+Archived 17 Sep 2026. Prices, fits and standings on both linked pages are frozen at 31 Aug 2026 and will be wrong.
 </footer>
 
 </div>

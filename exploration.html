@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Exploration options from highsec to nullsec, with a soloable column and a full filament run-through.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Exploration &middot; Stinglock</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+--ground:#EDE8E2; --surface:#F7F4F0; --surface-2:#E3DCD4;
+--rule:#CFC5BA; --rule-soft:#DFD7CD;
+--ink:#221C17; --ink-2:#5F544B; --ink-3:#8B7F74;
+--rust:#B4451F; --rust-soft:rgba(180,69,31,0.10);
+--sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
+--ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
+--warn:#9A6B2E; --warn-bg:rgba(154,107,46,0.12);
+--shadow:0 1px 2px rgba(34,28,23,0.06);
+}
+@media (prefers-color-scheme: dark){
+:root:not([data-theme="light"]){
+--ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+--rule:#372E26; --rule-soft:#2A231C;
+--ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+--rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+--sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+--ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+--warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+--shadow:0 1px 2px rgba(0,0,0,0.4);
+}
+}
+:root[data-theme="dark"]{
+--ground:#16120F; --surface:#1E1915; --surface-2:#272019;
+--rule:#372E26; --rule-soft:#2A231C;
+--ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
+--rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
+--sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
+--ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
+--warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
+--shadow:0 1px 2px rgba(0,0,0,0.4);
+}
+*{ box-sizing:border-box; }
+body{ background:var(--ground); color:var(--ink); font-family:'Archivo',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
+.wrap{ max-width:1100px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
+h1,h2,h3,h4,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
+.mono{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+nav.pagenav{ display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em; padding-bottom:14px; border-bottom:1px solid var(--rule); }
+nav.pagenav a{ color:var(--ink-2); text-decoration:none; padding:5px 9px; border-radius:3px; }
+nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
+nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
+nav.pagenav a:focus-visible{ outline:2px solid var(--rust); outline-offset:2px; }
+nav.pagenav .sep{ color:var(--rule); }
+header{ display:flex; flex-direction:column; gap:10px; }
+.eyebrow{ font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--rust); display:flex; align-items:center; gap:9px; }
+.eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
+h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
+.standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
+section{ display:flex; flex-direction:column; gap:14px; }
+h2{ margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule); }
+.note{ font-size:13px; color:var(--ink-2); margin:0; }
+.note b{ color:var(--ink); }
+.callout{ background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust); border-radius:3px; padding:15px 18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:5px; }
+.callout h3{ margin:0; font-size:15.5px; font-weight:600; }
+.callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
+.callout.sting{ border-left-color:var(--sting); }
+.scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:820px; }
+thead th{ text-align:left; font-family:'Chakra Petch',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); padding:10px 14px; border-bottom:1px solid var(--rule); white-space:nowrap; }
+tbody td{ padding:10px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top; }
+tbody tr:last-child td{ border-bottom:none; }
+td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap; }
+tbody tr a{ color:var(--rust); text-decoration:none; }
+tbody tr a:hover{ text-decoration:underline; }
+.shipname{ font-weight:600; display:block; }
+.shipsub{ font-size:11px; color:var(--ink-3); display:block; margin-top:1px; }
+.pill{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em; text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap; font-weight:600; }
+.pill.ready{ color:var(--ready); background:var(--ready-bg); }
+.pill.warn{ color:var(--warn); background:var(--warn-bg); }
+.pill.no{ color:var(--rust); background:var(--rust-soft); }
+.pair{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+.trio{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+.card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
+.card-head{ padding:14px 16px 10px; border-bottom:1px solid var(--rule-soft); }
+.card-head h3{ margin:0; font-size:16px; font-weight:700; }
+.card-body{ padding:14px 16px; display:flex; flex-direction:column; gap:8px; }
+ul.fit{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+ul.fit li{ font-size:13.5px; display:flex; gap:8px; align-items:baseline; }
+ul.fit li .n{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); min-width:16px; }
+ul.fit li em{ font-style:normal; color:var(--ink-3); font-size:12px; }
+.phase{ display:flex; flex-direction:column; gap:14px; }
+.phase-row{ display:grid; grid-template-columns:44px 1fr; gap:16px; align-items:start; background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px; box-shadow:var(--shadow); padding:16px 18px; }
+.phase-row .step{ font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.06em; color:var(--rust); background:var(--rust-soft); border-radius:2px; padding:5px 0; text-align:center; line-height:1; }
+.phase-row .body{ display:flex; flex-direction:column; gap:7px; }
+.phase-row h3{ margin:0; font-size:16px; font-weight:700; letter-spacing:-.005em; }
+.phase-row p{ margin:0; font-size:13.5px; color:var(--ink-2); max-width:72ch; }
+.phase-row p b{ color:var(--ink); }
+.phase-row ul{ margin:0; padding-left:18px; display:flex; flex-direction:column; gap:5px; }
+.phase-row li{ font-size:13.5px; color:var(--ink-2); }
+.phase-row li b{ color:var(--ink); }
+.timing{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:.03em; }
+.list-plain{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:0; }
+.list-plain li{ padding:8px 0; border-bottom:1px solid var(--rule-soft); font-size:13.5px; display:flex; gap:10px; align-items:baseline; }
+.list-plain li:last-child{ border-bottom:none; }
+.list-plain .idx{ font-family:'IBM Plex Mono',monospace; color:var(--ink-3); font-size:11px; min-width:20px; }
+footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
+.gate{ position:fixed; inset:0; z-index:999; background:var(--ground); display:flex; align-items:center; justify-content:center; padding:22px; }
+.gate-card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:4px; box-shadow:var(--shadow); padding:28px 26px; max-width:340px; width:100%; display:flex; flex-direction:column; gap:14px; }
+.gate-card h2{ margin:0; border:none; padding:0; font-size:16px; color:var(--ink); letter-spacing:.04em; }
+.gate-card p{ margin:0; font-size:12.5px; color:var(--ink-3); }
+.gate-card input{ font-family:'IBM Plex Mono',monospace; font-size:14px; padding:10px 12px; background:var(--surface-2); border:1px solid var(--rule); border-radius:3px; color:var(--ink); outline:none; }
+.gate-card input:focus{ border-color:var(--rust); }
+.gate-card button{ font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:12.5px; padding:10px 12px; background:var(--rust); color:#fff; border:none; border-radius:3px; cursor:pointer; }
+.gate-card button:hover{ opacity:.9; }
+.gate-err{ font-size:12px; color:var(--rust); min-height:14px; }
+body.locked{ overflow:hidden; }
+body.locked .wrap{ display:none; }
+@media (max-width:560px){ .phase-row{ grid-template-columns:1fr; gap:10px; } .phase-row .step{ width:44px; } }
+@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+<style>
+:root{ color-scheme: dark; }
+html,body{ margin:0; padding:0; }
+img{ max-width:100%; height:auto; }
+[hidden]{ display:none !important; }
+</style>
+</head>
+<body class="locked">
+<div class="gate" id="gate">
+<div class="gate-card">
+<h2>ACCESS &middot; STINGLOCK OPS</h2>
+<input type="password" id="gate-pass" placeholder="password" autocomplete="off">
+<div class="gate-err" id="gate-err"></div>
+<button onclick="checkGate()">Enter</button>
+</div>
+</div>
+<script>
+function unlock(){ document.getElementById('gate').style.display = 'none'; document.body.classList.remove('locked'); }
+function checkGate(){
+var v = document.getElementById('gate-pass').value;
+if(v === '69'){ try{ sessionStorage.setItem('stinglock_unlocked', '1'); }catch(e){} unlock(); }
+else { document.getElementById('gate-err').textContent = 'wrong password'; }
+}
+document.getElementById('gate-pass').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ checkGate(); } });
+(function(){ try{ if(sessionStorage.getItem('stinglock_unlocked') === '1'){ unlock(); } }catch(e){} })();
+</script>
+
+<div class="wrap">
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><a href="archive.html">Archive</a><span class="sep">/</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="content.html">Content</a><span class="sep">/</span><a href="exploration.html" class="active">Exploration</a><span class="sep">/</span><a href="group-content.html">Group Ops</a></nav>
+
+<header>
+<div class="eyebrow">Exploration &middot; Highsec to Nullsec</div>
+<h1>Exploration</h1>
+<p class="standfirst">Every relic/data-running option available, from a solo highsec loop to a full nullsec filament run. Each row below links to its own brief section &mdash; nullsec via filament gets the full write-up since that's the current focus.</p>
+</header>
+
+<section>
+<h2>The options</h2>
+<div class="scroll"><table>
+<thead><tr><th>Content</th><th>Time <span style="font-weight:400;text-transform:none">(biggest sink)</span></th><th class="num">ISK/hr each</th><th>Entry cost</th><th>Soloable</th><th>Analyzer</th></tr></thead>
+<tbody>
+<tr><td><a href="#highsec">Highsec relic/data</a></td><td>1&ndash;2h <span class="timing">(flying between systems)</span></td><td class="num">~10&ndash;30M</td><td>free</td><td><span class="pill ready">yes</span></td><td>T1</td></tr>
+<tr><td><a href="#lowsec">Lowsec relic/data</a></td><td>1&ndash;2h <span class="timing">(flying between systems)</span></td><td class="num">~50&ndash;100M</td><td>free</td><td><span class="pill ready">yes</span></td><td>T1</td></tr>
+<tr><td><a href="#wormhole">C1&ndash;C3 wormhole relic</a></td><td>2&ndash;3h <span class="timing">(scanning chain in/out)</span></td><td class="num">~100&ndash;200M</td><td>free</td><td><span class="pill ready">yes</span></td><td>T2</td></tr>
+<tr><td><a href="#filament">Nullsec via filament</a></td><td>2.5&ndash;4h <span class="timing">(scanning a chain home)</span></td><td class="num">~100&ndash;250M</td><td>~65&ndash;70k ISK</td><td><span class="pill warn">marginal</span></td><td>T2</td></tr>
+<tr><td><a href="#gates">Nullsec via gates</a></td><td>2&ndash;4h <span class="timing">(getting there alive)</span></td><td class="num">~100&ndash;250M</td><td>free</td><td><span class="pill no">not recommended</span></td><td>T2</td></tr>
+<tr><td><a href="#ghost">Ghost sites</a></td><td>opportunistic</td><td class="num">100M+/site</td><td>free</td><td><span class="pill warn">marginal</span></td><td>T2 strongly</td></tr>
+</tbody>
+</table></div>
+<p class="note">Soloable rates the mechanics, not the wisdom of it &mdash; a solo filament run is <i>possible</i> but the whole safety model in that section assumes a second person on local/d-scan while the other hacks.</p>
+</section>
+
+<section id="highsec">
+<h2>Highsec relic/data</h2>
+<p class="note">Astero or any T1 explo frigate, scan and hack in CONCORD space. Lowest risk, lowest pay &mdash; the filler content between everything else. No entry cost, no real threat beyond a rare gank.</p>
+</section>
+
+<section id="lowsec">
+<h2>Lowsec relic/data</h2>
+<p class="note">Same mechanics as highsec, better loot, real risk from gate camps and roaming frigates. A covert cloak (owned, see <a href="fleet.html" style="color:var(--rust)">Fleet</a>) is the main tool here &mdash; warp cloaked past camps rather than testing them.</p>
+</section>
+
+<section id="wormhole">
+<h2>C1&ndash;C3 wormhole relic</h2>
+<p class="note">The same pirate-faction relic sites as null, just less competition &mdash; nobody's usually been through ahead of you. No local chat cuts both ways: no free warning, but also no easy way for a hunter to know you're there. Lower volume than null, comparable or better per-site value.</p>
+</section>
+
+<section id="gates">
+<h2>Nullsec via gates</h2>
+<div class="callout">
+<h3>Don't</h3>
+<p>The lowsec&ndash;null border gates are where bubble camps live. Bubbles can't be deployed in lowsec, so the null side of that gate is prime hunting ground for exactly the ship doing relic runs. Filament or a wormhole connection both skip this entirely &mdash; there's no upside to gating in that either of the other two doesn't already cover.</p>
+</div>
+</section>
+
+<section id="ghost">
+<h2>Ghost sites</h2>
+<div class="callout">
+<h3>High value, one real trap</h3>
+<p>Genuinely good loot, and the reason a Cheetah was lost this session in J134800. The cans in Covert Research sites detonate for heavy explosive damage on a failed hack &mdash; that's an environmental trap, not an NPC, and no tank fixes it. Separately, most ghost sites carry a hidden timer that spawns a real rat wave after a while, which <i>is</i> fightable. Run these fit for combat, hack conservatively, and leave the moment the timer shows.</p>
+</div>
+</section>
+
+<section id="filament">
+<h2>Nullsec via filament &mdash; full run</h2>
+<p class="note">The deep dive. Everything below assumes a 2&ndash;4 person crew, no combat fits, one Astero-or-equivalent per person.</p>
+
+<h3 style="border:none;padding:0;margin-top:4px;">What everyone brings</h3>
+<div class="pair">
+<div class="card">
+<div class="card-head"><h3>Ship &amp; fit</h3></div>
+<div class="card-body">
+<ul class="fit">
+<li><span class="n">1</span><span>Covert Ops Cloaking Device II <em>&mdash; warp cloaked, the whole survival model</em></span></li>
+<li><span class="n">2</span><span>Core Probe Launcher + 8 probes <em>&mdash; everyone scans</em></span></li>
+<li><span class="n">3</span><span>Relic Analyzer II and Data Analyzer II</span></li>
+<li><span class="n">4</span><span>Warp Core Stabilizer <em>&mdash; beats a single point</em></span></li>
+<li><span class="n">5</span><span>A relic virus rig if calibration allows</span></li>
+</ul>
+<p class="note"><b>Leave cargo room for loot.</b> Relic drops are bulky.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-head"><h3>Admin, before undocking</h3></div>
+<div class="card-body">
+<ul class="fit">
+<li><span class="n">1</span><span>Medical clones set in empire, cheap implants only</span></li>
+<li><span class="n">2</span><span>Loot rule agreed out loud</span></li>
+<li><span class="n">3</span><span>Overview set so hostiles blink</span></li>
+<li><span class="n">4</span><span>One person buys the filament <em>&mdash; a Noise-5 carries 5 ships, ~65&ndash;70k ISK each at Jita</em></span></li>
+</ul>
+<p class="note">Noise variants drop you in a <b>low-activity</b> system &mdash; fewer defence fleets, fewer explorers who've already cleared it.</p>
+</div>
+</div>
+</div>
+
+<h3 style="border:none;padding:0;margin-top:8px;">The run, in order</h3>
+<div class="phase">
+<div class="phase-row"><div class="step">01</div><div class="body">
+<h3>Entry</h3>
+<p>Warp somewhere empty &mdash; the filament needs <b>1000km+ from any gate, station or structure</b>. Everyone on grid, then activate. You land together with a <b>15-minute log-off timer</b>.</p>
+</div></div>
+
+<div class="phase-row"><div class="step">02</div><div class="body">
+<h3>First sixty seconds</h3>
+<ul>
+<li><b>Check local.</b> Free intel in null. Twenty names &mdash; consider filamenting again.</li>
+<li><b>Everyone cloaks</b>, immediately.</li>
+<li><b>Everyone makes a safe.</b> Warp between two distant celestials, stop mid-warp, bookmark.</li>
+<li><b>Launch probes and scan the system.</b></li>
+</ul>
+</div></div>
+
+<div class="phase-row"><div class="step">03</div><div class="body">
+<h3>Scan everything before you hit anything</h3>
+<p>Tells you what's worth staying for, and where every wormhole is. <b>Relic only</b> &mdash; data sites cost more cargo than they pay.</p>
+</div></div>
+
+<div class="phase-row"><div class="step">04</div><div class="body">
+<h3>Split by system, not by can</h3>
+<p>Three people on one site splits the same loot three ways. Three people on three systems triples the ground covered. Work nearest cans first; <b>everyone watches local</b> and calls neutrals by name.</p>
+</div></div>
+
+<div class="phase-row"><div class="step">05</div><div class="body">
+<h3>Moving on</h3>
+<p>Leave when the relics are done or someone appears in local. Prefer wormholes over gates &mdash; nobody camps a hole they don't know exists. Don't roam far; a dry area gets a fresh filament, not five more jumps.</p>
+</div></div>
+
+<div class="phase-row"><div class="step">06</div><div class="body">
+<h3>Getting home</h3>
+<p>Filaments are one-way. <b>Assign one person to scan the exit while the others keep working</b>, rotate it. Read every hole's Show Info before jumping &mdash; it names the destination class and remaining mass/lifetime. Expect 1&ndash;3 jumps. <b>Bookmark every hole you cross.</b> You'll land in a random highsec system &mdash; dock, sell locally, don't haul across the map.</p>
+</div></div>
+</div>
+
+<h3 style="border:none;padding:0;margin-top:8px;">If scanning isn't finding an exit</h3>
+<div class="trio">
+<div class="card"><div class="card-body"><h4 style="margin:0;font-size:13px;">Spare filament</h4><p class="note">~65-70k ISK, worth carrying one every run. Jump somewhere new rather than spend an hour scanning a bad spot.</p></div></div>
+<div class="card"><div class="card-body"><h4 style="margin:0;font-size:13px;">Thera / Turnur</h4><p class="note">Public EVE-Scout hubs. Often the fastest way home if one's nearby.</p></div></div>
+<div class="card"><div class="card-body"><h4 style="margin:0;font-size:13px;">Pochven filaments</h4><p class="note">Two-filament trip, lands somewhere random. Emergency only.</p></div></div>
+</div>
+
+<h3 style="border:none;padding:0;margin-top:8px;">Rules that keep the crew alive</h3>
+<ul class="list-plain">
+<li><span class="idx">01</span><span><b>Cloak whenever idle.</b> Between warps, while deciding, while waiting.</span></li>
+<li><span class="idx">02</span><span><b>Warp on first contact.</b> Being wrong costs 30 seconds; being right saves a ship.</span></li>
+<li><span class="idx">03</span><span><b>Combat probes on d-scan means you're being hunted.</b> Leave the system.</span></li>
+<li><span class="idx">04</span><span><b>Don't all sit on the same grid.</b></span></li>
+<li><span class="idx">05</span><span><b>Nobody rescues anybody.</b> One loss beats three.</span></li>
+</ul>
+
+<div class="callout sting">
+<h3>Why no dedicated watcher</h3>
+<p>Nullsec has local chat &mdash; free warning wormholes don't give you. A person parked on a gate is wasted throughput here; put everyone on sites and have all of them watch local instead.</p>
+</div>
+
+<p class="note">Trip shape: ~15min to enter, ~90min&ndash;2h working systems, ~30&ndash;60min scanning home. Dock, then split loot &mdash; don't divide it in space.</p>
+</section>
+
+<footer>
+<b>On the numbers.</b> Astero and filament prices checked live via ESI on 17 Sep 2026. ISK/hr ranges are community estimates for the site types, not measured logs &mdash; use them to compare rows, not as a promise. Actual payout swings on which pirate faction's space you land in (Sansha and Blood Raider pay best) and how picked-over the constellation is.
+</footer>
+
+</div>
+</body>
+</html>
