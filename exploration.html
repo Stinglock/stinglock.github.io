@@ -157,14 +157,14 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <section>
 <h2>The options</h2>
 <div class="scroll"><table>
-<thead><tr><th>Content</th><th>Time <span style="font-weight:400;text-transform:none">(biggest sink)</span></th><th class="num">ISK/hr each</th><th>Entry cost</th><th>Soloable</th><th>Analyzer</th></tr></thead>
+<thead><tr><th>Content</th><th>Time <span style="font-weight:400;text-transform:none">(biggest sink)</span></th><th class="num">ISK/hr each</th><th>Entry cost</th><th>Soloable</th><th>Analyzer</th><th>Risk</th></tr></thead>
 <tbody>
-<tr><td><a href="#highsec">Highsec relic/data</a></td><td>1&ndash;2h <span class="timing">(flying between systems)</span></td><td class="num">~10&ndash;30M</td><td>free</td><td><span class="pill ready">yes</span></td><td>T1</td></tr>
-<tr><td><a href="#lowsec">Lowsec relic/data</a></td><td>1&ndash;2h <span class="timing">(flying between systems)</span></td><td class="num">~50&ndash;100M</td><td>free</td><td><span class="pill ready">yes</span></td><td>T1</td></tr>
-<tr><td><a href="#wormhole">C1&ndash;C3 wormhole relic</a></td><td>2&ndash;3h <span class="timing">(scanning chain in/out)</span></td><td class="num">~100&ndash;200M</td><td>free</td><td><span class="pill ready">yes</span></td><td>T2</td></tr>
-<tr><td><a href="#filament">Nullsec via filament</a></td><td>2.5&ndash;4h <span class="timing">(scanning a chain home)</span></td><td class="num">~100&ndash;250M</td><td>~65&ndash;70k ISK</td><td><span class="pill warn">marginal</span></td><td>T2</td></tr>
-<tr><td><a href="#gates">Nullsec via gates</a></td><td>2&ndash;4h <span class="timing">(getting there alive)</span></td><td class="num">~100&ndash;250M</td><td>free</td><td><span class="pill no">not recommended</span></td><td>T2</td></tr>
-<tr><td><a href="#ghost">Ghost sites</a></td><td>opportunistic</td><td class="num">100M+/site</td><td>free</td><td><span class="pill warn">marginal</span></td><td>T2 strongly</td></tr>
+<tr><td><a href="#highsec">Highsec relic/data</a></td><td>1&ndash;2h <span class="timing">(flying between systems)</span></td><td class="num">~10&ndash;30M</td><td>free</td><td><span class="pill ready">yes</span></td><td>T1</td><td><span class="pill ready">very low</span></td></tr>
+<tr><td><a href="#lowsec">Lowsec relic/data</a></td><td>1&ndash;2h <span class="timing">(flying between systems)</span></td><td class="num">~50&ndash;100M</td><td>free</td><td><span class="pill ready">yes</span></td><td>T1</td><td><span class="pill warn">moderate</span></td></tr>
+<tr><td><a href="#wormhole">C1&ndash;C3 wormhole relic</a></td><td>2&ndash;3h <span class="timing">(scanning chain in/out)</span></td><td class="num">~100&ndash;200M</td><td>free</td><td><span class="pill ready">yes</span></td><td>T2</td><td><span class="pill warn">moderate</span></td></tr>
+<tr><td><a href="#filament">Nullsec via filament</a></td><td>2.5&ndash;4h <span class="timing">(scanning a chain home)</span></td><td class="num">~100&ndash;250M</td><td>~65&ndash;70k ISK</td><td><span class="pill warn">marginal</span></td><td>T2</td><td><span class="pill warn">moderate</span></td></tr>
+<tr><td><a href="#gates">Nullsec via gates</a></td><td>2&ndash;4h <span class="timing">(getting there alive)</span></td><td class="num">~100&ndash;250M</td><td>free</td><td><span class="pill no">not recommended</span></td><td>T2</td><td><span class="pill no">high</span></td></tr>
+<tr><td><a href="#ghost">Ghost sites</a></td><td>opportunistic</td><td class="num">100M+/site</td><td>free</td><td><span class="pill warn">marginal</span></td><td>T2 strongly</td><td><span class="pill no">high</span></td></tr>
 </tbody>
 </table></div>
 <p class="note">Soloable rates the mechanics, not the wisdom of it &mdash; a solo filament run is <i>possible</i> but the whole safety model in that section assumes a second person on local/d-scan while the other hacks.</p>
@@ -172,17 +172,20 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 
 <section id="highsec">
 <h2>Highsec relic/data</h2>
-<p class="note">Astero or any T1 explo frigate, scan and hack in CONCORD space. Lowest risk, lowest pay &mdash; the filler content between everything else. No entry cost, no real threat beyond a rare gank.</p>
+<p class="note">Astero or any T1 explo frigate, scan and hack in CONCORD space. Lowest risk, lowest pay &mdash; the filler content between everything else.</p>
+<p class="note"><b>Risk:</b> <span class="pill ready">very low</span> &mdash; CONCORD responds to any aggression. <b>Threats:</b> highsec gankers in cheap alpha-strike ships targeting a fit that looks expensive on d-scan; the only real defence is not flying anything ostentatious and not sitting still too long in a system that's clearly being watched.</p>
 </section>
 
 <section id="lowsec">
 <h2>Lowsec relic/data</h2>
 <p class="note">Same mechanics as highsec, better loot, real risk from gate camps and roaming frigates. A covert cloak (owned, see <a href="fleet.html" style="color:var(--rust)">Fleet</a>) is the main tool here &mdash; warp cloaked past camps rather than testing them.</p>
+<p class="note"><b>Risk:</b> <span class="pill warn">moderate</span> &mdash; no CONCORD, so anyone can shoot you outright. <b>Threats:</b> gate camps on the pipe in and out, dedicated explorer-hunters running combat scanning probes to find you mid-hack, and fast tackle frigates that can catch a cloaky ship the instant it decloaks to hack a can.</p>
 </section>
 
 <section id="wormhole">
 <h2>C1&ndash;C3 wormhole relic</h2>
 <p class="note">The same pirate-faction relic sites as null, just less competition &mdash; nobody's usually been through ahead of you. No local chat cuts both ways: no free warning, but also no easy way for a hunter to know you're there. Lower volume than null, comparable or better per-site value.</p>
+<p class="note"><b>Risk:</b> <span class="pill warn">moderate</span> &mdash; genuinely unpredictable since there's zero intel channel. <b>Threats:</b> a cloaky hunter already living in the hole when you arrive, a fresh K162 opening mid-session that you never scanned, and the hole itself collapsing or going critical-mass while you're deep inside with no other way out. Also: this session's own Cheetah loss was in this exact bucket, from a Sleeper Covert Research site rather than another player.</p>
 </section>
 
 <section id="gates">
@@ -190,6 +193,7 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <div class="callout">
 <h3>Don't</h3>
 <p>The lowsec&ndash;null border gates are where bubble camps live. Bubbles can't be deployed in lowsec, so the null side of that gate is prime hunting ground for exactly the ship doing relic runs. Filament or a wormhole connection both skip this entirely &mdash; there's no upside to gating in that either of the other two doesn't already cover.</p>
+<p><b>Risk:</b> <span class="pill no">high</span> &mdash; this is the single most dangerous entry method on this page. <b>Threats:</b> an interdiction bubble locking you in place the instant you land, a full gang already staged and waiting (this is the chokepoint everyone entering the region funnels through, so it's the easiest camp in the game to run), and no CONCORD or local warning of any kind once you're on the null side.</p>
 </div>
 </section>
 
@@ -198,12 +202,14 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <div class="callout">
 <h3>High value, one real trap</h3>
 <p>Genuinely good loot, and the reason a Cheetah was lost this session in J134800. The cans in Covert Research sites detonate for heavy explosive damage on a failed hack &mdash; that's an environmental trap, not an NPC, and no tank fixes it. Separately, most ghost sites carry a hidden timer that spawns a real rat wave after a while, which <i>is</i> fightable. Run these fit for combat, hack conservatively, and leave the moment the timer shows.</p>
+<p><b>Risk:</b> <span class="pill no">high</span>, specifically for an unfit hacking ship. <b>Threats:</b> the can detonation itself (survivable in a tanked hull, an instant kill in anything paper-thin like an Astero or Cheetah), the timed rat wave landing on top of you mid-hack, and &mdash; same as any wormhole content &mdash; whatever else is living in that hole finding you while you're heads-down in a hacking window.</p>
 </div>
 </section>
 
 <section id="filament">
 <h2>Nullsec via filament &mdash; full run</h2>
 <p class="note">The deep dive. Everything below assumes a 2&ndash;4 person crew, no combat fits, one Astero-or-equivalent per person.</p>
+<p class="note"><b>Risk:</b> <span class="pill warn">moderate</span> &mdash; lower than gating in, since bubble camps and staged gangs never enter the equation, but you're landing in an unknown system with no idea what's already there. <b>Threats:</b> whoever holds the system you land in reacting to local; combat probes appearing on d-scan mid-hack, meaning a hunter has already found your signature; and getting genuinely stuck if the scan for an exit wormhole comes up dry and the hole's own residents start converging.</p>
 
 <h3 style="border:none;padding:0;margin-top:4px;">What everyone brings</h3>
 <div class="pair">
