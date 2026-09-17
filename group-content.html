@@ -139,59 +139,124 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <header>
 <div class="eyebrow">Group Ops &middot; Stinglock &middot; Miko &middot; Chezz &middot; Cody</div>
 <h1>Group Ops</h1>
-<p class="standfirst">What the four of us can run together, by party size. Brief on purpose &mdash; full mechanics for the filament run live on <a href="exploration.html" style="color:var(--rust)">Exploration</a>.</p>
+<p class="standfirst">Every kind of group content the crew can run, missions through C4 wormholes, with party size, cost to get in, time per session, ISK/hr and risk for each. Brief on purpose &mdash; full mechanics for the filament run live on <a href="exploration.html" style="color:var(--rust)">Exploration</a>.</p>
 </header>
 
 <section>
 <h2>By party size</h2>
 <div class="scroll"><table>
-<thead><tr><th>Content</th><th>Size</th><th>Roles &amp; ships</th><th>Ready now?</th></tr></thead>
+<thead><tr><th>Content</th><th>Size</th><th>Cost to enter</th><th>Time</th><th class="num">ISK/hr each</th><th>Risk</th><th>Ready now?</th></tr></thead>
 <tbody>
 <tr>
 <td><a href="#missions" style="color:var(--rust);text-decoration:none;">Highsec missions</a></td>
-<td>2</td>
-<td>Any pair, own ships &mdash; no shared hulls needed</td>
+<td>2&ndash;4</td>
+<td>free <span style="color:var(--ink-3);font-size:11.5px;">(standing, per pilot)</span></td>
+<td>15&ndash;30min/mission</td>
+<td class="num">~15&ndash;110M</td>
+<td><span class="pill ready">very low</span></td>
 <td><span class="pill ready">yes</span></td>
+</tr>
+<tr>
+<td><a href="#fw" style="color:var(--rust);text-decoration:none;">Faction Warfare</a></td>
+<td>1&ndash;4</td>
+<td>free <span style="color:var(--ink-3);font-size:11.5px;">(militia enlistment)</span></td>
+<td>~15&ndash;20min/plex</td>
+<td class="num">~20&ndash;50M</td>
+<td><span class="pill no">high</span></td>
+<td><span class="pill warn">unused hull</span></td>
+</tr>
+<tr>
+<td><a href="#incursions" style="color:var(--rust);text-decoration:none;">Incursions</a></td>
+<td>1+ <span style="color:var(--ink-3);font-size:11px;">(public fleet)</span></td>
+<td>free <span style="color:var(--ink-3);font-size:11.5px;">(battleship + comms)</span></td>
+<td>10&ndash;20min/site</td>
+<td class="num">~80&ndash;150M</td>
+<td><span class="pill ready">very low</span></td>
+<td><span class="pill ready">yes</span></td>
+</tr>
+<tr>
+<td><a href="#gas" style="color:var(--rust);text-decoration:none;">Gas harvesting (WH)</a></td>
+<td>1+ <span style="color:var(--ink-3);font-size:11px;">(rides along with explorers)</span></td>
+<td>free <span style="color:var(--ink-3);font-size:11.5px;">(Venture, cheap to replace)</span></td>
+<td>20&ndash;40min/site</td>
+<td class="num">~30&ndash;80M</td>
+<td><span class="pill warn">moderate</span></td>
+<td><span class="pill warn">needs a pilot</span></td>
 </tr>
 <tr>
 <td><a href="#filament" style="color:var(--rust);text-decoration:none;">Nullsec relic, filament</a></td>
 <td>2&ndash;4</td>
-<td>Everyone in their own covert ops frigate</td>
+<td>~65&ndash;70k ISK <span style="color:var(--ink-3);font-size:11.5px;">(one filament, whole group)</span></td>
+<td>2.5&ndash;4h/session</td>
+<td class="num">~100&ndash;250M</td>
+<td><span class="pill warn">moderate</span></td>
 <td><span class="pill warn">partial</span></td>
 </tr>
 <tr>
 <td><a href="#sleeper" style="color:var(--rust);text-decoration:none;">C1&ndash;C3 Sleeper sites</a></td>
 <td>2&ndash;3</td>
-<td>1 shooter (Loki), 1 salvager (Noctis), 1 watcher</td>
+<td>free <span style="color:var(--ink-3);font-size:11.5px;">(hulls already owned)</span></td>
+<td>2&ndash;3h/session</td>
+<td class="num">~100&ndash;150M</td>
+<td><span class="pill warn">moderate&ndash;high</span></td>
 <td><span class="pill warn">Stinglock-only</span></td>
 </tr>
 <tr>
 <td><a href="#c4" style="color:var(--rust);text-decoration:none;">C4+ Sleeper sites</a></td>
 <td>3&ndash;4</td>
-<td>2+ combat ships, dedicated salvage, dedicated watch</td>
+<td>free</td>
+<td>3&ndash;5h/session</td>
+<td class="num">~200&ndash;400M</td>
+<td><span class="pill no">high</span></td>
 <td><span class="pill no">not yet</span></td>
 </tr>
 </tbody>
 </table></div>
+<p class="note">ISK/hr figures are community-shape estimates, not measured logs &mdash; same caveat as <a href="exploration.html" style="color:var(--rust)">Exploration</a>. Use them to compare rows, not as a promise.</p>
 </section>
 
 <section id="missions">
-<h2>Highsec missions &mdash; 2</h2>
+<h2>Highsec missions &mdash; 2 to 4</h2>
 <p class="note">The one that already works with zero coordination. Anyone pairs with anyone &mdash; Stinglock's Hurricane/Maelstrom, Miko's Raven/Drake/Caracal, or whatever Chezz and Cody bring. Fleet up so bounties share, no shared hulls or skill overlap required.</p>
+<p class="note"><b>Cost to enter:</b> free, but L3+ agents need standing each pilot builds individually &mdash; nobody can piggyback on someone else's rep. <b>Time:</b> 15&ndash;30 minutes per mission depending on level. <b>ISK/hr:</b> roughly ~15-30M/hr at L1&ndash;L2 per pilot, climbing to ~60-110M/hr at L4 in a proper battleship. <b>Risk:</b> <span class="pill ready">very low</span> &mdash; CONCORD-protected, the only real threat is a highsec ganker targeting an expensive-looking fit sitting still too long.</p>
+</section>
+
+<section id="fw">
+<h2>Faction Warfare &mdash; 1 to 4</h2>
+<p class="note">Plexing for LP and territory in the Minmatar/Amarr (or relevant) warzone. The Jaguar is already owned and built for exactly this, but it's sat idle all session &mdash; nobody's actually run FW content yet.</p>
+<p class="note"><b>Cost to enter:</b> free, just militia enlistment and a modest standing requirement. <b>Time:</b> a plex typically runs 15&ndash;20 minutes uncontested, longer if the opposing militia shows up and it turns into a fight. <b>ISK/hr:</b> LP-driven rather than bounty-driven, roughly ~20-50M/hr equivalent once LP is turned into ISK, but swings hard with system tier and market LP-store prices. <b>Risk:</b> <span class="pill no">high</span> &mdash; FW space is lowsec by design, so it's real PvP against the opposing militia plus neutral gate campers, not a safe grind.</p>
+</section>
+
+<section id="incursions">
+<h2>Incursions &mdash; 1 or more, public fleet</h2>
+<p class="note">Sansha incursion fleets are community-run, not something the four of us need to organise ourselves &mdash; anyone can join independently in a properly fit battleship. The Maelstrom and Typhoon are already the right hull class.</p>
+<p class="note"><b>Cost to enter:</b> free beyond owning a suitable battleship and being in the fleet's comms/channel. <b>Time:</b> individual sites clear in 10&ndash;20 minutes once a fleet's established and moving. <b>ISK/hr:</b> ~80-150M/hr per pilot, among the best steady highsec/lowsec ISK/hr available. <b>Risk:</b> <span class="pill ready">very low</span> &mdash; large organised fleets with logistics support, the safest high-payout content on this page.</p>
 </section>
 
 <section id="filament">
 <h2>Nullsec relic via filament &mdash; 2 to 4</h2>
 <p class="note">Full run-through on <a href="exploration.html" style="color:var(--rust)">Exploration</a>. One Noise-5 filament (~65-70k ISK) carries the whole group in on one activation.</p>
+<p class="note"><b>Cost to enter:</b> ~65-70k ISK total for the group, one filament. <b>Time:</b> 2.5&ndash;4 hours per session, most of it scanning. <b>ISK/hr:</b> ~100-250M/hr per pilot before travel/scanning overhead eats into it. <b>Risk:</b> <span class="pill warn">moderate</span> &mdash; no local-chat-equivalent warning, unknown system on arrival.</p>
 <div class="callout warn">
 <h3>Who can actually bring a ship</h3>
 <p><span class="who s">Stinglock</span> has the Astero and two Cheetahs, all covert-ops-cloak capable, ready today. <span class="who m">Miko</span> owns an Astero and Probe too, but both are currently <b>unflyable</b> &mdash; his Gallente Frigate skill is at 0. <span class="who c">Chezz</span> and <span class="who k">Cody</span> have no confirmed covert ops frigate on file. Realistically this is a 1-2 person run until someone else gets a cloaky hull sorted.</p>
 </div>
 </section>
 
+<section id="gas">
+<h2>Gas harvesting &mdash; 1+, rides along with the explorers</h2>
+<p class="note">The actual fit for a mining-focused pilot. Gas sites turn up in the same C1&ndash;C3 holes the group is already scanning into for relic sites &mdash; a Venture (or Prospect once trained) harvests them independently while the explorers hack cans on the same visible, no combat skills or Minmatar hulls needed.</p>
+<p class="note"><b>Cost to enter:</b> free &mdash; a Venture is cheap and disposable, and one's already owned in the fleet. <b>Time:</b> a gas site depletes in roughly 20&ndash;40 minutes depending on how many are harvesting it. <b>ISK/hr:</b> ~30-80M/hr solo, swings with which gas type and current market price. <b>Risk:</b> <span class="pill warn">moderate</span> &mdash; same wormhole hazards as everything else in this space (no local, unknown residents), but the Venture itself is cheap to lose and carries a built-in warp core strength bonus.</p>
+<div class="callout">
+<h3>Cody's actual role</h3>
+<p>This is the one item on the whole page that doesn't need a single Minmatar skill or a shared hull &mdash; just a Venture and a willingness to sit in the same hole the explorers are working. Good starting slot once he's got an export on file.</p>
+</div>
+</section>
+
 <section id="sleeper">
 <h2>C1&ndash;C3 Sleeper sites &mdash; 2 to 3</h2>
 <p class="note">Loki shoots (<span class="who s">Stinglock</span>), Noctis salvages (<span class="who s">Stinglock</span>), a cloaky frigate watches local/d-scan. With only one pilot holding Minmatar ship skills, this currently means one person rotating between roles across trips rather than three people running it live &mdash; or a second/third person tagging along in an unrelated ship just to watch, which still adds real value per the safety notes on Exploration.</p>
+<p class="note"><b>Cost to enter:</b> free &mdash; the Loki, Cyclone and Noctis are already owned and paid for. <b>Time:</b> a full session (scan, clear, salvage, scan a chain home) runs 2&ndash;3 hours. <b>ISK/hr:</b> ~100-150M/hr net per pilot once travel and hole control are deducted from the raw per-site payout. <b>Risk:</b> <span class="pill warn">moderate&ndash;high</span> &mdash; no local chat, and the Loki's slow align time means a mistake is expensive if a hunter lands on grid.</p>
 </section>
 
 <section id="c4">
@@ -199,11 +264,12 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <div class="callout">
 <h3>Aspirational, not current</h3>
 <p>From C4 up there are no unguarded faction sites left &mdash; everything is Sleeper-guarded and harder, which is genuinely group content. It needs at least two real combat ships plus salvage and watch, and right now the crew fields exactly one combat-capable Minmatar pilot. Revisit once a second person has a hull and the skills to fight alongside the Loki.</p>
+<p><b>Cost to enter:</b> free, same hulls as C1&ndash;C3, but the sites want more dps/tank to clear reliably. <b>Time:</b> longer sessions, 3&ndash;5 hours, deeper wormhole chains to reach and leave. <b>ISK/hr:</b> ~200-400M/hr per pilot &mdash; blue loot value climbs sharply past C3. <b>Risk:</b> <span class="pill no">high</span> &mdash; harder Sleeper spawns, deeper in hostile space, no unguarded fallback content if a site goes badly.</p>
 </div>
 </section>
 
 <footer>
-<b>The honest read.</b> Everything above is mechanically available to a 4-person group; what's actually blocking it is that Stinglock is the only pilot with Minmatar ship skills and wormhole-relevant hulls trained right now. Miko's missile/shield background would transfer well if he ever trained into Minmatar cruisers. Chezz and Cody need current exports before their fit into any of this is more than a guess.
+<b>The honest read.</b> Highsec missions and incursions are ready today for anyone, no coordination required. Faction Warfare is mechanically available but nobody's actually flown it &mdash; the Jaguar's sat idle all session. The wormhole/nullsec content is mechanically available to a 4-person group, but what's actually blocking it is that Stinglock is the only pilot with Minmatar ship skills and wormhole-relevant hulls trained right now. Miko's missile/shield background would transfer well if he ever trained into Minmatar cruisers. Chezz and Cody need current exports before their fit into any of this is more than a guess.
 </footer>
 
 </div>
