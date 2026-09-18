@@ -50,13 +50,36 @@
 body{ background:var(--ground); color:var(--ink); font-family:'Archivo',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
 .wrap{ max-width:1020px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
 h1,h2,h3,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
-nav.pagenav{ display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em; padding-bottom:14px; border-bottom:1px solid var(--rule); }
-nav.pagenav a{ color:var(--ink-2); text-decoration:none; padding:5px 9px; border-radius:3px; }
-nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
-nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
-nav.pagenav a:focus-visible{ outline:2px solid var(--rust); outline-offset:2px; }
-nav.pagenav .sep{ color:var(--rule); }
-nav.pagenav .navgroup{ color:var(--ink-3); font-size:9.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:5px 3px 5px 4px; }
+nav.topnav{ position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 14px; margin:0 0 30px; padding:10px 2px 14px; background:var(--ground); border-bottom:1px solid var(--rule); font-family:'IBM Plex Mono',monospace; }
+.topnav-brand{ color:var(--ink); text-decoration:none; font-weight:600; font-size:12.5px; letter-spacing:.03em; padding:8px 9px; border-radius:3px; white-space:nowrap; }
+.topnav-brand:hover{ background:var(--surface-2); }
+.topnav-brand.active{ color:var(--rust); }
+.topnav-toggle{ display:none; margin-left:auto; }
+.topnav-menu{ display:flex; align-items:center; gap:2px; flex-wrap:wrap; }
+.navdrop{ position:relative; }
+.navdrop-btn{ font-family:inherit; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color:var(--ink-2); background:none; border:none; cursor:pointer; padding:9px 12px; border-radius:3px; display:flex; align-items:center; gap:6px; }
+.navdrop-btn::after{ content:'\25BE'; font-size:8px; opacity:.65; }
+.navdrop-btn:hover{ color:var(--ink); background:var(--surface-2); }
+.navdrop-btn[aria-expanded="true"]{ color:var(--ink); background:var(--surface-2); }
+.navdrop.current > .navdrop-btn{ color:var(--rust); }
+.navdrop-panel{ position:absolute; top:calc(100% + 6px); left:0; min-width:180px; background:var(--surface); border:1px solid var(--rule-soft); border-radius:4px; box-shadow:var(--shadow); padding:7px; display:none; flex-direction:column; gap:1px; z-index:60; }
+.navdrop-panel.open{ display:flex; }
+.navdrop-panel a{ color:var(--ink-2); text-decoration:none; padding:7px 10px; border-radius:3px; font-size:12px; letter-spacing:.01em; }
+.navdrop-panel a:hover{ color:var(--ink); background:var(--surface-2); }
+.navdrop-panel a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
+.navdrop-panel a:focus-visible{ outline:2px solid var(--rust); outline-offset:1px; }
+.navdrop-sub{ display:flex; flex-direction:column; gap:1px; padding-bottom:5px; margin-bottom:5px; border-bottom:1px solid var(--rule-soft); }
+.navdrop-sub:last-of-type{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.navdrop-sub-label{ font-size:9px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); font-weight:600; padding:5px 10px 4px; }
+.navdrop-flat{ margin-top:5px; padding-top:7px; border-top:1px solid var(--rule-soft); }
+@media (max-width:640px){
+.topnav-toggle{ display:flex; flex-direction:column; gap:4px; background:none; border:1px solid var(--rule); border-radius:3px; padding:9px; cursor:pointer; }
+.topnav-toggle span{ width:16px; height:2px; background:var(--ink-2); display:block; }
+.topnav-menu{ display:none; width:100%; flex-direction:column; align-items:stretch; order:3; padding-top:8px; }
+.topnav-menu.open{ display:flex; }
+.navdrop-panel{ position:static; box-shadow:none; border:none; background:var(--surface-2); margin:2px 0 4px 8px; }
+.navdrop-panel.open{ display:flex; }
+}
 header{ display:flex; flex-direction:column; gap:10px; }
 .eyebrow{ font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--rust); display:flex; align-items:center; gap:9px; }
 .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
@@ -131,7 +154,38 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </script>
 
 <div class="wrap">
-<nav class="pagenav"><a href="index.html" class="active">Command Deck</a><span class="sep">/</span><span class="navgroup">Personal</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="content.html">Solo Ops</a><span class="sep">/</span><span class="navgroup">Corp</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="mining.html">Mining</a><span class="sep">/</span><a href="group-content.html">Group Ops</a><span class="sep">/</span><a href="archive.html">Archive</a></nav>
+<nav class="topnav" id="topnav">
+<a href="index.html" class="topnav-brand">Command Deck</a>
+<button class="topnav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+<div class="topnav-menu" id="navMenu">
+<div class="navdrop">
+<button class="navdrop-btn" aria-haspopup="true" aria-expanded="false">Personal</button>
+<div class="navdrop-panel">
+<a href="fleet.html">Fleet</a>
+<a href="skills.html">Skills</a>
+<a href="content.html">Solo Ops</a>
+</div>
+</div>
+<div class="navdrop">
+<button class="navdrop-btn" aria-haspopup="true" aria-expanded="false">Corp</button>
+<div class="navdrop-panel">
+<div class="navdrop-sub">
+<span class="navdrop-sub-label">Pilots</span>
+<a href="pilots.html">All Pilots</a>
+<a href="miko.html">Miko</a>
+<a href="mining.html">Cody &middot; Mining</a>
+<a href="chezz.html">Chezz</a>
+</div>
+<div class="navdrop-sub">
+<span class="navdrop-sub-label">Group Ops</span>
+<a href="group-content.html">Overview</a>
+<a href="exploration.html">Exploration</a>
+</div>
+<a href="archive.html" class="navdrop-flat">Archive</a>
+</div>
+</div>
+</div>
+</nav>
 
 <header>
 <div class="eyebrow">Stinglock &middot; Coreun &middot; Miko &middot; Cody &middot; Wormholes &amp; Beyond</div>
@@ -336,6 +390,56 @@ Rebuilt 17 Sep 2026 against live skill, queue, and asset exports plus current ES
     makeSortable(t);
     makeFilterable(t);
   });
+})();
+</script>
+<script>
+(function(){
+var topnav = document.getElementById('topnav');
+if(!topnav) return;
+var path = location.pathname.split('/').pop() || 'index.html';
+var links = topnav.querySelectorAll('a[href]');
+for(var i=0;i<links.length;i++){
+if(links[i].getAttribute('href') === path){
+links[i].classList.add('active');
+var drop = links[i].closest('.navdrop');
+if(drop) drop.classList.add('current');
+}
+}
+var toggle = document.getElementById('navToggle');
+var menu = document.getElementById('navMenu');
+if(toggle && menu){
+toggle.addEventListener('click', function(){
+var open = menu.classList.toggle('open');
+toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+}
+var btns = topnav.querySelectorAll('.navdrop-btn');
+for(var j=0;j<btns.length;j++){
+btns[j].addEventListener('click', function(e){
+e.stopPropagation();
+var panel = this.nextElementSibling;
+var isOpen = panel.classList.contains('open');
+var panels = topnav.querySelectorAll('.navdrop-panel.open');
+for(var k=0;k<panels.length;k++){ panels[k].classList.remove('open'); }
+var allBtns = topnav.querySelectorAll('.navdrop-btn');
+for(var m=0;m<allBtns.length;m++){ allBtns[m].setAttribute('aria-expanded','false'); }
+if(!isOpen){ panel.classList.add('open'); this.setAttribute('aria-expanded','true'); }
+});
+}
+document.addEventListener('click', function(e){
+if(!topnav.contains(e.target)){
+var panels = topnav.querySelectorAll('.navdrop-panel.open');
+for(var k=0;k<panels.length;k++){ panels[k].classList.remove('open'); }
+var allBtns = topnav.querySelectorAll('.navdrop-btn');
+for(var m=0;m<allBtns.length;m++){ allBtns[m].setAttribute('aria-expanded','false'); }
+}
+});
+document.addEventListener('keydown', function(e){
+if(e.key === 'Escape'){
+var panels = topnav.querySelectorAll('.navdrop-panel.open');
+for(var k=0;k<panels.length;k++){ panels[k].classList.remove('open'); }
+}
+});
 })();
 </script>
 </body>
