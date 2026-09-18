@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Character sheets for all four pilots in the operation.">
+<meta name="description" content="Mining guide tailored to Cody: what to mine where, ship fits, and what to train next.">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Pilots &middot; Roster</title>
+<title>Mining &middot; Cody</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
@@ -14,9 +14,6 @@
 --ink:#221C17; --ink-2:#5F544B; --ink-3:#8B7F74;
 --rust:#B4451F; --rust-soft:rgba(180,69,31,0.10);
 --sting:#2E6B7A; --sting-soft:rgba(46,107,122,0.11);
---chezz:#6B4A8A; --chezz-soft:rgba(107,74,138,0.11);
---miko:#9A7B2E; --miko-soft:rgba(154,123,46,0.12);
---cody:#4A7A6B; --cody-soft:rgba(74,122,107,0.11);
 --ready:#3F6B49; --ready-bg:rgba(63,107,73,0.11);
 --warn:#9A6B2E; --warn-bg:rgba(154,107,46,0.12);
 --shadow:0 1px 2px rgba(34,28,23,0.06);
@@ -28,9 +25,6 @@
 --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
 --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
 --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
---chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
---miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
---cody:#7FCBB3; --cody-soft:rgba(127,203,179,0.13);
 --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
 --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
 --shadow:0 1px 2px rgba(0,0,0,0.4);
@@ -42,16 +36,13 @@
 --ink:#EDE5DB; --ink-2:#A99B8D; --ink-3:#7A6C5F;
 --rust:#E4703F; --rust-soft:rgba(228,112,63,0.13);
 --sting:#5FB3C4; --sting-soft:rgba(95,179,196,0.13);
---chezz:#B18ED4; --chezz-soft:rgba(177,142,212,0.13);
---miko:#D4B15A; --miko-soft:rgba(212,177,90,0.14);
---cody:#7FCBB3; --cody-soft:rgba(127,203,179,0.13);
 --ready:#7FB183; --ready-bg:rgba(127,177,131,0.13);
 --warn:#D4A15A; --warn-bg:rgba(212,161,90,0.13);
 --shadow:0 1px 2px rgba(0,0,0,0.4);
 }
 *{ box-sizing:border-box; }
 body{ background:var(--ground); color:var(--ink); font-family:'Archivo',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
-.wrap{ max-width:1020px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
+.wrap{ max-width:1100px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
 h1,h2,h3,h4,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
 .mono{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
 nav.pagenav{ display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em; padding-bottom:14px; border-bottom:1px solid var(--rule); }
@@ -66,48 +57,53 @@ header{ display:flex; flex-direction:column; gap:10px; }
 .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
 h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
 .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
-section{ display:flex; flex-direction:column; gap:18px; }
+section{ display:flex; flex-direction:column; gap:14px; }
 h2{ margin:0; font-size:13px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); padding-bottom:9px; border-bottom:1px solid var(--rule); }
-.pair{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
-.card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
-.card-head{ padding:16px 18px 14px; border-bottom:1px solid var(--rule-soft); display:flex; flex-direction:column; gap:3px; }
-.who{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
-.who.s{ color:var(--sting); } .who.c{ color:var(--chezz); } .who.m{ color:var(--miko); } .who.k{ color:var(--cody); }
-.card-head h3{ margin:0; font-size:22px; font-weight:700; letter-spacing:-.01em; }
-.card-head .sub{ font-size:13px; color:var(--ink-2); }
-.card-body{ padding:16px 18px; display:flex; flex-direction:column; gap:14px; }
-.priceline{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:9px 11px; background:var(--surface-2); border-radius:3px; }
-.priceline .lbl{ font-size:12px; color:var(--ink-2); }
-.priceline .val{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; font-size:14.5px; font-weight:600; white-space:nowrap; }
-.priceline.total .val{ color:var(--rust); font-size:16px; }
-h4{ margin:0; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
 .note{ font-size:13px; color:var(--ink-2); margin:0; }
 .note b{ color:var(--ink); }
 .callout{ background:var(--surface); border:1px solid var(--rule-soft); border-left:3px solid var(--rust); border-radius:3px; padding:15px 18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:5px; }
 .callout h3{ margin:0; font-size:15.5px; font-weight:600; }
 .callout p{ margin:0; font-size:14px; color:var(--ink-2); max-width:74ch; }
-.callout.warn{ border-left-color:var(--warn); }
+.callout.sting{ border-left-color:var(--sting); }
+.scroll{ overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:820px; }
+thead th{ text-align:left; font-family:'Chakra Petch',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); padding:10px 14px; border-bottom:1px solid var(--rule); white-space:nowrap; }
+tbody td{ padding:10px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top; }
+tbody tr:last-child td{ border-bottom:none; }
+td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap; }
+tbody tr a{ color:var(--rust); text-decoration:none; }
+tbody tr a:hover{ text-decoration:underline; }
+.shipname{ font-weight:600; display:block; }
+.shipsub{ font-size:11px; color:var(--ink-3); display:block; margin-top:1px; }
 .pill{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em; text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap; font-weight:600; }
 .pill.ready{ color:var(--ready); background:var(--ready-bg); }
 .pill.warn{ color:var(--warn); background:var(--warn-bg); }
 .pill.no{ color:var(--rust); background:var(--rust-soft); }
-.bar-track{ height:6px; border-radius:3px; background:var(--surface-2); overflow:hidden; }
-.bar-fill{ height:100%; background:var(--sting); border-radius:3px; }
-.bar-fill.c{ background:var(--chezz); }
-.bar-fill.m{ background:var(--miko); }
-.barrow{ display:flex; flex-direction:column; gap:4px; }
-.barrow .lbl{ display:flex; justify-content:space-between; font-size:12px; color:var(--ink-2); }
-.barrow .lbl b{ color:var(--ink); font-family:'IBM Plex Mono',monospace; font-weight:600; }
+.pair{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+.trio{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+.card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
+.card-head{ padding:14px 16px 10px; border-bottom:1px solid var(--rule-soft); }
+.card-head h3{ margin:0; font-size:16px; font-weight:700; }
+.card-body{ padding:14px 16px; display:flex; flex-direction:column; gap:8px; }
+ul.fit{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+ul.fit li{ font-size:13.5px; display:flex; gap:8px; align-items:baseline; }
+ul.fit li .n{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); min-width:16px; }
+ul.fit li em{ font-style:normal; color:var(--ink-3); font-size:12px; }
+.phase{ display:flex; flex-direction:column; gap:14px; }
+.phase-row{ display:grid; grid-template-columns:44px 1fr; gap:16px; align-items:start; background:var(--surface); border:1px solid var(--rule-soft); border-radius:3px; box-shadow:var(--shadow); padding:16px 18px; }
+.phase-row .step{ font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.06em; color:var(--rust); background:var(--rust-soft); border-radius:2px; padding:5px 0; text-align:center; line-height:1; }
+.phase-row .body{ display:flex; flex-direction:column; gap:7px; }
+.phase-row h3{ margin:0; font-size:16px; font-weight:700; letter-spacing:-.005em; }
+.phase-row p{ margin:0; font-size:13.5px; color:var(--ink-2); max-width:72ch; }
+.phase-row p b{ color:var(--ink); }
+.phase-row ul{ margin:0; padding-left:18px; display:flex; flex-direction:column; gap:5px; }
+.phase-row li{ font-size:13.5px; color:var(--ink-2); }
+.phase-row li b{ color:var(--ink); }
+.timing{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:.03em; }
 .list-plain{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:0; }
 .list-plain li{ padding:8px 0; border-bottom:1px solid var(--rule-soft); font-size:13.5px; display:flex; gap:10px; align-items:baseline; }
 .list-plain li:last-child{ border-bottom:none; }
 .list-plain .idx{ font-family:'IBM Plex Mono',monospace; color:var(--ink-3); font-size:11px; min-width:20px; }
-details.ships{ background:var(--surface-2); border:1px solid var(--rule-soft); border-radius:3px; padding:2px 0; }
-details.ships summary{ cursor:pointer; padding:9px 12px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-2); list-style:none; }
-details.ships summary::-webkit-details-marker{ display:none; }
-details.ships summary::before{ content:'\25B8'; display:inline-block; margin-right:7px; color:var(--ink-3); transition:transform .12s; }
-details.ships[open] summary::before{ transform:rotate(90deg); }
-details.ships ul{ margin:0; padding:4px 12px 12px 30px; display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--ink); }
 footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:16px; max-width:78ch; }
 .gate{ position:fixed; inset:0; z-index:999; background:var(--ground); display:flex; align-items:center; justify-content:center; padding:22px; }
 .gate-card{ background:var(--surface); border:1px solid var(--rule-soft); border-radius:4px; box-shadow:var(--shadow); padding:28px 26px; max-width:340px; width:100%; display:flex; flex-direction:column; gap:14px; }
@@ -120,6 +116,7 @@ footer{ font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--rule); 
 .gate-err{ font-size:12px; color:var(--rust); min-height:14px; }
 body.locked{ overflow:hidden; }
 body.locked .wrap{ display:none; }
+@media (max-width:560px){ .phase-row{ grid-template-columns:1fr; gap:10px; } .phase-row .step{ width:44px; } }
 thead th{ cursor:pointer; user-select:none; }
 thead th:hover{ color:var(--ink); }
 thead th .sort-arrow{ margin-left:5px; font-size:9px; color:var(--rust); }
@@ -160,144 +157,103 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </script>
 
 <div class="wrap">
-<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><span class="navgroup">Personal</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="content.html">Solo Ops</a><span class="sep">/</span><span class="navgroup">Corp</span><a href="pilots.html" class="active">Pilots</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="mining.html">Mining</a><span class="sep">/</span><a href="group-content.html">Group Ops</a><span class="sep">/</span><a href="archive.html">Archive</a></nav>
+<nav class="pagenav"><a href="index.html">Command Deck</a><span class="sep">/</span><span class="navgroup">Personal</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="content.html">Solo Ops</a><span class="sep">/</span><span class="navgroup">Corp</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="mining.html" class="active">Mining</a><span class="sep">/</span><a href="group-content.html">Group Ops</a><span class="sep">/</span><a href="archive.html">Archive</a></nav>
 
 <header>
-<div class="eyebrow">Roster &middot; Four Pilots</div>
-<h1>Pilots</h1>
-<p class="standfirst">Character sheets for everyone in the operation. Stinglock and Miko have live skill/queue exports behind them; Coreun's data is the last confirmed snapshot; Cody's a mining specialist with skills confirmed but no asset list yet.</p>
+<div class="eyebrow">Mining &middot; Keplar Vanderlaan</div>
+<h1>Mining</h1>
+<p class="standfirst">Where to mine, what it's worth, and what to fly &mdash; built around Cody's actual trained skills rather than a generic guide. Mining V and Reprocessing V are both already maxed, so the gaps below are all about access and survivability, not yield.</p>
 </header>
 
-<section>
-<div class="pair">
-<div class="card">
-<div class="card-head">
-<span class="who s">Pilot 1 &middot; the user</span>
-<h3>Stinglock Sigma</h3>
-<span class="sub">Minmatar &middot; Royal Australian Air Force &middot; Rens VI Moon 8 &middot; Omega</span>
-</div>
-<div class="card-body">
-<div class="priceline"><span class="lbl">Total SP</span><span class="val">17,976,569</span></div>
-<div class="priceline"><span class="lbl">Currently training</span><span class="val">HAM Spec V &middot; 79.8%</span></div>
-<div class="priceline total"><span class="lbl">Wallet</span><span class="val">893.55M ISK</span></div>
-<h4>Role</h4>
-<p class="note">Funds the operation. Pivoted this session from Hurricane-mission-runner into a HAM/Loki wormhole build &mdash; missile tree done, Loki flyable with 4 subsystems at IV. Full breakdown on <a href="skills.html" style="color:var(--rust)">Skills</a>, hangar on <a href="fleet.html" style="color:var(--rust)">Fleet</a>.</p>
-<details class="ships">
-<summary>Owned hulls (27 types, 42 ships)</summary>
-<ul>
-<li>Maelstrom &mdash; active ship, [B-03] Red Force</li>
-<li>Typhoon</li>
-<li>Loki &mdash; "Loki - Stinglock Sigma", flyable, 4 subsystems fitted</li>
-<li>Cyclone &mdash; [B-02] Flying Rock</li>
-<li>Hurricane &times;3</li>
-<li>Rapier &mdash; unflyable, Recon Ships untrained</li>
-<li>Stabber, Rupture</li>
-<li>Thrasher &times;3, Talwar &times;2</li>
-<li>Jaguar</li>
-<li>Cheetah &times;2</li>
-<li>Hound</li>
-<li>Astero &mdash; [F-03] Soleil, current nullsec explorer</li>
-<li>Slasher &times;3, Rifter &times;4, Condor, Punisher, Burst &times;2</li>
-<li>Probe &times;3, Magnate, Heron, Imicus</li>
-<li>Venture &times;2</li>
-<li>Noctis, Prowler, Mammoth</li>
-</ul>
-</details>
-</div>
+<div class="stats">
+<div class="stat"><span class="k">Total SP</span><span class="stat-num">2.32M</span><span class="sub">mining-concentrated</span></div>
+<div class="stat"><span class="k">Yield skills</span><span class="stat-num ready">maxed</span><span class="sub">Mining V, Reprocessing V</span></div>
+<div class="stat"><span class="k">Hull ceiling</span><span class="stat-num">Barge</span><span class="sub">Mining Barge I already trained</span></div>
+<div class="stat"><span class="k">Biggest gap</span><span class="stat-num warn">Mercoxit</span><span class="sub">Deep Core Mining untrained</span></div>
 </div>
 
-<div class="card">
-<div class="card-head">
-<span class="who m">Pilot 2</span>
-<h3>Miko' Kashada</h3>
-<span class="sub">Caldari-leaning generalist &middot; REDAM &middot; Omega</span>
-</div>
-<div class="card-body">
-<div class="priceline"><span class="lbl">Total SP</span><span class="val">14,673,064</span></div>
-<div class="priceline"><span class="lbl">Currently training</span><span class="val">Minmatar Frigate IV &middot; 2.7%</span></div>
-<h4>Ship skills</h4>
-<p class="note">Caldari Cruiser <b>V</b>, Caldari Battleship <b>IV</b>, Caldari Destroyer <b>IV</b>, Caldari Frigate <b>IV</b>, Caldari Battlecruiser <b>III</b>. <b>Gallente Frigate is L0</b> &mdash; the Astero, Atron, Incursus and Probe on his list are currently unflyable despite being owned. Amarr Frigate II covers the Magnate; Mining Frigate IV covers the Venture.</p>
-<h4>Weapons &amp; support</h4>
-<p class="note">Missile Launcher Operation <b>V</b>, Cruise Missiles <b>IV</b>, Heavy Missiles <b>IV</b>, Heavy Assault Missiles <b>IV</b>, Light Missiles <b>IV</b>, Rapid Launch <b>IV</b> &mdash; a genuine Raven/Caracal missile pilot. Gunnery <b>V</b> and Drones <b>V</b> both maxed as support skills, but no real turret specialization (Small Hybrid Turret only III). Shield Management <b>V</b>, Shield Operation <b>V</b> &mdash; shield-tanked, matching Stinglock's lean.</p>
-<h4>Queue signal</h4>
-<p class="note">Training toward Minmatar Frigate V, then Hacking V, Cruise Missiles V, Advanced Weapon Upgrades IV, Target Painting III, Light Drone Operation V. The Minmatar Frigate push is odd against a Caldari-heavy hangar with zero Minmatar hulls currently owned &mdash; worth asking what that's for.</p>
-<details class="ships">
-<summary>Owned hulls (17)</summary>
-<ul>
-<li>Astero <span class="pill no">unflyable &mdash; Gallente Frigate 0</span></li>
-<li>Atron <span class="pill no">unflyable &mdash; Gallente Frigate 0</span></li>
-<li>Burst</li>
-<li>Condor</li>
-<li>Cormorant</li>
-<li>Ibis</li>
-<li>Incursus <span class="pill no">unflyable &mdash; Gallente Frigate 0</span></li>
-<li>Magnate</li>
-<li>Merlin</li>
-<li>Caldari Navy Hookbill</li>
-<li>Caracal &times;2</li>
-<li>Venture</li>
-<li>Drake</li>
-<li>Raven &mdash; "Odin's Eye"</li>
-<li>Probe <span class="pill no">unflyable &mdash; Gallente Frigate 0</span></li>
-<li>Worm</li>
-<li>Wreathe</li>
-</ul>
-</details>
-</div>
-</div>
-</div>
+<section>
+<h2>Where to mine</h2>
+<div class="scroll"><table>
+<thead><tr><th>Location</th><th>What's there</th><th class="num">Value</th><th>Warning</th><th>Risk</th><th>Cody ready?</th></tr></thead>
+<tbody>
+<tr><td>Highsec belts</td><td>Veldspar, Scordite, Plagioclase</td><td class="num">low</td><td>CONCORD protected</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">yes</span></td></tr>
+<tr><td>Highsec ice</td><td>Ice products, fuel blocks</td><td class="num">steady</td><td>CONCORD protected</td><td><span class="pill ready">very low</span></td><td><span class="pill warn">Ice Harvesting II</span></td></tr>
+<tr><td>Wormhole gas (C1&ndash;C3)</td><td>Fullerite gas clouds</td><td class="num">~30&ndash;80M/hr</td><td>no local chat</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">yes</span></td></tr>
+<tr><td>Nullsec belts, filament</td><td>Arkonor, Bistot, Crokite</td><td class="num">high</td><td>local chat gives warning</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">yes</span></td></tr>
+<tr><td>Nullsec Mercoxit</td><td>Mercoxit &mdash; top-tier ore</td><td class="num">highest</td><td>needs a specialist crystal</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">Deep Core Mining 0</span></td></tr>
+<tr><td>Moon mining</td><td>Moon ore chunks</td><td class="num">high</td><td>needs a refinery structure</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">no structure owned</span></td></tr>
+</tbody>
+</table></div>
+<p class="note"><b>Arkonor, Bistot, Crokite and Mercoxit don't spawn in highsec at all.</b> That's the whole argument for tagging along on filament runs &mdash; not "null pays more for the same rocks," but access to ore types that simply aren't available anywhere the group currently operates.</p>
 </section>
 
-<section>
-<div class="pair">
-<div class="card">
-<div class="card-head">
-<span class="who c">Pilot 3 &middot; "Chezz"</span>
-<h3>Coreun</h3>
-<span class="sub">Gallente &middot; BPM &middot; Omega</span>
-</div>
-<div class="card-body">
-<div class="priceline"><span class="lbl">Total SP</span><span class="val">15,705,396</span></div>
-<div class="priceline"><span class="lbl">Wallet</span><span class="val">3,667,130</span></div>
-<h4>Ship &amp; drone skills</h4>
-<p class="note">All 8 Gallente ship skills trained, Battleship <b>V</b>. <b>Zero Minmatar ship skills</b> &mdash; none of Stinglock's hulls are usable by Coreun. Full drone tree V/IV across the board, but Heavy Drone Operation only <b>I</b> and Sentry Drone Interfacing untrained &mdash; medium drones (Hammerhead II) are the current ceiling.</p>
-<div class="barrow"><span class="lbl">Armor <b>8/14</b></span><div class="bar-track"><div class="bar-fill c" style="width:57%"></div></div></div>
-<div class="barrow"><span class="lbl">Gunnery <b>12/65</b></span><div class="bar-track"><div class="bar-fill c" style="width:18%"></div></div></div>
-<p class="note" style="margin-top:6px;"><b>Stale data</b> &mdash; no refreshed export this session. Get a current skill/queue export before planning around Coreun specifically.</p>
-</div>
-</div>
-
-<div class="card">
-<div class="card-head">
-<span class="who k">Pilot 4 &middot; "Cody"</span>
-<h3>Keplar Vanderlaan</h3>
-<span class="sub">Mining specialist &middot; corp/wallet unconfirmed</span>
-</div>
-<div class="card-body">
-<div class="priceline"><span class="lbl">Total SP</span><span class="val">2,317,628</span></div>
-<div class="priceline"><span class="lbl">Focus</span><span class="val">Mining &amp; reprocessing</span></div>
-<h4>Mining core</h4>
-<p class="note"><b>Mining V</b> and <b>Reprocessing V</b> both maxed &mdash; best yield per cycle and max refine efficiency, nothing left to improve on either. Mining Frigate III (Venture), <b>Mining Barge I</b> (Procurer/Retriever/Covetor already unlocked), Astrogeology III, Survey III, Gas Cloud Harvesting III, Ice Harvesting II.</p>
-<h4>Where he fits</h4>
-<p class="note">Rides along on filament runs and wormhole trips independently &mdash; no combat skills or Minmatar hulls needed. Full breakdown, fits and training plan on <a href="mining.html" style="color:var(--rust)">Mining</a>.</p>
-<div class="barrow"><span class="lbl">Resource Processing <b>11/55</b></span><div class="bar-track"><div class="bar-fill m" style="width:20%"></div></div></div>
-<div class="barrow"><span class="lbl">Rigging <b>10/10</b></span><div class="bar-track"><div class="bar-fill m" style="width:100%"></div></div></div>
-<p class="note" style="margin-top:6px;"><b>No asset list yet</b> &mdash; skills confirmed, but unknown whether he owns a Venture or barge.</p>
-</div>
-</div>
-</div>
+<section id="filament-mining">
+<h2>Riding along on a filament run</h2>
+<p class="note">The explorers scan and hack; Cody works the belts in the same system. No coordination needed beyond being in the same place, and nobody's waiting on anybody.</p>
+<p class="note"><b>The safety edge over wormhole gas:</b> nullsec has <b>local chat</b>. A Venture sitting in a belt sees a neutral enter local at the same instant everyone else does &mdash; that's free warning the wormhole version never gives you. Combined with the Venture's built-in warp core strength bonus, getting out is genuinely achievable rather than hopeful.</p>
+<p class="note"><b>The catch:</b> a filament drops you somewhere random in the low-activity pool. Whether that system's belts are actually worth mining is luck, not planning. Some trips he'll have nothing to do &mdash; same as the explorers landing in a picked-clean system.</p>
 </section>
 
-<section>
-<h2>The asymmetry</h2>
-<div class="callout">
-<h3>Three SP piles, one wallet</h3>
-<p>Stinglock, Coreun and Miko sit within a few million SP of each other, but Stinglock is the one funding hulls and subsystems out of his own wallet. Coreun and Miko's SP is concentrated in different racial lines (Gallente drones, Caldari missiles) with essentially no overlap into Minmatar &mdash; nobody currently flying with Stinglock can hop into a spare Rifter or Rupture. Cody is a different shape entirely &mdash; only 2.3M SP, but almost all of it concentrated in mining and reprocessing, which means he contributes on day one without needing any of the same skills the others have.</p>
+<section id="fits">
+<h2>Fits he can fly today</h2>
+
+<div class="pair">
+<div class="card">
+<div class="card-head"><h3>Venture &mdash; nullsec disposable</h3><span class="sub">~2&ndash;3M all-in &middot; the filament-run ship</span></div>
+<div class="card-body">
+<ul class="fit">
+<li><span class="n">H</span><span>Miner II &times;2 <em>&mdash; Mining V covers these</em></span></li>
+<li><span class="n">M</span><span>1MN Y-S8 Compact Afterburner</span></li>
+<li><span class="n">M</span><span>Survey Scanner I <em>&mdash; Survey III, shows exact belt quantities</em></span></li>
+<li><span class="n">M</span><span>Medium Shield Extender I</span></li>
+<li><span class="n">L</span><span>Expanded Cargohold I</span></li>
+<li><span class="n">R</span><span>Small Cargohold Optimization I</span></li>
+<li><span class="n">R</span><span>Small Cargohold Optimization I</span></li>
+</ul>
+<p class="note" style="margin-top:8px;">Deliberately cheap. The Venture already has a <b>+2 warp core strength role bonus</b> built in, so it beats a single point without spending a low slot on a stabiliser &mdash; and it has a dedicated 5,000 m&sup3; ore hold separate from cargo. Lose it and you're out pocket change, which is exactly the right posture for null.</p>
 </div>
+</div>
+
+<div class="card">
+<div class="card-head"><h3>Procurer &mdash; the tanky barge</h3><span class="sub">~30&ndash;40M all-in &middot; when the system's worth staying in</span></div>
+<div class="card-body">
+<ul class="fit">
+<li><span class="n">H</span><span>Modulated Strip Miner II <em>&mdash; Mining Barge I already trained</em></span></li>
+<li><span class="n">M</span><span>Large Shield Extender I</span></li>
+<li><span class="n">M</span><span>Multispectrum Shield Hardener I</span></li>
+<li><span class="n">M</span><span>Survey Scanner I</span></li>
+<li><span class="n">L</span><span>Damage Control II</span></li>
+<li><span class="n">R</span><span>Medium Core Defense Field Extender I &times;2</span></li>
+</ul>
+<p class="note" style="margin-top:8px;">Of the three barges, the <b>Procurer has the strongest tank by a wide margin</b> &mdash; the Retriever and Covetor trade that away for yield and ore hold. In null, tank is the one that keeps the ship. Slower to fill than a Covetor, but it survives a bad moment instead of instantly dying to it.</p>
+</div>
+</div>
+</div>
+
+<p class="note"><b>Which to bring:</b> Venture on any filament run where the plan is "look, mine what's there, leave." Procurer only if the group's committed to sitting in one system for a while and the belts justify it &mdash; a barge is a much bigger loss and much slower to align out.</p>
+</section>
+
+<section id="training">
+<h2>What to train next</h2>
+<div class="scroll"><table>
+<thead><tr><th>Skill</th><th>Now</th><th class="num">SP needed</th><th>Unlocks</th><th>Priority</th></tr></thead>
+<tbody>
+<tr><td>Deep Core Mining I</td><td>0</td><td class="num">~1,250</td><td><b>Mercoxit</b> &mdash; the highest-value null ore, currently locked out entirely</td><td><span class="pill ready">do this first</span></td></tr>
+<tr><td>Mining Frigate V</td><td>III</td><td class="num">~240,000</td><td>Prospect (covert-cloak mining frigate) and better Venture yield</td><td><span class="pill ready">high</span></td></tr>
+<tr><td>Astrogeology IV&rarr;V</td><td>III</td><td class="num">~1,000,000</td><td>Straight ore yield bonus per cycle, all ships</td><td><span class="pill warn">medium</span></td></tr>
+<tr><td>Mining Barge III&ndash;IV</td><td>I</td><td class="num">~100,000&ndash;500,000</td><td>Better barge performance; V opens Exhumers (Skiff/Mackinaw/Hulk)</td><td><span class="pill warn">medium</span></td></tr>
+<tr><td>Gas Cloud Harvesting IV&ndash;V</td><td>III</td><td class="num">~50,000&ndash;300,000</td><td>More simultaneous gas harvesters &mdash; direct boost to the WH gas role</td><td><span class="pill warn">medium</span></td></tr>
+<tr><td>Ice Harvesting III&ndash;IV</td><td>II</td><td class="num">~30,000&ndash;150,000</td><td>Ice belts as a steady, low-risk highsec income floor</td><td><span class="pill no">low</span></td></tr>
+<tr><td>Reprocessing Efficiency</td><td>0</td><td class="num">~250,000</td><td>More minerals per unit refined &mdash; stacks with the already-maxed Reprocessing V</td><td><span class="pill warn">medium</span></td></tr>
+</tbody>
+</table></div>
+<p class="note"><b>Deep Core Mining I is the standout</b> &mdash; roughly 1,250 SP, effectively free, and it's the difference between being able to touch the single most valuable ore in nullsec or not. Everything else on this list is incremental; that one is a hard gate.</p>
+<p class="note"><b>The Prospect is the interesting mid-term goal.</b> It's a covert-ops-capable mining frigate &mdash; cloaks like the explorers' ships do, which would let Cody move through hostile space on the same terms as the rest of the group rather than being the one ship that can't hide. Mining Frigate V is the gate.</p>
 </section>
 
 <footer>
-<b>Source.</b> Stinglock and Miko figures from live skill and skill-queue exports pulled 17 Sep 2026. Coreun's figures are an older confirmed snapshot, unrefreshed this session. Cody has no data on file.
+<b>Source.</b> Skills from Cody's live export. Ore values and ISK/hr are community-shape estimates, not measured logs &mdash; ore prices move constantly and vary by region. <b>No asset list on file yet</b>, so it's unconfirmed whether he currently owns a Venture or any barge &mdash; the fits above assume buying, not that they're sitting in a hangar.
 </footer>
 
 </div>
