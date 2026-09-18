@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Table of contents for the Stinglock / Coreun / Miko / Cody EVE Online operation site.">
+<meta name="description" content="EVE Online operation site.">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Command Deck &middot; Stinglock</title>
+<title>Stinglock &middot; EVE Online</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
@@ -50,18 +50,44 @@
 body{ background:var(--ground); color:var(--ink); font-family:'Archivo',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
 .wrap{ max-width:1020px; margin:0 auto; padding:26px 22px 88px; display:flex; flex-direction:column; gap:44px; }
 h1,h2,h3,.eyebrow,.stat-num{ font-family:'Chakra Petch','Archivo',sans-serif; }
-nav.pagenav{ display:flex; flex-wrap:wrap; gap:4px 2px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.03em; padding-bottom:14px; border-bottom:1px solid var(--rule); }
-nav.pagenav a{ color:var(--ink-2); text-decoration:none; padding:5px 9px; border-radius:3px; }
-nav.pagenav a:hover{ color:var(--ink); background:var(--surface-2); }
-nav.pagenav a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
-nav.pagenav a:focus-visible{ outline:2px solid var(--rust); outline-offset:2px; }
-nav.pagenav .sep{ color:var(--rule); }
-nav.pagenav .navgroup{ color:var(--ink-3); font-size:9.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:5px 3px 5px 4px; }
+nav.topnav{ position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 14px; margin:0 0 30px; padding:10px 2px 14px; background:var(--ground); border-bottom:1px solid var(--rule); font-family:'IBM Plex Mono',monospace; }
+.topnav-brand{ color:var(--ink); text-decoration:none; font-weight:600; font-size:12.5px; letter-spacing:.03em; padding:8px 9px; border-radius:3px; white-space:nowrap; }
+.topnav-brand:hover{ background:var(--surface-2); }
+.topnav-brand.active{ color:var(--rust); }
+.topnav-toggle{ display:none; margin-left:auto; }
+.topnav-menu{ display:flex; align-items:center; gap:2px; flex-wrap:wrap; }
+.navdrop{ position:relative; }
+.navdrop-btn{ font-family:inherit; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color:var(--ink-2); background:none; border:none; cursor:pointer; padding:9px 12px; border-radius:3px; display:flex; align-items:center; gap:6px; }
+.navdrop-btn::after{ content:'\25BE'; font-size:8px; opacity:.65; }
+.navdrop-btn:hover{ color:var(--ink); background:var(--surface-2); }
+.navdrop-btn[aria-expanded="true"]{ color:var(--ink); background:var(--surface-2); }
+.navdrop.current > .navdrop-btn{ color:var(--rust); }
+.navdrop-panel{ position:absolute; top:calc(100% + 6px); left:0; min-width:180px; background:var(--surface); border:1px solid var(--rule-soft); border-radius:4px; box-shadow:var(--shadow); padding:7px; display:none; flex-direction:column; gap:1px; z-index:60; }
+.navdrop-panel.open{ display:flex; }
+.navdrop-panel a{ color:var(--ink-2); text-decoration:none; padding:7px 10px; border-radius:3px; font-size:12px; letter-spacing:.01em; }
+.navdrop-panel a:hover{ color:var(--ink); background:var(--surface-2); }
+.navdrop-panel a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
+.navdrop-panel a:focus-visible{ outline:2px solid var(--rust); outline-offset:1px; }
+.tree-item.lvl1{ font-weight:600; color:var(--ink); }
+.tree-children{ display:flex; flex-direction:column; gap:1px; margin:1px 0 4px 10px; padding-left:8px; border-left:1px solid var(--rule-soft); }
+.navdrop-flat{ margin-top:5px; padding-top:7px; border-top:1px solid var(--rule-soft); }
+@media (max-width:640px){
+.topnav-toggle{ display:flex; flex-direction:column; gap:4px; background:none; border:1px solid var(--rule); border-radius:3px; padding:9px; cursor:pointer; }
+.topnav-toggle span{ width:16px; height:2px; background:var(--ink-2); display:block; }
+.topnav-menu{ display:none; width:100%; flex-direction:column; align-items:stretch; order:3; padding-top:8px; }
+.topnav-menu.open{ display:flex; }
+.navdrop-panel{ position:static; box-shadow:none; border:none; background:var(--surface-2); margin:2px 0 4px 8px; }
+.navdrop-panel.open{ display:flex; }
+}
 header{ display:flex; flex-direction:column; gap:10px; }
 .eyebrow{ font-size:11.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--rust); display:flex; align-items:center; gap:9px; }
 .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
 h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
 .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
+.splash{ min-height:64vh; display:flex; align-items:center; justify-content:center; }
+.splash-text{ font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:clamp(18px,4vw,32px); color:var(--ink); letter-spacing:.02em; margin:0; text-align:center; }
+.cursor{ display:inline-block; margin-left:4px; animation:blink 1s steps(1) infinite; color:var(--rust); }
+@keyframes blink{ 50%{ opacity:0; } }
 .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden; }
 .stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
 .stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
@@ -131,90 +157,43 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </script>
 
 <div class="wrap">
-<nav class="pagenav"><a href="index.html" class="active">Command Deck</a><span class="sep">/</span><span class="navgroup">Personal</span><a href="fleet.html">Fleet</a><span class="sep">/</span><a href="skills.html">Skills</a><span class="sep">/</span><a href="content.html">Solo Ops</a><span class="sep">/</span><span class="navgroup">Corp</span><a href="pilots.html">Pilots</a><span class="sep">/</span><a href="exploration.html">Exploration</a><span class="sep">/</span><a href="mining.html">Mining</a><span class="sep">/</span><a href="group-content.html">Group Ops</a><span class="sep">/</span><a href="archive.html">Archive</a></nav>
-
-<header>
-<div class="eyebrow">Stinglock &middot; Coreun &middot; Miko &middot; Cody &middot; Wormholes &amp; Beyond</div>
-<h1>Command Deck</h1>
-<p class="standfirst">The operation moved on from Rens highsec missions into HAMs, a flyable Loki, and wormhole/nullsec content. Seven pages, start here.</p>
-</header>
-
-<section>
-<h2 style="border:none;padding:0;margin-top:2px;">Personal</h2>
-<div class="toc-grid">
-<a class="toc-card" href="fleet.html">
-<span class="num">01 &middot; HANGAR</span>
-<h3>Fleet</h3>
-<p>Every hull Stinglock owns, 27 types across 42 ships, grouped by class with value and insurance advice.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="skills.html">
-<span class="num">02 &middot; TRAINING</span>
-<h3>Skills</h3>
-<p>Current skill state against the missile/Loki pivot, plus the live training queue with real dates.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="content.html">
-<span class="num">03 &middot; ENGAGE</span>
-<h3>Solo Ops</h3>
-<p>What each specific fit can run &mdash; Maelstrom Arty, Loki HAM, Astero Explorer and the rest &mdash; with all-in cost per row.</p>
-<span class="arrow">open &rarr;</span>
-</a>
+<nav class="topnav" id="topnav">
+<a href="index.html" class="topnav-brand">Home</a>
+<button class="topnav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+<div class="topnav-menu" id="navMenu">
+<div class="navdrop">
+<button class="navdrop-btn" aria-haspopup="true" aria-expanded="false">Personal</button>
+<div class="navdrop-panel">
+<a href="fleet.html">Fleet</a>
+<a href="skills.html">Skills</a>
+<a href="content.html">Solo Ops</a>
 </div>
-
-<h2 style="border:none;padding:0;margin-top:22px;">Corp</h2>
-<div class="toc-grid">
-<a class="toc-card" href="pilots.html">
-<span class="num">04 &middot; ROSTER</span>
-<h3>Pilots</h3>
-<p>Character sheets for all four pilots &mdash; Stinglock, Miko, Coreun, and Cody.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="exploration.html">
-<span class="num">05 &middot; SCAN</span>
-<h3>Exploration</h3>
-<p>Solo, duo, and small-group options across highsec, wormholes, and nullsec relic running, plus a full filament run-through.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="mining.html">
-<span class="num">06 &middot; EXTRACT</span>
-<h3>Mining</h3>
-<p>Where to mine, what it's worth, and what to fly &mdash; built around Cody's actual trained skills.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="group-content.html">
-<span class="num">07 &middot; FLEET UP</span>
-<h3>Group Ops</h3>
-<p>What the four-person group can run together, by party size, and what ships each one needs.</p>
-<span class="arrow">open &rarr;</span>
-</a>
 </div>
-
-<h2 style="border:none;padding:0;margin-top:22px;">Retired</h2>
-<div class="toc-grid">
-<a class="toc-card" href="archive.html">
-<span class="num">08 &middot; RETIRED</span>
-<h3>Archive</h3>
-<p>The original Rens two-man playbook and its variations, kept for reference &mdash; superseded by everything above.</p>
-<span class="arrow">open &rarr;</span>
-</a>
+<div class="navdrop">
+<button class="navdrop-btn" aria-haspopup="true" aria-expanded="false">Corp</button>
+<div class="navdrop-panel">
+<a href="pilots.html" class="tree-item lvl1">Pilots</a>
+<div class="tree-children">
+<a href="miko.html" class="tree-item lvl2">Miko</a>
+<a href="cody.html" class="tree-item lvl2">Cody</a>
+<div class="tree-children">
+<a href="mining.html" class="tree-item lvl3">Mining</a>
 </div>
-</section>
-
-
-<section>
-<h2>State of play</h2>
-<div class="stats">
-<div class="stat"><span class="k">Stinglock's SP</span><span class="stat-num">17.98M</span><span class="sub">live export</span></div>
-<div class="stat"><span class="k">Fleet value</span><span class="stat-num">~1.47B</span><span class="sub">42 hulls + Loki subsystems</span></div>
-<div class="stat"><span class="k">Main hull</span><span class="stat-num ready">Loki</span><span class="sub">flyable, HAM-fit</span></div>
-<div class="stat"><span class="k">Staging</span><span class="stat-num">Rens</span><span class="sub">0.9 Heimatar</span></div>
+<a href="chezz.html" class="tree-item lvl2">Chezz</a>
 </div>
-</section>
+<a href="group-content.html" class="tree-item lvl1" style="margin-top:6px;">Group ops</a>
+<div class="tree-children">
+<a href="exploration.html" class="tree-item lvl2">Exploration</a>
+</div>
+<a href="archive.html" class="navdrop-flat">Archive</a>
+</div>
+</div>
+</div>
+</nav>
 
-<footer>
-Rebuilt 17 Sep 2026 against live skill, queue, and asset exports plus current ESI market data. The 31 Aug session handoff is retired &mdash; see <a href="archive.html" style="color:var(--rust)">Archive</a>.
-</footer>
+<div class="splash">
+<pre class="splash-text">Welcome to EVE Online<span class="cursor">&#9608;</span></pre>
+</div>
 
 </div>
 <script>
@@ -336,6 +315,56 @@ Rebuilt 17 Sep 2026 against live skill, queue, and asset exports plus current ES
     makeSortable(t);
     makeFilterable(t);
   });
+})();
+</script>
+<script>
+(function(){
+var topnav = document.getElementById('topnav');
+if(!topnav) return;
+var path = location.pathname.split('/').pop() || 'index.html';
+var links = topnav.querySelectorAll('a[href]');
+for(var i=0;i<links.length;i++){
+if(links[i].getAttribute('href') === path){
+links[i].classList.add('active');
+var drop = links[i].closest('.navdrop');
+if(drop) drop.classList.add('current');
+}
+}
+var toggle = document.getElementById('navToggle');
+var menu = document.getElementById('navMenu');
+if(toggle && menu){
+toggle.addEventListener('click', function(){
+var open = menu.classList.toggle('open');
+toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+}
+var btns = topnav.querySelectorAll('.navdrop-btn');
+for(var j=0;j<btns.length;j++){
+btns[j].addEventListener('click', function(e){
+e.stopPropagation();
+var panel = this.nextElementSibling;
+var isOpen = panel.classList.contains('open');
+var panels = topnav.querySelectorAll('.navdrop-panel.open');
+for(var k=0;k<panels.length;k++){ panels[k].classList.remove('open'); }
+var allBtns = topnav.querySelectorAll('.navdrop-btn');
+for(var m=0;m<allBtns.length;m++){ allBtns[m].setAttribute('aria-expanded','false'); }
+if(!isOpen){ panel.classList.add('open'); this.setAttribute('aria-expanded','true'); }
+});
+}
+document.addEventListener('click', function(e){
+if(!topnav.contains(e.target)){
+var panels = topnav.querySelectorAll('.navdrop-panel.open');
+for(var k=0;k<panels.length;k++){ panels[k].classList.remove('open'); }
+var allBtns = topnav.querySelectorAll('.navdrop-btn');
+for(var m=0;m<allBtns.length;m++){ allBtns[m].setAttribute('aria-expanded','false'); }
+}
+});
+document.addEventListener('keydown', function(e){
+if(e.key === 'Escape'){
+var panels = topnav.querySelectorAll('.navdrop-panel.open');
+for(var k=0;k<panels.length;k++){ panels[k].classList.remove('open'); }
+}
+});
 })();
 </script>
 </body>
