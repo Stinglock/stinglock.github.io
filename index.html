@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Table of contents for the Stinglock / Coreun / Miko / Cody EVE Online operation site.">
+<meta name="description" content="EVE Online operation site.">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Command Deck &middot; Stinglock</title>
+<title>Stinglock &middot; EVE Online</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
@@ -85,6 +85,10 @@ header{ display:flex; flex-direction:column; gap:10px; }
 .eyebrow::after{ content:''; flex:1; height:1px; background:var(--rule); }
 h1{ margin:0; font-size:clamp(30px,5vw,44px); font-weight:700; letter-spacing:-.005em; text-wrap:balance; }
 .standfirst{ margin:0; max-width:64ch; font-size:16px; color:var(--ink-2); }
+.splash{ min-height:64vh; display:flex; align-items:center; justify-content:center; }
+.splash-text{ font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:clamp(18px,4vw,32px); color:var(--ink); letter-spacing:.02em; margin:0; text-align:center; }
+.cursor{ display:inline-block; margin-left:4px; animation:blink 1s steps(1) infinite; color:var(--rust); }
+@keyframes blink{ 50%{ opacity:0; } }
 .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden; }
 .stat{ background:var(--surface); padding:15px 17px; display:flex; flex-direction:column; gap:3px; }
 .stat .k{ font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
@@ -155,7 +159,7 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 
 <div class="wrap">
 <nav class="topnav" id="topnav">
-<a href="index.html" class="topnav-brand">Command Deck</a>
+<a href="index.html" class="topnav-brand">Home</a>
 <button class="topnav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
 <div class="topnav-menu" id="navMenu">
 <div class="navdrop">
@@ -187,88 +191,9 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </div>
 </nav>
 
-<header>
-<div class="eyebrow">Stinglock &middot; Coreun &middot; Miko &middot; Cody &middot; Wormholes &amp; Beyond</div>
-<h1>Command Deck</h1>
-<p class="standfirst">The operation moved on from Rens highsec missions into HAMs, a flyable Loki, and wormhole/nullsec content. Seven pages, start here.</p>
-</header>
-
-<section>
-<h2 style="border:none;padding:0;margin-top:2px;">Personal</h2>
-<div class="toc-grid">
-<a class="toc-card" href="fleet.html">
-<span class="num">01 &middot; HANGAR</span>
-<h3>Fleet</h3>
-<p>Every hull Stinglock owns, 27 types across 42 ships, grouped by class with value and insurance advice.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="skills.html">
-<span class="num">02 &middot; TRAINING</span>
-<h3>Skills</h3>
-<p>Current skill state against the missile/Loki pivot, plus the live training queue with real dates.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="content.html">
-<span class="num">03 &middot; ENGAGE</span>
-<h3>Solo Ops</h3>
-<p>What each specific fit can run &mdash; Maelstrom Arty, Loki HAM, Astero Explorer and the rest &mdash; with all-in cost per row.</p>
-<span class="arrow">open &rarr;</span>
-</a>
+<div class="splash">
+<pre class="splash-text">Welcome to EVE Online<span class="cursor">&#9608;</span></pre>
 </div>
-
-<h2 style="border:none;padding:0;margin-top:22px;">Corp</h2>
-<div class="toc-grid">
-<a class="toc-card" href="pilots.html">
-<span class="num">04 &middot; ROSTER</span>
-<h3>Pilots</h3>
-<p>Character sheets for all four pilots &mdash; Stinglock, Miko, Coreun, and Cody.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="exploration.html">
-<span class="num">05 &middot; SCAN</span>
-<h3>Exploration</h3>
-<p>Solo, duo, and small-group options across highsec, wormholes, and nullsec relic running, plus a full filament run-through.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="mining.html">
-<span class="num">06 &middot; EXTRACT</span>
-<h3>Mining</h3>
-<p>Where to mine, what it's worth, and what to fly &mdash; built around Cody's actual trained skills.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-<a class="toc-card" href="group-content.html">
-<span class="num">07 &middot; FLEET UP</span>
-<h3>Group Ops</h3>
-<p>What the four-person group can run together, by party size, and what ships each one needs.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-</div>
-
-<h2 style="border:none;padding:0;margin-top:22px;">Retired</h2>
-<div class="toc-grid">
-<a class="toc-card" href="archive.html">
-<span class="num">08 &middot; RETIRED</span>
-<h3>Archive</h3>
-<p>The original Rens two-man playbook and its variations, kept for reference &mdash; superseded by everything above.</p>
-<span class="arrow">open &rarr;</span>
-</a>
-</div>
-</section>
-
-
-<section>
-<h2>State of play</h2>
-<div class="stats">
-<div class="stat"><span class="k">Stinglock's SP</span><span class="stat-num">17.98M</span><span class="sub">live export</span></div>
-<div class="stat"><span class="k">Fleet value</span><span class="stat-num">~1.47B</span><span class="sub">42 hulls + Loki subsystems</span></div>
-<div class="stat"><span class="k">Main hull</span><span class="stat-num ready">Loki</span><span class="sub">flyable, HAM-fit</span></div>
-<div class="stat"><span class="k">Staging</span><span class="stat-num">Rens</span><span class="sub">0.9 Heimatar</span></div>
-</div>
-</section>
-
-<footer>
-Rebuilt 17 Sep 2026 against live skill, queue, and asset exports plus current ESI market data. The 31 Aug session handoff is retired &mdash; see <a href="archive.html" style="color:var(--rust)">Archive</a>.
-</footer>
 
 </div>
 <script>
