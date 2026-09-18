@@ -69,9 +69,8 @@ nav.topnav{ position:sticky; top:0; z-index:50; display:flex; align-items:center
 .navdrop-panel a:hover{ color:var(--ink); background:var(--surface-2); }
 .navdrop-panel a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
 .navdrop-panel a:focus-visible{ outline:2px solid var(--rust); outline-offset:1px; }
-.navdrop-sub{ display:flex; flex-direction:column; gap:1px; padding-bottom:5px; margin-bottom:5px; border-bottom:1px solid var(--rule-soft); }
-.navdrop-sub:last-of-type{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
-.navdrop-sub-label{ font-size:9px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); font-weight:600; padding:5px 10px 4px; }
+.tree-item.lvl1{ font-weight:600; color:var(--ink); }
+.tree-children{ display:flex; flex-direction:column; gap:1px; margin:1px 0 4px 10px; padding-left:8px; border-left:1px solid var(--rule-soft); }
 .navdrop-flat{ margin-top:5px; padding-top:7px; border-top:1px solid var(--rule-soft); }
 @media (max-width:640px){
 .topnav-toggle{ display:flex; flex-direction:column; gap:4px; background:none; border:1px solid var(--rule); border-radius:3px; padding:9px; cursor:pointer; }
@@ -192,17 +191,18 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <div class="navdrop">
 <button class="navdrop-btn" aria-haspopup="true" aria-expanded="false">Corp</button>
 <div class="navdrop-panel">
-<div class="navdrop-sub">
-<span class="navdrop-sub-label">Pilots</span>
-<a href="pilots.html">All Pilots</a>
-<a href="miko.html">Miko</a>
-<a href="mining.html">Cody &middot; Mining</a>
-<a href="chezz.html">Chezz</a>
+<a href="pilots.html" class="tree-item lvl1">Pilots</a>
+<div class="tree-children">
+<a href="miko.html" class="tree-item lvl2">Miko</a>
+<a href="cody.html" class="tree-item lvl2">Cody</a>
+<div class="tree-children">
+<a href="mining.html" class="tree-item lvl3">Mining</a>
 </div>
-<div class="navdrop-sub">
-<span class="navdrop-sub-label">Group Ops</span>
-<a href="group-content.html">Overview</a>
-<a href="exploration.html">Exploration</a>
+<a href="chezz.html" class="tree-item lvl2">Chezz</a>
+</div>
+<a href="group-content.html" class="tree-item lvl1" style="margin-top:6px;">Group ops</a>
+<div class="tree-children">
+<a href="exploration.html" class="tree-item lvl2">Exploration</a>
 </div>
 <a href="archive.html" class="navdrop-flat">Archive</a>
 </div>

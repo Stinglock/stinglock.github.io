@@ -72,9 +72,8 @@ nav.topnav{ position:sticky; top:0; z-index:50; display:flex; align-items:center
 .navdrop-panel a:hover{ color:var(--ink); background:var(--surface-2); }
 .navdrop-panel a.active{ color:var(--rust); font-weight:600; background:var(--rust-soft); }
 .navdrop-panel a:focus-visible{ outline:2px solid var(--rust); outline-offset:1px; }
-.navdrop-sub{ display:flex; flex-direction:column; gap:1px; padding-bottom:5px; margin-bottom:5px; border-bottom:1px solid var(--rule-soft); }
-.navdrop-sub:last-of-type{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
-.navdrop-sub-label{ font-size:9px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); font-weight:600; padding:5px 10px 4px; }
+.tree-item.lvl1{ font-weight:600; color:var(--ink); }
+.tree-children{ display:flex; flex-direction:column; gap:1px; margin:1px 0 4px 10px; padding-left:8px; border-left:1px solid var(--rule-soft); }
 .navdrop-flat{ margin-top:5px; padding-top:7px; border-top:1px solid var(--rule-soft); }
 @media (max-width:640px){
 .topnav-toggle{ display:flex; flex-direction:column; gap:4px; background:none; border:1px solid var(--rule); border-radius:3px; padding:9px; cursor:pointer; }
@@ -198,17 +197,18 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <div class="navdrop">
 <button class="navdrop-btn" aria-haspopup="true" aria-expanded="false">Corp</button>
 <div class="navdrop-panel">
-<div class="navdrop-sub">
-<span class="navdrop-sub-label">Pilots</span>
-<a href="pilots.html">All Pilots</a>
-<a href="miko.html">Miko</a>
-<a href="mining.html">Cody &middot; Mining</a>
-<a href="chezz.html">Chezz</a>
+<a href="pilots.html" class="tree-item lvl1">Pilots</a>
+<div class="tree-children">
+<a href="miko.html" class="tree-item lvl2">Miko</a>
+<a href="cody.html" class="tree-item lvl2">Cody</a>
+<div class="tree-children">
+<a href="mining.html" class="tree-item lvl3">Mining</a>
 </div>
-<div class="navdrop-sub">
-<span class="navdrop-sub-label">Group Ops</span>
-<a href="group-content.html">Overview</a>
-<a href="exploration.html">Exploration</a>
+<a href="chezz.html" class="tree-item lvl2">Chezz</a>
+</div>
+<a href="group-content.html" class="tree-item lvl1" style="margin-top:6px;">Group ops</a>
+<div class="tree-children">
+<a href="exploration.html" class="tree-item lvl2">Exploration</a>
 </div>
 <a href="archive.html" class="navdrop-flat">Archive</a>
 </div>
@@ -274,7 +274,7 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <h4>Weapons &amp; support</h4>
 <p class="note">Missile Launcher Operation <b>V</b>, Cruise Missiles <b>IV</b>, Heavy Missiles <b>IV</b>, Heavy Assault Missiles <b>IV</b>, Light Missiles <b>IV</b>, Rapid Launch <b>IV</b> &mdash; a genuine Raven/Caracal missile pilot. Gunnery <b>V</b> and Drones <b>V</b> both maxed as support skills, but no real turret specialization (Small Hybrid Turret only III). Shield Management <b>V</b>, Shield Operation <b>V</b> &mdash; shield-tanked, matching Stinglock's lean.</p>
 <h4>Queue signal</h4>
-<p class="note">Training toward Minmatar Frigate V, then Hacking V, Cruise Missiles V, Advanced Weapon Upgrades IV, Target Painting III, Light Drone Operation V. The Minmatar Frigate push is odd against a Caldari-heavy hangar with zero Minmatar hulls currently owned &mdash; worth asking what that's for.</p>
+<p class="note">Training toward Minmatar Frigate V, then Hacking V, Cruise Missiles V, Advanced Weapon Upgrades IV, Target Painting III, Light Drone Operation V. The Minmatar Frigate push is odd against a Caldari-heavy hangar with zero Minmatar hulls currently owned &mdash; worth asking what that's for. Full profile, ship suggestions and gaps on <a href="miko.html" style="color:var(--rust)">Miko</a>.</p>
 <details class="ships">
 <summary>Owned hulls (17)</summary>
 <ul>
@@ -317,7 +317,7 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <p class="note">All 8 Gallente ship skills trained, Battleship <b>V</b>. <b>Zero Minmatar ship skills</b> &mdash; none of Stinglock's hulls are usable by Coreun. Full drone tree V/IV across the board, but Heavy Drone Operation only <b>I</b> and Sentry Drone Interfacing untrained &mdash; medium drones (Hammerhead II) are the current ceiling.</p>
 <div class="barrow"><span class="lbl">Armor <b>8/14</b></span><div class="bar-track"><div class="bar-fill c" style="width:57%"></div></div></div>
 <div class="barrow"><span class="lbl">Gunnery <b>12/65</b></span><div class="bar-track"><div class="bar-fill c" style="width:18%"></div></div></div>
-<p class="note" style="margin-top:6px;"><b>Stale data</b> &mdash; no refreshed export this session. Get a current skill/queue export before planning around Coreun specifically.</p>
+<p class="note" style="margin-top:6px;"><b>Stale data</b> &mdash; no refreshed export this session. Get a current skill/queue export before planning around Coreun specifically. Extrapolated ship suggestions on <a href="chezz.html" style="color:var(--rust)">Chezz</a>.</p>
 </div>
 </div>
 
@@ -333,7 +333,7 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <h4>Mining core</h4>
 <p class="note"><b>Mining V</b> and <b>Reprocessing V</b> both maxed &mdash; best yield per cycle and max refine efficiency, nothing left to improve on either. Mining Frigate III (Venture), <b>Mining Barge I</b> (Procurer/Retriever/Covetor already unlocked), Astrogeology III, Survey III, Gas Cloud Harvesting III, Ice Harvesting II.</p>
 <h4>Where he fits</h4>
-<p class="note">Rides along on filament runs and wormhole trips independently &mdash; no combat skills or Minmatar hulls needed. Full breakdown, fits and training plan on <a href="mining.html" style="color:var(--rust)">Mining</a>.</p>
+<p class="note">Rides along on filament runs and wormhole trips independently &mdash; no combat skills or Minmatar hulls needed. Full profile on <a href="cody.html" style="color:var(--rust)">Cody</a>, fits and training plan on <a href="mining.html" style="color:var(--rust)">Mining</a>.</p>
 <div class="barrow"><span class="lbl">Resource Processing <b>11/55</b></span><div class="bar-track"><div class="bar-fill m" style="width:20%"></div></div></div>
 <div class="barrow"><span class="lbl">Rigging <b>10/10</b></span><div class="bar-track"><div class="bar-fill m" style="width:100%"></div></div></div>
 <p class="note" style="margin-top:6px;"><b>No asset list yet</b> &mdash; skills confirmed, but unknown whether he owns a Venture or barge.</p>
