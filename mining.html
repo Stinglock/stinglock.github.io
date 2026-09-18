@@ -180,6 +180,7 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <tr><td>Highsec belts</td><td>Veldspar, Scordite, Plagioclase</td><td class="num">low</td><td>CONCORD protected</td><td><span class="pill ready">very low</span></td><td><span class="pill ready">yes</span></td></tr>
 <tr><td>Highsec ice</td><td>Ice products, fuel blocks</td><td class="num">steady</td><td>CONCORD protected</td><td><span class="pill ready">very low</span></td><td><span class="pill warn">Ice Harvesting II</span></td></tr>
 <tr><td>Wormhole gas (C1&ndash;C3)</td><td>Fullerite gas clouds</td><td class="num">~30&ndash;80M/hr</td><td>no local chat</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">yes</span></td></tr>
+<tr><td>Lowsec gas</td><td>Fullerite gas clouds</td><td class="num">~30&ndash;80M/hr</td><td>local chat gives warning</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">yes, today</span></td></tr>
 <tr><td>Nullsec belts, filament</td><td>Arkonor, Bistot, Crokite</td><td class="num">high</td><td>local chat gives warning</td><td><span class="pill warn">moderate</span></td><td><span class="pill ready">yes</span></td></tr>
 <tr><td>Nullsec Mercoxit</td><td>Mercoxit &mdash; top-tier ore</td><td class="num">highest</td><td>needs a specialist crystal</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">Deep Core Mining 0</span></td></tr>
 <tr><td>Moon mining</td><td>Moon ore chunks</td><td class="num">high</td><td>needs a refinery structure</td><td><span class="pill warn">moderate</span></td><td><span class="pill no">no structure owned</span></td></tr>
@@ -234,13 +235,55 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 <p class="note"><b>Which to bring:</b> Venture on any filament run where the plan is "look, mine what's there, leave." Procurer only if the group's committed to sitting in one system for a while and the belts justify it &mdash; a barge is a much bigger loss and much slower to align out.</p>
 </section>
 
+<section id="huffing">
+<h2>Gas huffing &mdash; no training needed</h2>
+<p class="note">The lowest-effort earner on this page, and he can do it <b>today</b>. Gas Cloud Harvesting III is already trained, so a Venture with gas scoops works in lowsec and wormhole gas sites right now &mdash; no new skills, no new hull.</p>
+<p class="note"><b>Why it suits him:</b> same risk posture as tagging along on a filament run, but it doesn't depend on the group going anywhere. Lowsec gas sites are scannable solo, and the Venture's built-in warp core strength bonus plus a small signature make it genuinely survivable if someone shows up. Lose it and it's pocket change.</p>
+<p class="note"><b>The catch:</b> gas sites need scanning down, and his Astrometrics is only III with Rangefinding and Pinpointing untrained &mdash; he'll find sites, just slower than a dedicated explorer would. Worth a few days of scanning skills if this becomes a regular thing.</p>
+</section>
+
+<section id="expedition">
+<h2>The next hull &mdash; Prospect or Endurance</h2>
+<p class="note">Both are Expedition Frigates built on the Venture frame, both gated behind <b>Mining Frigate V</b>. Training that one skill unlocks the choice; they're built for genuinely different jobs.</p>
+<div class="scroll"><table>
+<thead><tr><th>&nbsp;</th><th>Prospect</th><th>Endurance</th></tr></thead>
+<tbody>
+<tr><td>Cloak</td><td><b>Covert Ops</b> &mdash; warps cloaked</td><td>Improved only &mdash; but <b>no speed penalty</b> while cloaked</td></tr>
+<tr><td>Ore hold</td><td>10,000 m&sup3;</td><td><b>15,000 m&sup3;</b> + on-the-fly compression</td></tr>
+<tr><td>Drones</td><td>none</td><td><b>yes</b> &mdash; can kill a wandering rat</td></tr>
+<tr><td>Role yield bonus</td><td>100% mining &amp; gas scoop</td><td><b>300% ore mining</b>, 50% faster ice</td></tr>
+<tr><td>Defence</td><td>5% sig radius reduction/level</td><td>4% all shield resists/level</td></tr>
+<tr><td>Gas harvesting</td><td><b>yes</b> &mdash; bonused</td><td>ore and ice focused</td></tr>
+<tr><td>Best for</td><td><span class="pill ready">travelling with the group</span></td><td><span class="pill ready">solo lowsec sitting</span></td></tr>
+</tbody>
+</table></div>
+<div class="pair" style="margin-top:14px;">
+<div class="card">
+<div class="card-head"><h3>Prospect</h3><span class="sub">the one that travels with you</span></div>
+<div class="card-body">
+<p class="note">The covert ops cloak is the whole argument &mdash; it moves through hostile space on <b>the same terms as the Asteros and Cheetahs</b>. On a filament run where the group relocates, that means Cody isn't the one ship that can't hide. It also keeps the gas bonus, so it does double duty for huffing.</p>
+<p class="note">A full 15,000 m&sup3; compresses to roughly 227 m&sup3; on the Endurance &mdash; the Prospect has no compression, so its smaller hold fills and needs hauling out more often.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-head"><h3>Endurance</h3><span class="sub">the better solo lowsec earner</span></div>
+<div class="card-body">
+<p class="note">No cloaked warping, but its role bonus removes the usual <b>velocity penalty while cloaked</b> and cuts reactivation to 5 seconds. The practical pattern players describe is cloak &rarr; align &rarr; decloak &rarr; warp &mdash; "usually only one click away from safety."</p>
+<p class="note">One miner running it in low and null reported mining a considerable amount of ice in dangerous systems <b>without fleet support</b>, needing only to stay alert. Bigger hold plus compression means far fewer dangerous return trips, which is the real safety gain.</p>
+</div>
+</div>
+</div>
+<p class="note"><b>Honest split:</b> Prospect if he's mostly coming along on group trips. Endurance if he's mostly going out alone. If it's genuinely both, Prospect first &mdash; mobility with the group is harder to substitute than hold size.</p>
+</section>
+
 <section id="training">
 <h2>What to train next</h2>
 <div class="scroll"><table>
 <thead><tr><th>Skill</th><th>Now</th><th class="num">SP needed</th><th>Unlocks</th><th>Priority</th></tr></thead>
 <tbody>
 <tr><td>Deep Core Mining I</td><td>0</td><td class="num">~1,250</td><td><b>Mercoxit</b> &mdash; the highest-value null ore, currently locked out entirely</td><td><span class="pill ready">do this first</span></td></tr>
-<tr><td>Mining Frigate V</td><td>III</td><td class="num">~240,000</td><td>Prospect (covert-cloak mining frigate) and better Venture yield</td><td><span class="pill ready">high</span></td></tr>
+<tr><td>Mining Frigate V</td><td>III</td><td class="num">~240,000</td><td><b>Prospect and Endurance</b> both &mdash; the single biggest hull upgrade available to him</td><td><span class="pill ready">high</span></td></tr>
+<tr><td>Astrometrics IV&ndash;V + Rangefinding/Pinpointing</td><td>III / 0 / 0</td><td class="num">~200,000&ndash;800,000</td><td>Faster scanning &mdash; finds gas and ore sites without waiting on the explorers</td><td><span class="pill warn">medium</span></td></tr>
 <tr><td>Astrogeology IV&rarr;V</td><td>III</td><td class="num">~1,000,000</td><td>Straight ore yield bonus per cycle, all ships</td><td><span class="pill warn">medium</span></td></tr>
 <tr><td>Mining Barge III&ndash;IV</td><td>I</td><td class="num">~100,000&ndash;500,000</td><td>Better barge performance; V opens Exhumers (Skiff/Mackinaw/Hulk)</td><td><span class="pill warn">medium</span></td></tr>
 <tr><td>Gas Cloud Harvesting IV&ndash;V</td><td>III</td><td class="num">~50,000&ndash;300,000</td><td>More simultaneous gas harvesters &mdash; direct boost to the WH gas role</td><td><span class="pill warn">medium</span></td></tr>
@@ -249,7 +292,7 @@ document.getElementById('gate-pass').addEventListener('keydown', function(e){ if
 </tbody>
 </table></div>
 <p class="note"><b>Deep Core Mining I is the standout</b> &mdash; roughly 1,250 SP, effectively free, and it's the difference between being able to touch the single most valuable ore in nullsec or not. Everything else on this list is incremental; that one is a hard gate.</p>
-<p class="note"><b>The Prospect is the interesting mid-term goal.</b> It's a covert-ops-capable mining frigate &mdash; cloaks like the explorers' ships do, which would let Cody move through hostile space on the same terms as the rest of the group rather than being the one ship that can't hide. Mining Frigate V is the gate.</p>
+<p class="note"><b>Mining Frigate V is the big one.</b> It's the single gate on both Expedition Frigates &mdash; train it and he can choose Prospect or Endurance depending on how the group is actually playing at the time, rather than committing now.</p>
 </section>
 
 <footer>
